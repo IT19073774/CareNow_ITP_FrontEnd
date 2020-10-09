@@ -1,0 +1,141 @@
+.mainContent {
+  position:absolute;
+  top:13%;
+  left:8%;
+  background-color:white;
+  width:88%;
+  height:69%;
+  border-radius: 45px 0 0 0;
+  z-index:15;
+  box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+  overflow: auto;
+  padding:3% 2%;
+}
+
+.title{
+font-size: 35px;
+font-weight: bold;
+font-family: sans-serif;
+}
+hr{
+border: 1px solid black;
+margin-bottom: 40px;
+}
+.content{
+padding:25px 125px 50px 125px;
+}
+
+.form{
+  text-align: left;
+  margin-left: 50px;
+}
+.column {
+  float: left;
+  width: 48%;
+  margin-right: 15px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text{
+  font-family: Arial, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.container{
+  border: 1px solid gray;
+  height: 180px;
+  box-shadow: gray;
+  padding: 30px 30px;
+  border-radius: 15px;
+  align-content: center;
+  font-family: Arial, sans-serif;
+  font-size: large;;
+}
+
+.container p{
+  text-align: center;
+}
+
+input{
+  margin: 10px;
+}
+.dateInput{
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+
+}
+.generate{
+  background-color: white; 
+  border: 2px solid #cdcdcd;
+  font-family: Arial, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-left: 70px;
+  padding: 5px 20px 5px 20px;
+}
+.generate:hover{
+  background-color: #cdcdcd;
+}
+
+
+
+.page{
+  height:100%;
+  width:100%;
+  padding:70px 90px;
+  margin: 50px 70px;
+}
+
+.leftTop{
+  float:right;
+  text-align: right;
+  margin-right: 100px;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+}
+
+.heading{
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: xx-large;
+  font-weight: bolder;
+  margin-top: 50px;
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin-top:50px;
+  margin-left: 120px;
+}
+  th{
+  font-size: medium;
+  padding:15px;
+  margin-top:50px;
+  }
+  
+  td, th {
+  border: 1px solid black;
+  font-family: arial, sans-serif;
+  text-align: left;
+  text-align: center;
+  }
+
+  td{
+    height:60px;
+  }
+  
+  tr:nth-child(even) {
+  background-color: #cdcdcd;
+  }

@@ -1,0 +1,151 @@
+<div class="mainContent" style="font-family: calibri;">
+    <div class="shiftTable" style="text-align: center;">
+        <table>
+            <tr>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;"></td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">MONDAY</td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">TUESDAY</td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">WEDNESDAY</td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">THURSDAY</td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">FRIDAY</td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">SATURDAY</td>
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">SUNDAY</td>
+            </tr>
+            <tr *ngFor="let slot of slotLoop; index as s;">
+                <td style="background-color: rgba(0, 0, 0, 0.753); color:white;">{{refLoop[s]}} - {{refLoop[s+1]}}</td>
+                <td *ngFor="let day of dayLoop; index as d;" [style.backgroundColor]="shift[(s*7)+d].boxColor" (click)="shiftUpdate((s*7)+d)"></td>
+            </tr>
+        </table>
+    </div>
+    <div style="float:left; overflow: auto;padding:10px;">
+    <input style="padding:10px; border:solid 1px lightgrey" placeholder="Search..." type="text" [(ngModel)]="searchTerm"></div>
+    <div style="float:left; height: 480px; overflow: auto;padding:10px;">
+        <div class="doctorTemplate" (click)="openDetail(doc.doctorId)"  *ngFor="let doc of doctors |filter:searchTerm">
+            <img src="assets/img/doctor2.jpg" height="100%" style="float: left;">
+            <div style="margin:15px; margin-left:90px;">
+                <a style="color:rgb(0, 0, 0); font-weight: normal; font-size: 17px;">Dr. {{doc.firstName}} {{doc.lastName}}</a><br>
+                <div style="height:10px; margin-top:10px;" [style.backgroundColor]="doc.color"></div>
+            </div>
+        </div>
+
+    </div>
+</div> 
+
+
+<div class="backShader" [style.display]="isDetVisible ? 'block' : 'none'">
+    <span class="close" (click)="closeDetail()">&times;</span>
+    <div class="PatDetail">
+        <img src="../../../assets/img/patpro.png" style="border:solid 3px grey; width:150px;">
+        <div style="position:absolute;left:25%;top:15%;width:auto;height:auto;">
+            <a style="color:grey;font-weight: bold;font-size: 25px;">Dr. {{detail.firstName}} {{detail.lastName}}</a><br>
+            <div style="color:rgba(13,149,176,1);font-weight: normal;font-size: 15px;width:300px;text-align: LEFT;">{{detail.education}}</div>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">NIC : {{detail.nic}} | {{detail.doctorId}}</a>
+        </div>
+        
+        <div style="position:absolute;left:55%;top:16%;width:auto;height:auto;">
+            <a style="color:grey;font-weight: normal;font-size: 15px;">DOB : {{detail.dob}} | {{detail.gender}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">Hired Date : {{detail.hiredDate}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">{{detail.address}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">{{detail.contactNo}}</a>
+        </div>
+
+        <div style="position:absolute;left:85%;top:17%;width:auto;height:auto; font-size: 40px;cursor: pointer;" title="No Actions">
+            <div style="background-color: lightgrey;width:100px;height:50px;float: left;"></div>
+            <a style="position:absolute;left:35%;top:-15%;color:white">&#x2026;</a>
+        </div>
+
+
+        <div class="tab">
+            <button class="tablinks active" (click)="openTab($event, 'Diagnosed')">My Patients</button>
+            <button class="tablinks" (click)="openTab($event, 'Slots')">Time Slots</button>
+            <button class="tablinks" (click)="openTab($event, 'Appointments')">Appointments</button>
+          </div>
+          <hr style="border:solid 2px #ddd">
+          <div id="Diagnosed" class="tabcontentMain">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchTermappo" style="padding:10px;border:solid 1px #ddd; margin-bottom:5px;">
+            <div style="height: 300px; overflow: auto;">
+            <table class="result">
+              <tr>
+                  <th>Patient ID</th>
+                  <th>Patient Name</th>
+                  <th>Gender</th>
+                  <th>Email</th>
+                  <th>Contact No.</th>
+              </tr>
+              <tr *ngFor="let appo of detailPatient | filter:searchTermappo">
+                <td>PAT0{{appo.patientId}}</td>
+                <td>{{appo.patientName}}</td>
+                <td>{{appo.patientGender}}</td>
+                <td>{{appo.patientEmail}}</td>
+                <td>{{appo.patientPhone1}}</td>
+              </tr>
+            </table>
+          </div>
+          </div>
+          
+          <div id="Slots" class="tabcontent">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchTermappo" style="padding:10px;border:solid 1px #ddd; margin-bottom:5px;">
+            <div style="height: 300px; overflow: auto;">
+            <table class="result">
+              <tr>
+                  <th>Shift ID</th>
+                  <th>Shift Day</th>
+                  <th>Shift Start Time</th>
+                  <th>Shift End Time</th>
+
+              </tr>
+              <tr *ngFor="let appo of detailShift | filter:searchTermappo">
+                <td>SFT0{{appo.shiftId}}</td>
+                <td [style.backgroundColor]="appo.color" >{{appo.shiftDay}}</td>
+                <td [style.backgroundColor]="appo.color" >{{appo.shiftSlotStart}}</td>
+                <td [style.backgroundColor]="appo.color" >{{appo.shiftSlotEnd}}</td>
+              </tr>
+            </table>
+          </div>
+          </div>
+
+          <div id="Appointments" class="tabcontent">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchTermappo" style="padding:10px;border:solid 1px #ddd; margin-bottom:5px;">
+            <div style="height: 300px; overflow: auto;">
+            <table class="result">
+              <tr>
+                  <th>Appointment ID</th>
+                  <th>Patient ID</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th>TimeSlot</th>
+                  <th>Status</th>
+              </tr>
+              <tr *ngFor="let appo of detailAppointment | filter:searchTermappo">
+                <td>APP0{{appo.appointmentId}}</td>
+                <td>PAT0{{appo.patientId}}</td>
+                <td>{{appo.description}}</td>
+                <td>{{appo.date}}</td>
+                <td>{{appo.timeSlot}}</td>
+                <td [style.backgroundColor]="appo.color" style="color:white;">{{appo.status}}</td>
+              </tr>
+            </table>
+          </div>
+          </div>
+
+    </div>
+</div> 
+
+<div class="backShader2" [style.display]="isaddVisible ? 'block' : 'none'">
+    <span class="close" (click)="closeAdd()">&times;</span>
+    <form class="addPat" #shiftForm="ngForm" (ngSubmit)="onSubmit(shiftForm)">
+		<h1>Assign Doctor Time-Slot</h1>
+		<hr>
+		<p><input class="inputAddPat" style="float:left; width:45.5%;cursor:no-drop;" placeholder="Day..." [value]="this.inputDay" name="day" disabled="disabled" required ngModel></p>
+		<p><input class="inputAddPat" style="float:right; width:45.5%;cursor:no-drop;" placeholder="Time Slot..." [value]="this.inputTimeSlot" name="slot" disabled="disabled" required ngModel></p><br><br><br>
+		<hr>
+		<p>Assign To</p>
+        <p><select class="inputAddPat" style="width:98;" name="doctor" required ngModel>
+            <option value="">Dr. </option>
+            <option *ngFor="let doc of doctors; index as d;" [value]="doc.employeeId">Dr. {{doc.firstName}} {{doc.lastName}}</option>
+        </select></p>
+		<div style="float:right;">
+		<button class="buttonAddPat" type="submit" >Done</button>
+		</div>
+	</form>
+</div>

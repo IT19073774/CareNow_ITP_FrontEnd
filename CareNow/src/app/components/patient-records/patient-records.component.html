@@ -1,0 +1,328 @@
+<div class="mainContent">
+    <!--<div class="search">
+        <form action="Adm_GenerateAlbumQuery" method="post">
+        <fieldset style="width: 50%;float:left;" class="searchfieldset">
+          <legend style="padding:10px;margin-left:10px;color:#4FEFD4;font-weight:bold;">Filter By:</legend>
+          <table class="filtersearch">
+            <tr >
+              <th style="padding-bottom:10px;">Column</th>
+              <th style="padding-bottom:10px;">Condition</th>
+              <th style="padding-bottom:10px;">Value</th>
+            </tr>
+            <tr>
+                <td><div class="searchinput">
+                    <input type="checkbox" name="ch_dob">Date of Birth
+                </div></td>
+              <td><select class="searchinput" style="width:100%;text-align: center;" name="op_dob">
+                <option>==</option>
+                <option>!=</option>
+                <option>>=</option>
+                <option><=</option>
+                <option>></option>
+                <option><</option>
+              </select></td>
+              <td><input class="searchinput" type="date" name="val_dob" value=""></td>
+            </tr>
+            <tr>
+                <td><div class="searchinput">
+                    <input type="checkbox" name="ch_doc">Gender
+                </div></td>
+              <td><select class="searchinput" style="width:100%;" name="op_doc">
+              </select></td>
+              <td>
+                <input class="searchinput" type="number" name="val_doc" value="">
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <fieldset style="width: 40%; float:right;padding:20px;padding-top:10px;margin-right:15px;" class="searchfieldset">
+          <legend style="padding:10px;margin-left:10px;color:#4FEFD4;font-weight:bold;	">
+            <input style="margin-right:8px;"type="checkbox" name="ch_orderby" value="" >Order By:
+          </legend>
+          <select class="searchinput" style="width:60%;" name="op_orderby">
+          </select>
+          <select class="searchinput" style="width:38%;float:right;" name="val_orderby">
+          </select>
+        </fieldset>
+
+        <div style="float:right;margin-right:13px;margin-top:15px;">
+          <table style="width: 150px;">
+            <tr>
+              <td style="padding-top:5px;" colspan="2"><input type="submit" class="generatebtn" name="" value="Generate"></td>
+            </tr>
+          </table>
+        </div>
+            </form>
+        </div>-->
+
+        <div class="console" style="font-weight:bold; font-family: calibri; font-size: large;">
+             <div style="padding:10px;">{{patients.length}} Patient Record(s) Generated</div>
+        </div>
+        <div class="resultHolder">
+          <input class="searchSeperate" placeholder="Search ..." type="text" [(ngModel)]="searchTerm">
+          <img src="../../../assets/img/search_icon.png" alt="searchIcon" style="width:40px;margin-top:0px;margin-right:10px;float:right;">
+          <button class="addnew" style="width:300px;box-shadow: none;" (click)="openAdd()">ADD NEW PATIENT</button>
+        <table class="result">
+            <tr>
+                <th>PatientID</th>
+                <th>PatientName</th>
+                <th>Date of Birth</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Contact No.</th>
+                <th>Family Doctor</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor="let pat of patients | filter:searchTerm">
+                <td>PAT0{{pat.patientId}}</td>
+                <td>{{pat.patientName}}</td>
+                <td>{{pat.patientDOB}}</td>
+                <td>{{pat.patientEmail}}</td>
+                <td>{{pat.patientGender}}</td>
+                <td>{{pat.patientPhone1}}</td>
+                <td>{{pat.familyDoctorId}}</td>
+                <td width="11%">
+                    <a (click)="openDetail(pat.patientId)"><img src="../../../assets/img/view_icon.png" alt="VIEW_ICON" height="33px" title="View" class="viewBtn"></a>
+                    <a (click)="DeletePatient(pat.patientId)"><img src="../../../assets/img/delete_icon.png" alt="DELETE_ICON" height="30px" title="Deactivate" class="deactivateBtn"></a>
+                </td>
+            </tr>
+        </table>
+      </div>
+</div>
+
+<div class="backShader" [style.display]="isDetVisible ? 'block' : 'none'">
+    <span class="close" (click)="closeDetail()">&times;</span>
+    <div class="PatDetail">
+        <img src="../../../assets/img/patpro.png" style="border:solid 3px grey; width:150px;">
+        <div style="position:absolute;left:25%;top:15%;width:auto;height:auto;">
+            <a style="color:grey;font-weight: bold;font-size: 20px;">Mr./ Mrs./ Ms. {{currentPat.patientName}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">{{currentPat.patientAddress}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">{{currentPat.patientPhone1}} / {{currentPat.patientPhone2}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">{{currentPat.patientGender}} / {{currentPat.patientDOB}}</a>
+        </div>
+
+        <div style="position:absolute;left:55%;top:15%;width:auto;height:auto;">
+            <a style="color:grey;font-weight: normal;font-size: 15px;">{{currentPat.patientEmail}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">Patient ID : PAT0{{currentPat.patientId}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">Occupation : {{currentPat.patientOccupation}}</a><br>
+            <a style="color:grey;font-weight: normal;font-size: 15px;">Family Doctor ID : {{currentPat.familyDoctorId}}</a>
+        </div>
+
+        <div style="position:absolute;left:80%;top:14.5%; font-size: 15px;;">
+            <button style="width:120px;padding:5px;cursor: pointer;font-weight:bold;border:solid 3px rgba(13,149,176,1); color:rgba(13,149,176,1); background-color: white;" (click)="open3()">Change Family Doctor</button>
+            <button style="width:120px;cursor: pointer;margin-top:5px;padding:5px;font-weight:bold;border:solid 3px rgb(216, 127, 10); color:rgb(216, 127, 10); background-color: white;" (click)="open4()">Change Password</button>
+        </div>
+
+
+        <div class="tab">
+            <button class="tablinks active" (click)="openTab($event, 'MEDICAL')">Medical Background</button>
+            <button class="tablinks" (click)="openTab($event, 'APPOINTMENT')">Appointments</button>
+            <button class="tablinks" (click)="openTab($event, 'EMERGENCY')">Emergency Contact</button>
+          </div>
+          <hr style="border:solid 2px #ddd">
+          <div id="MEDICAL" class="tabcontentMain">
+            <fieldset class="blockMedical" style="float: left;">
+                <legend style= padding:10px;>Allergies</legend>
+                <div style="overflow:auto;height:100px;">
+                  <ul>
+                  <li *ngFor="let all of allergies">
+                    {{all}}
+                  </li>
+           
+                </ul>
+              </div>
+                
+            </fieldset>
+            <fieldset class="blockMedical" style="float: right;">
+                <legend style= padding:10px;>Problems</legend>
+                <div style="overflow:auto;height:100px;">
+                  <ul>
+                  <li *ngFor="let all of problems">
+                    {{all}}
+                  </li>
+           
+                </ul>
+              </div>
+            </fieldset>
+            <fieldset class="blockMedical" style="float: left;">
+                <legend style= padding:10px;>Family History</legend>
+                <div style="overflow:auto;height:100px;">
+                  <ul>
+                  <li *ngFor="let all of history">
+                    {{all}}
+                  </li>
+           
+                </ul>
+              </div>
+            </fieldset>
+            <fieldset class="blockMedical" style="float: right;">
+                <legend style= padding:10px;>Previous Surgeries</legend>
+                <div style="overflow:auto;height:100px;">
+                  <ul>
+                  <li *ngFor="let all of surgeries">
+                    {{all}}
+                  </li>
+           
+                </ul>
+              </div>
+            </fieldset>
+          </div>
+
+          <div id="APPOINTMENT" class="tabcontent">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchTermappo" style="padding:10px;border:solid 1px #ddd; margin-bottom:5px;">
+            <div style="height: 300px; overflow: auto;">
+            <table class="result">
+              <tr>
+                  <th>Appointment ID</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th>TimeSlot</th>
+                  <th>Status</th>
+              </tr>
+              <tr *ngFor="let appo of currentPatAppo | filter:searchTermappo">
+                <td>APP0{{appo.appointmentId}}</td>
+                <td>{{appo.description}}</td>
+                <td>{{appo.date}}</td>
+                <td>{{appo.timeSlot}}</td>
+                <td [style.backgroundColor]="appo.color" style="color:white;">{{appo.status}}</td>
+              </tr>
+            </table>
+          </div>
+          </div>
+
+          <div id="EMERGENCY" class="tabcontent">
+            <table class="emergency">
+              <tr>
+                <th>Detail</th>
+                <th>Contact Number</th>
+              </tr>
+              <tr>
+                <td>{{currentPat.patient_E_Name}}</td>
+                <td rowspan="2" style="background-color: #ddd;">{{currentPat.patient_E_Phone}}</td>
+              </tr>
+              <tr>
+                <td>{{currentPat.patient_E_Relationship}}</td>
+                </tr>
+            </table>
+          </div>
+    </div>
+</div> 
+
+<div class="backShader2" [style.display]="isaddVisible ? 'block' : 'none'">
+    <span class="close" (click)="closeAdd(addPatForm)">&times;</span>
+    <div class="addPat">
+<form id="addPatForm" #addPatForm="ngForm" action="/action_page.php"> <h1>Add New Patient</h1>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tabAddPat" [style.display]="isStepTab[0] ? 'block' : 'none'"><b>General Information:</b>
+    <p><input class="inputAddPat" style="float:left; width:45.5%;" type="text" placeholder="First name..." name="fname" required autofocus ngModel></p>
+    <p><input class="inputAddPat" style="float:right; width:45.5%;" placeholder="Last name..." type="text" name="lname" required ngModel></p><br><br>
+	<p><input class="inputAddPat" style="width:96%;" placeholder="Occupation..."  type="text" name="occupation" required ngModel></p>
+	<p><input class="inputAddPat" style="float:left; width:45%; height:21px"name="dob" type="date" placeholder="DOB" required ngModel></p>
+    <p><select class="inputAddPat" style="float:right; width:50%;" name="gender" required ngModel>
+      <option value="">-- Gender --</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option></select></p><br><br><br><hr>
+	<p>Choose Family Doctor ... </p>
+	<p><select class="inputAddPat" name="doctor" required ngModel>
+    <option value="">-- Select --</option>
+    <option *ngFor="let doc of doctors" [value]="doc.doctorId">{{doc.firstName}} {{doc.lastName}} (Dr.)</option>
+  </select></p>
+  </div>
+  <div class="tabAddPat" [style.display]="isStepTab[1] ? 'block' : 'none'"><b>Contact Information:</b>
+    <p><input class="inputAddPat" style="width:96%;" placeholder="Email Address..." name="email" type="text" required ngModel></p>
+	<p><input class="inputAddPat" style="float:left; width:45.5%;" placeholder="Phone 01"  type="number"  name="tel1" required ngModel></p>
+    <p><input class="inputAddPat" style="float:right; width:45.5%;" placeholder="Phone 02" type="number" name="tel2" required ngModel></p><br><br>
+	<p><textarea rows="5" class="inputAddPat" style="width:96%; resize:none;" placeholder="Address Here..." type="text" name="address" required ngModel></textarea>
+  </div>
+  <div class="tabAddPat" [style.display]="isStepTab[2] ? 'block' : 'none'"><b>Medical Information:</b> 
+    <p><textarea rows="5" class="inputAddPat" style="float:left; width:45.5%; resize:none;" placeholder="+ Allergies..." name="allergy" ngModel></textarea>
+	<p><textarea rows="5" class="inputAddPat" style="float:right; width:45.5%; resize:none;" placeholder="+ Problems..." name="problem" ngModel></textarea><br><br><br><br><br><br>
+	<p><textarea rows="5" class="inputAddPat" style="float:left; width:45.5%; resize:none;" placeholder="+ Previous Surgeries..." name="surgery" ngModel></textarea>
+    <p><textarea rows="5" class="inputAddPat" style="float:right; width:45.5%; resize:none;" placeholder="+ Family History..." name="history" ngModel></textarea>
+  </div>
+  <div class="tabAddPat" [style.display]="isStepTab[3] ? 'block' : 'none'"><b>Patient Portal Setup:</b>
+    <p><input id="generatePassword" class="inputAddPat" style="width:96%;cursor: no-drop;" placeholder="Patient Password" name="psw" disabled="disabled" type="text" [(ngModel)]="password" required ngModel></p>
+	<p><input class="buttonAddPat" style="width:30%; float:right; background-color:black" value="Generate" (click)="generateRandomPassword()" type="button"></p>
+  <p style="color:red; font-size:15px;">* click on "GENERATE" to generate a 8 digit ramdom pasword for the patient portal</p>
+  <br><p><b>Emergency Contact:</b></p>
+  <p><input class="inputAddPat" style="width:96%;" placeholder="Enter Name..." name="eName" required ngModel></p>
+	<p><input class="inputAddPat" style="float:left; width:45.5%;" placeholder="Relationship" name="eRel" required ngModel></p>
+    <p><input class="inputAddPat" style="float:right; width:45.5%;" placeholder="Contact No." type="number" name="eTel" required ngModel></p>
+  </div>
+
+  <div style="overflow:auto;margin-top:20px">
+    <div style="float:right;">
+      <button class="buttonAddPat" type="button" id="AddPatprevBtn" (click)="nextPrev(-1,addPatForm)">Previous</button>
+      <button class="buttonAddPat" type="button" id="AddPatnextBtn" (click)="nextPrev(1,addPatForm)">Next</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="stepAddPat"></span>
+    <span class="stepAddPat"></span>
+    <span class="stepAddPat"></span>
+    <span class="stepAddPat"></span>
+  </div>
+</form>
+	</div>
+</div>
+
+<div class="passwordGiveAway" id="passwordGiveAway">
+  <div style="padding:20px;border-bottom:solid 1px black;">
+      <img src="../../../assets/img/logo2.png" alt="" style="width:30%">
+      <div style="float:right; font-family:calibri; font-size:10px; text-align:right;">
+          CareNow Holdings PLC @2020<br>
+          24/7 Church Road, Kepungoda<br>
+          +94 071 652 2177 / +94 076 378 1644
+      </div>
+  </div> 
+  <div style="padding:20px; background-color: lightgrey;">
+      <p><b>Dear {{giveAway.name}}</b>,<br></p>
+      <p>You have been successfully registered, to <b>CARENOW CLINIC</b> and you now have accesss to the Carenow Patient Portal.<br><br>
+      <br>Find your Carenow Patient Portal credentials below:</p>
+
+      <table style="margin-left:20px;">
+          <tr>
+              <td style="width:150px; font-weight: bold;">Username\ Email:</td>
+              <td>{{giveAway.email}}</td>
+          </tr>
+          <tr>
+              <td style="width:150px; font-weight: bold;">Password :</td>
+              <td>{{giveAway.password}}</td>
+          </tr>
+      </table>
+      <br>
+      <P>Thank You,<br><b>CARENOW CLINIC</b></P>
+  </div> 
+</div>
+
+<div class="backShader2" [style.display]="isVisible3 ? 'block' : 'none'">
+  <span class="close3" (click)="close3(docForm)">&times;</span>
+  <form class="updatePat" #docForm="ngForm" (ngSubmit)="onSubmit3(docForm)">
+    <h1>Update Patient's Family Doctor</h1>
+    <hr>
+    <p>Choose Doctor</p>
+        <p><select class="inputAddPat" style="width:98;" name="doctor" required ngModel>
+            <option value="">Dr. </option>
+            <option *ngFor="let doc of doctors; index as d;" [value]="'DOC0' + doc.employeeId">Dr. {{doc.firstName}} {{doc.lastName}}</option>
+        </select></p>
+    <div style="float:right;">
+    <button class="buttonAddPat" type="submit" >Done</button>
+    </div>
+</form>
+</div>
+
+<div class="backShader2" [style.display]="isVisible4 ? 'block' : 'none'">
+  <span class="close3" (click)="close4(passForm)">&times;</span>
+  <form class="updatePat" #passForm="ngForm" (ngSubmit)="onSubmit4(passForm)">
+    <h1>Change Patient Portal Password</h1>
+    <hr>
+    <p><input id="generatePassword" class="inputAddPat" style="width:96%;cursor: no-drop;" placeholder="Patient Password" name="psw" disabled="disabled" type="text" [(ngModel)]="password" required ngModel></p>
+    <p><input class="buttonAddPat" style="width:30%; float:right; background-color:black" value="Generate" (click)="generateRandomPassword()" type="button"></p>
+    <p style="color:red; font-size:15px;">* click on "GENERATE" to generate a 8 digit ramdom pasword for the patient portal</p>
+    <hr style="margin-top:40px;"><div style="float:right;">
+    <button class="buttonAddPat" type="submit" >Done</button>
+    </div>
+</form>
+</div>

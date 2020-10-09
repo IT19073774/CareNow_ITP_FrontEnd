@@ -1,0 +1,10 @@
+<div class="mainContent">
+    <ejs-schedule #scheduleObj [currentView] = "setView" [views] = "scheduleViews" (eventRendered)="oneventRendered($event)" [eventSettings]="eventSettings" (actionComplete)="onActionComplete($event)">
+        <e-resources>
+            <e-resource field='patientId' title='Choose Patient' [(dataSource)]='resourceDataSource'
+                textField='patientName' idField='patientId'>
+            </e-resource>
+        </e-resources>
+        
+    </ejs-schedule>
+</div>

@@ -1,0 +1,125 @@
+
+
+
+<div class="mainContent" style="overflow: hidden;font-family:calibri;">
+    <div class="heading">APPOINTMENTS'   TODAY</div> 
+	  <table class = "clock">
+	  <tr>
+        <td>{{hour}}</td>
+		<td>:</td>
+        <td>{{minute}}</td>
+		<td>:</td>
+        <td>{{second}}</td>
+		<td>|</td>
+        <td>{{ampm}}</td>
+	  </tr>
+	  </table>
+      <div class="clockBlock"></div>
+      <div style="width:51%; height:280px; overflow: auto; padding:20px;box-shadow:0 4px 8px 0 rgba(0,0,0,0.5); 
+      margin-bottom:10px; margin-left:1.5%;">
+        <div *ngIf="!isVisible">
+        <fieldset style="padding:20px; border-right:solid 10px grey; width:70%;float:left;">
+            <legend style="padding-left: 10px; padding-right: 10px;">Current Appointment</legend>
+            
+            <a style="font-size: 30px;">{{appointments[0].Subject}}</a><br>
+            <a style="font-size: 20px; color:grey;">{{appointments[0].Description}}</a><br><br><br><br>
+            <a style="font-size: 15px; color:grey;">Atendance Status : {{appointments[0].StatusId}}</a><br>
+            <a style="font-size: 20px; color:rgba(13,149,176,1);">{{appointments[0].StartTimeOnly}} - {{appointments[0].EndTimeOnly}}</a>
+
+            <div class="w3-light-grey" style="height:40px; margin-top: 14px; border:solid black 1px">
+                <div class="w3-container w3-lightblue w3-center" style="height:30px; text-align: center; padding-top: 10px;" [style.width.%]="this.appProgress"></div>
+            </div>
+        
+        </fieldset>
+        <div style="float:right;margin-top:10px;">
+            <button style="width:140px; padding:15px">VIEW PATIENT</button><br>
+            <button style="width:140px; padding:15px; margin-top:85px; color:green; border: solid 2px green; background-color: white; cursor: pointer; font-weight: bold;" (click)="updateAttendanceStatus(appointments[0].Id,2)">ARRIVED</button><br>
+            <button style="width:140px; padding:15px; margin-top:5px; color:red; border: solid 2px red; background-color: white; cursor: pointer; font-weight: bold;" (click)="updateAttendanceStatus(appointments[0].Id,3)">ABSENT</button>
+        </div>
+    </div>
+    <div *ngIf="isVisible" style="background-color:rgba(13,149,176,0.8); color:white; 
+    font-weight:bold;padding:5%;margin:auto;font-size: 20px;text-align: center;">
+        {{message}}
+    </div>
+    </div>
+        <div style="width:55%; height:120px; overflow: auto; margin-left:8px;">
+            <table style="padding-left:0;">
+                <div *ngIf="isVisible">
+                <td *ngFor="let appo of appointments; index as i; first as isFirst">
+                    <div class="appointmentTemplate" style="margin-right: 35px;" *ngIf="isFirst">
+                        <a>{{appo.Subject}}</a><br>
+                        <a>{{appo.Description}}</a><br>
+                        <a style="color:rgba(13,149,176,1); font-weight: bold;">{{appo.StartTimeOnly}} - {{appo.EndTimeOnly}}</a>                        
+                    </div>
+                </td>
+                </div>
+                <td *ngFor="let appo of appointments; index as i; first as isFirst">
+                    <div class="appointmentTemplate" *ngIf="!isFirst">
+                        <a>{{appo.Subject}}</a><br>
+                        <a style="color:grey;">{{appo.Description}}</a><br>
+                        <a style="color:rgba(13,149,176,1); font-weight: bold;">{{appo.StartTimeOnly}} - {{appo.EndTimeOnly}}</a>                        
+                    </div>
+                </td>
+            </table>
+            
+        </div>
+
+    <div class="doctorToday"></div>
+    <div class="doctorTodaySub">
+        <div *ngIf="!isVisibleShift">
+        <fieldset style="width:200px; text-align: center; padding:50px; float: left;">
+            <legend style="color:white; padding: 10px; text-align: left;">DOCTOR IN CABIN</legend>
+            <img src="assets/img/doctor1.jpg" width="100%" style="width:95%; border: solid 4px white; border-radius: 50%;" ><br><br>
+            
+            <a style="color:white; font-weight: normal; font-size: 20px;">Dr. {{doctors[0].firstName}} {{doctors[0].lastName}}</a><br>
+            <a style="color:white; font-weight: normal; font-size: 12px;">{{doctors[0].education}}</a><br>
+            <a style="color:white; font-weight: normal; font-size: 15px;">TEL : {{doctors[0].contactNo}}</a><br><br><br>
+            <a style="color:rgba(13,149,176,1); font-weight: bold; font-size: 20px;">{{doctors[0].startOnly}}  -  {{doctors[0].endOnly}}</a><br><br>
+
+            <div class="w3-light-grey" style="height:40px">
+                <div class="w3-container w3-lightblue w3-center" style=" height:30px; text-align: center; padding-top: 10px;" [style.width.%]="this.docProgress"></div>
+              </div>
+        </fieldset>
+    </div>
+    <div *ngIf="isVisibleShift">
+        <fieldset style="width:200px; height:450px; text-align: center; padding:50px; float: left;">
+            <legend style="color:white; padding: 10px; text-align: left;">DOCTOR IN CABIN</legend>
+            <div style=" color:white; 
+            font-weight:bold;padding:5%;margin:auto;font-size: 20px;text-align: center;">
+                -- NO DOCTOR -- 
+            </div>
+
+        </fieldset>
+    </div>
+        <div style="float:right; margin-right:15px; margin-top: 20px; height: 580px; overflow: auto;" >
+            <div *ngIf="isVisibleShift">
+            <div *ngFor="let shift of doctors; index as i; first as isFirst">
+                <div class="doctorTemplate" *ngIf="isFirst">
+                    <div style="float: left;height:100%; width:5%;" [style.backgroundColor]="shift.color"></div>
+                    <div style="margin:15px; margin-left:30px; width:80%;">
+                        <a style="color:rgb(0, 0, 0); font-weight: normal; font-size: 17px;">Dr. {{shift.firstName}} {{shift.lastName}}</a><br>
+                        <a style="color:rgb(110, 110, 110); font-weight: normal; font-size: 15px;"> {{shift.startOnly}} - {{shift.endOnly}}</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div *ngFor="let shift of doctors; index as i; first as isFirst">
+            <div class="doctorTemplate" *ngIf="!isFirst">
+                <div style="float: left;height:100%; width:5%;" [style.backgroundColor]="shift.color"></div>
+                <div style="margin:15px; margin-left:30px; width:80%;">
+                    <a style="color:rgb(0, 0, 0); font-weight: normal; font-size: 17px;">Dr. {{shift.firstName}} {{shift.lastName}}</a><br>
+                    <a style="color:rgb(110, 110, 110); font-weight: normal; font-size: 15px;"> {{shift.startOnly}} - {{shift.endOnly}}</a>
+                </div>
+            </div>
+            </div>
+            <div>
+                <div class="doctorTemplate" style="background-color:rgb(22, 22, 22); box-shadow: none; color:white; text-align: center; margin-top:20px;">
+                    ------------------------------------<br>
+                    END OF LINE FOR TODAY<br>
+                    ------------------------------------<br>
+                </div>
+                </div>
+        </div>
+    </div>
+
+</div>

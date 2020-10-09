@@ -1,0 +1,15 @@
+<!--<div class="back">
+</div>-->
+<div class="loginContainer">
+  <div class="logbox">
+    <img class="logocss" src="../../../assets/img/logo2.png" alt="CARENOW LOGO" width="50%">
+
+    <form class="credentials" (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">
+      <label class="headlogin">Enter your details below to continue:</label><br><br>
+      <input class="inputcss" name="email" type="email" placeholder="Email Address" required autofocus ngModel><br>
+      <input class="inputcss" name="password" style="margin-top:5px" type="password" placeholder="Password" required ngModel><br><br><br>
+      <button type="submit" class="loginbtn">Login</button>
+    </form>
+
+  </div>
+</div>  

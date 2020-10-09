@@ -1,0 +1,93 @@
+<div class="mainContent">
+
+    <div class = "title">
+        Drugs Issuing
+    </div>
+    <hr>
+    <div class="content">
+        <div>
+            <input class ="filter" type="text" placeholder="Search Drug " [(ngModel)]="drugName"/>
+            
+            <button class = "searchBtn" (click)="viewDrug()">Search Drug</button>
+        </div>
+        
+        <hr>
+
+        <input class ="filter" type="text" placeholder="Filter Here" [(ngModel)]="filterterm"/>
+        <table>
+            <tr>
+              <th>Prescription ID</th>
+              <th>Patient ID</th>
+              <th>Doctor ID</th>
+              <th>Prescription Date</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let prescription of prescription | filter:filterterm">
+
+                <td>{{prescription.prescriptionId}}</td>
+                <td>{{prescription.patientId}}</td>
+                <td>{{prescription.doctorID}}</td>
+                <td>{{prescription.prescriptionDate}}</td>
+                <td>
+                    <button class="btn" (click)="viewPrescription(prescription)">
+                        <img class = "view" src="assets/img/listView.jpg"   alt="CareNow Prescription View" >
+                    </button> 
+                </td>
+                
+            </tr>
+        </table>
+        
+    </div>
+
+</div>
+
+<div class="popup" [hidden]="openPresc" >
+    <div class="topic">
+        Prescription Details
+    </div>
+    <hr>
+
+    Prescription ID : {{p.prescriptionId}}<br>
+    Patient ID : {{p.patientId}}<br>
+    Doctor ID : {{p.doctorID}}<br>
+    Prescription Date : {{p.prescriptionDate}}<br>
+    <table>
+        <tr>
+                <th>Drug Name</th>
+                <th>Duration</th>
+                <th>Frequency</th>
+                <th>Amount</th>
+        </tr>
+        <tr *ngFor="let drug of drugDetail">
+            <td >{{drug.name}}</td>
+            <td>{{drug.duration}}</td>
+            <td>{{drug.frequency}}</td>
+            <td><input type="number" class="amountstyle" name="drugAmount" required ngModel></td>
+        </tr>
+    </table>
+    
+    <hr>
+    <button class="close" (click)="closePopup()"> Cancel</button>
+    <button class="close" (click)="issue(p.prescriptionId)">Issue Drugs</button>
+
+</div>
+
+<div class="popup" [hidden]="openDrug" >
+    <div class="topic">
+        Drug Details
+    </div>
+    <hr>
+
+    Drug ID : {{d.drugId}}<br>
+    Drug Name : {{d.drugName}}<br>
+    Available Stock : {{d.drugQuantity}}<br>
+    Expiry Date (First Oldest) : {{d.drugExpDate}}<br>
+    
+    <hr>
+
+    <button class="close" (click)="closePopup()"> OK</button>
+
+
+</div>
+
+

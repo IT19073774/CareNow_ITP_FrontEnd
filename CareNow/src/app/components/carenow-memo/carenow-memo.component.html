@@ -1,0 +1,28 @@
+<div class="mainContent">
+    <form  #memoForm="ngForm" (ngSubmit)="onSubmit(memoForm)">
+    <fieldset style="width:50%; margin:auto; padding:20px; font-family:calibri; border:solid 2px rgba(13,149,176,1);">
+        <legend style="color:rgba(13,149,176,1); font-weight: bold; padding:20px;">CARENOW MEMO</legend>
+        <label style="color:rgba(13,149,176,1); font-weight: bold;">Choose Recepient</label>
+
+        <select class="inputAddPat" style="margin-top:5px;" name="recepientType" required ngModel>
+            <option>PATIENT</option>
+            <option>DOCTOR</option>
+            <option>ADMINISTRATOR</option>
+            <option>STOCK MANAGER</option>
+            <option>PHARMACIST</option>
+            <option>DELIVERER</option>
+            <option>CASHIER</option>
+            <option>RECEPTIONIST</option>
+        </select><br><br>
+
+
+        <label style="color:rgba(13,149,176,1); font-weight: bold;">Recepient ID <label style="color:red;">[OPTIONAL]</label></label>
+        <input name="recepientId" type="text" class="inputAddPat" style="width:97%;margin-top:5px;" ngModel><br><br>
+
+        <textarea class="inputAddPat" style="width:97%;resize:none;" rows="8" name="content"
+         placeholder="Enter Content Here..." required ngModel></textarea>
+
+        <button type="submit" class="buttonAddPat" style="float:right; font-family: calibri; margin-top:20px;">SEND</button>
+    </fieldset>
+</form>
+</div>

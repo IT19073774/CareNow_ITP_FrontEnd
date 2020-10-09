@@ -1,0 +1,100 @@
+<div class="mainContent">
+
+    <form id="addPatForm" #addPatForm="ngForm"> <h1>Generate Report</h1>
+      <!-- One "tab" for each step in the form: -->
+      <div class="tabAddPat" [style.display]="isStepTab[0] ? 'block' : 'none'"><b>General Information:</b>
+        <p><input class="inputAddPat" style="width:96%;" placeholder="Report Name" name="name" required ngModel></p>
+        Generate Report On ...<br>
+        <p><select class="inputAddPat" name="type" required ngModel>
+            <option value="1">Doctor-Dagnosed-Patients</option>
+            <option value="2">Doctor-Shifts</option>
+            <option value="3">Appointment-Attendance</option></select></p>
+        <hr>
+        <p>Choose Report Format ... </p>
+        <p><select class="inputAddPat" name="format" required ngModel><option>-- PDF (.pdf) --</option></select></p>
+      </div>
+
+      <div class="tabAddPat" [style.display]="isStepTab[1] ? 'block' : 'none'"><b>Report Range:</b> <br><br>
+        Start :
+        <p><input class="inputAddPat" style="width:96%; height:21px"name="start" type="datetime-local" placeholder="DOB" required ngModel></p><br><br>
+        End :
+        <p><input class="inputAddPat" style="width:96%; height:21px"name="end" type="datetime-local" placeholder="DOB" required ngModel></p>
+      </div>
+
+    
+      <div style="overflow:auto;margin-top:20px">
+        <div style="float:right;">
+          <button class="buttonAddPat" type="button" id="AddPatprevBtn" (click)="nextPrev(-1,addPatForm)">Previous</button>
+          <button class="buttonAddPat" type="button" id="AddPatnextBtn" (click)="nextPrev(1,addPatForm)">Next</button>
+        </div>
+      </div>
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+        <span class="stepAddPat"></span>
+        <span class="stepAddPat"></span>
+      </div>
+    </form>
+
+</div>
+
+<div class="report" id="attendanceReport">
+  <div style="padding:20px;border-bottom:solid 1px black;">
+      <img src="../../../assets/img/logo2.png" alt="" style="width:30%">
+      <div style="float:right; font-family:calibri; font-size:medium; text-align:right;margin-top:10px;">
+          CareNow CLINIC PLC @2020<br>
+          24/7 Church Road, Kepungoda<br>
+          +94 071 652 2177 / +94 076 378 1644
+      </div>
+  </div> 
+  <div style="padding:20px;text-align:center;">
+    <h2>{{reportTitle}}</h2>
+    <table style="overflow:hidden;" class="result">
+      <tr>
+        <th>Appo ID</th>
+        <th>Patient</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Tiem Slot</th>
+        <th>Status</th>
+      </tr>
+      <tr *ngFor="let appo of appoAttendance" [style.color]="appo.color">
+        <td>{{appo.appointmentId}}</td>
+        <td>{{appo.subject}}</td>
+        <td>{{appo.description}}</td>
+        <td>{{appo.date}}</td>
+        <td>{{appo.timeslot}}</td>
+        <td>{{appo.statusId}}</td>
+      </tr>
+    </table><br><br>
+    <div style="border:dashed 2px grey; border-left: none; border-right: none;">END OF REPORT</div>
+  </div> 
+</div>
+
+<div class="report" id="attendanceReport2">
+  <div style="padding:20px;border-bottom:solid 1px black;">
+      <img src="../../../assets/img/logo2.png" alt="" style="width:30%">
+      <div style="float:right; font-family:calibri; font-size:medium; text-align:right;margin-top:10px;">
+          CareNow CLINIC PLC @2020<br>
+          24/7 Church Road, Kepungoda<br>
+          +94 071 652 2177 / +94 076 378 1644
+      </div>
+  </div> 
+  <div style="padding:20px;text-align:center;">
+    <h2>{{reportTitle}}</h2>
+    <table style="overflow:hidden;" class="result" style="width:70%">
+      <tr>
+        <th>Doctor</th>
+        <th>Patient</th>
+        <th>Date</th>
+        <th>Duration</th>
+      </tr>
+      <tr *ngFor="let appo of docDiagnose">
+        <td>{{appo.doctor}}</td>
+        <td>{{appo.patient}}</td>
+        <td>{{appo.date}}</td>
+        <td>{{appo.duration}} Min</td>
+      </tr>
+    </table><br><br>
+    <div style="border:dashed 2px grey; border-left: none; border-right: none;">END OF REPORT</div>
+  </div> 
+</div>

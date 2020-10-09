@@ -1,0 +1,49 @@
+.back {
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: 998;
+    /*background-image: linear-gradient(to bottom right,#707B7C,#CACFD2);*/
+    width: 100%;
+    height: 795px;
+  }
+  .loginContainer {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    width:60%;
+    background-image: url("../../../assets/img/logcont.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 610px;
+    height:600px;
+    padding:0px;
+    position: absolute;
+    z-index: 999;
+    left:20%;
+    top:100px;
+  }
+  .logbox {
+    width:45%;
+    height:600px;
+    background-color: white;
+  }
+  .logocss {
+    margin-left:22%;
+    margin-top:120px;
+  }
+  .inputcss {
+    padding: 10px;
+    width:70%;
+  }
+  .credentials {
+    margin-left:15%;
+    margin-top: 60px;
+  }
+  .headlogin {
+    font-family: calibri;
+    color:grey;
+    font-size:15px;
+  }
+  .loginbtn {
+    padding:10px 20px;
+    margin-left:25%;
+    cursor: pointer;
+  }

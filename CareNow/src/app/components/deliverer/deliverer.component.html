@@ -1,0 +1,129 @@
+<div class="mainContent">
+    <div class = "title">
+        Deliverers
+    </div>
+    <hr>
+    <div class="content">
+        <div>
+            <input class ="filter" type="text" placeholder="Filter Here " [(ngModel)]="filterterm"/>
+            <button class="addbtn" (click)="add()">
+                <img class = "add" src="assets/img/add.jpg"   alt="CareNow Prescription View" >
+            </button> 
+            
+        </div>
+        
+        <table>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Date Of Birth</th>
+              <th>Email Address</th>
+              <th>Hired Date</th>
+              <th>Contact Number</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let deliverer of deliverer | filter:filterterm">
+                <td>{{deliverer.employeeId}}</td>
+                <td>{{deliverer.firstName}}  {{deliverer.lastName}}</td>
+                <td>{{deliverer.dob}}</td>
+                <td>{{deliverer.email}}</td>
+                <td>{{deliverer.hiredDate}}</td>
+                <td>{{deliverer.contactNo}}</td>
+                <td>
+                    <button class="btn" (click)="edit(deliverer)">
+                        <img class = "view" src="assets/img/edit.png"   alt="CareNow Deliverer Delete" >
+                    </button> 
+                    <button class="btn" (click)="deleteDeliverer(deliverer.employeeId)">
+                        <img class = "view" src="assets/img/delete.png"   alt="CareNow Deliverer Delete" >
+                    </button>               
+                </td>
+            </tr> 
+        </table>
+        
+    </div>
+
+</div>
+
+<div class="popup" [hidden]="openAdd" >
+    <div class="topic">
+        New Deliverer
+    </div>
+    <hr>
+
+    <form (ngSubmit)="saveDeliverer()" >
+
+        <fieldset class="container">
+            <legend class="text">Add : </legend>
+
+            <input type="text" name="fname" [(ngModel)]="delivereradd.firstName" placeholder=" Deliverer First Name" 
+            class="inputname" required/>
+            <input type="text" name="lname" [(ngModel)]="delivereradd.lastName" placeholder=" Deliverer Last Name" 
+            class="inputname" required/>
+            <input type="text" name="email" [(ngModel)]="delivereradd.email" placeholder=" Deliverer Email Address" 
+            class="inputBox" required/>
+            <input type="number" name="nic" [(ngModel)]="delivereradd.nic" placeholder=" Deliverer License Number" 
+            class="inputname" required/>
+            <input type="number" name="num" [(ngModel)]="delivereradd.contactNo" placeholder=" Deliverer Contact Number" 
+            class="inputname" required/>
+            <input type="text" name="address" [(ngModel)]="delivereradd.address" placeholder=" Deliverer Address" 
+            class="inputBox" required/>
+
+            <div>
+                Date Of Birth: 
+                <input type="date" name="dob" [(ngModel)]="delivereradd.dob" class="DateinputBox" required/>
+                <br>
+                Hired Date : 
+                <input type="date" name="hd" [(ngModel)]="delivereradd.hiredDate"  class="DateinputBox" required/>
+            </div>
+
+            <button type="submit" class="subBtn" 
+            [disabled]="delivereradd.firstName == '' || delivereradd.lastName == ''|| delivereradd.contactNo == ''|| delivereradd.address == ''|| delivereradd.email == '' || delivereradd.nic == ''">Add Deliverer</button>
+
+        </fieldset>
+    </form>
+    
+    
+    <hr>
+    <button class="close" (click)="closePopup()">Cancel</button>
+
+</div>
+
+<div class="popup" [hidden]="openEdit" >
+    <div class="topic">
+        Edit Deliverer
+    </div>
+    <hr>
+
+    <form (ngSubmit)="saveDeliverer()" >
+
+        <fieldset class="container">
+            <legend class="text">Edit : </legend>
+
+            <input type="text" name="ffname" [(ngModel)]="delivereradd.firstName" value=" Deliverer first name" 
+            class="inputBox" required/>
+            <input type="text" name="llname" [(ngModel)]="delivereradd.lastName" value=" Deliverer last name" 
+            class="inputBox" required/>
+            <input type="number" name="ccontact" [(ngModel)]="delivereradd.contactNo" value=" Deliverer Number" 
+            class="inputBox" required/>
+            <input type="text" name="aadress" [(ngModel)]="delivereradd.address" value=" Deliverer Address" 
+            class="inputBox" required/>
+ 
+            <div>
+            Date Of Birth: 
+            <input type="date" name="dob" [(ngModel)]="delivereradd.dob" class="DateinputBox" required/>
+            <br>
+            Date Joined: <input type="date" name="hd" [(ngModel)]="delivereradd.hiredDate" 
+            class="DateinputBox" required/>
+            </div>
+
+            <button type="submit" class="subBtn" 
+            [disabled]="delivereradd.firstName == '' || delivereradd.lastName == ''|| delivereradd.contactNo == ''|| delivereradd.address == ''|| delivereradd.email == ''">Save Deliverer</button>
+
+        </fieldset>
+    </form>
+    
+    
+    <hr>
+    <button class="close" (click)="closePopup()">Cancel</button>
+
+</div>

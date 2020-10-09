@@ -1,0 +1,41 @@
+<div class="mainContent">
+    <div class = "title">
+        Re-orders / Deliveries
+    </div>
+    <hr>
+    <div class="content">
+        <p>Re-orders :</p>
+        <table>
+            <tr>
+                <th>Re-Order ID</th>
+                <th>Patient ID</th>
+                <th>Prescription ID</th>
+                <th></th>
+                
+            </tr>
+            
+            <tr *ngFor="let order of onlineOrder">
+                <td>{{order.reOrderId}}</td>
+                <td>{{order.patientId}}</td>
+                <td>{{order.prescriptionId}}</td>
+                
+                <td >
+
+                    <button class="btn" (click)="acceptOrder(order.reOrderId)">
+                        <img class = "view" src="assets/img/right.png"   alt="CareNow Accept" >
+                    </button> 
+                    <button class="btn" (click)="rejectOrder(order.reOrderId)">
+                        <img class = "view" src="assets/img/wrong.png"   alt="CareNow Reject" >
+                    </button> 
+                    
+                </td>
+            </tr>
+        </table>
+
+        
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,31 @@
+.mainContent {
+    position:absolute;
+    top:13%;
+    left:8%;
+    background-color:white;
+    width:88%;
+    height:69%;
+    border-radius: 45px 0 0 0;
+    z-index:15;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+    overflow: auto;
+    padding:3% 2%;
+  }
+
+  .inputAddPat {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: calibri;
+    border: 1px solid #aaaaaa;
+  }
+
+  .buttonAddPat {
+    background-color: rgba(13,149,176,1);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+  }

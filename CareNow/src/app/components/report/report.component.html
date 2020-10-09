@@ -1,0 +1,104 @@
+<div class="mainContent">
+    <div class = "title">
+        Reports
+    </div>
+    <hr>
+    <div class="content">
+        
+        <div class="row">
+            <div class="column" >
+                <fieldset class="container">
+                    <legend class="text">Report of Deliverers  </legend>
+                    <p>A Report with all details of deliverers who are currently working at the clinic can be downloaded as a PDF file. </p>
+                    <button (click) ="generateDelivererReport()" class="generate">Generate Deliverer Report</button>
+                </fieldset>
+            </div>
+
+            <div class="column">
+                <fieldset class="container">
+                    <legend class="text">Report of Drugs  </legend>
+                    <p>A Report with details of all drugs currently available at the pharmacy can be downloaded as a PDF file. </p>
+                    <button (click) ="generateDrugReport()" class="generate">Available Drug Report</button>
+                </fieldset>
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
+
+
+
+<div id="delivererTable" class="page" >
+
+  
+    <img src="assets/img/LOGO.png" alt="CARENOW LOGO" width="15%" class="logoclass">
+    <div class="leftTop">
+      <p>Report From Pharmacy</p>
+      <p>Date: {{myDate | date: 'shortDate'}}</p>
+    </div>
+
+    <br>
+
+    <div class="heading">
+      Report on Deliverers
+    </div>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact Number</th>
+        <th>Date Of Birth</th>
+        <th>Email Address</th>
+        <th>Hired Date</th>
+        <th>License Number</th>
+      </tr>
+      <tr *ngFor="let deliverer of deliverer ">
+          <td>{{deliverer.employeeId}}</td>
+          <td>{{deliverer.firstName}} {{deliverer.lastName}}</td>
+          <td>{{deliverer.address}}</td>
+          <td>{{deliverer.contactNo}}</td>
+          <td>{{deliverer.dob}}</td>
+          <td>{{deliverer.email}}</td>
+          <td>{{deliverer.hiredDate}}</td>
+          <td>{{deliverer.nic}}</td>
+      </tr>
+  </table>
+
+</div>
+
+
+<div id="drugTable" class="page" >
+
+  
+    <img src="assets/img/LOGO.png" alt="CARENOW LOGO" width="15%" class="logoclass">
+    <div class="leftTop">
+      <p>Report From Pharmacy</p>
+      <p>Date: {{myDate | date: 'shortDate'}}</p>
+    </div>
+
+    <br>
+
+    <div class="heading">
+      Report on Drugs
+    </div>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Expiry Date</th>
+        <th>Quantity</th>
+      </tr>
+      <tr *ngFor="let drug of drug ">
+          <td>{{drug.drugId}}</td>
+          <td>{{drug.drugName}}</td>
+          <td>{{drug.drugExpDate}}</td>
+          <td>{{drug.drugQuantity}}</td>
+      </tr>
+  </table>
+
+</div>
