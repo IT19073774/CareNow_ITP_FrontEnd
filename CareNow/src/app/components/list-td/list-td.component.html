@@ -1,0 +1,36 @@
+
+<div id="back">
+  
+  <div class="textpaddleft">
+  <h1 class="display-3">Prescribed Drugs.</h1></div>    
+  <br>   <br> 
+<table id="dataTable" class="table table-hover "style="width:100%">
+  <thead>
+    <tr>
+      <th>Drug name</th>
+      <th>Frequency</th>
+      <th>Additional Frequency</th>
+      <th>Special Record</th>
+      <th>Additional Record</th>
+      <th>Duration</th>   
+  </tr>
+</thead>
+      <tbody>
+        <tr *ngFor = "let TD of tds">
+          <td>{{TD.tdrugname}}</td>
+          <td>{{TD.tfrequencyselect}}</td>
+          <td>{{TD.tfrequencyinput}}</td>
+          <td>{{TD.trecordselect}}</td>
+          <td>{{TD.trecordinput}}</td>
+          <td>{{TD.tdurationinput}}</td>
+          <button class='btn btn-danger' (click) ="deleteTD(TD.tpid)" >Delete</button> 
+      </tr> 
+</tbody> 
+</table> 
+<div class="vertical-center">
+<br><br><br>
+<button class='btn btn-warning btn-lg' (click) ="getthis()" >Add Drugs to Prescription</button>
+</div>
+</div>
+
+<app-mp [Pres]="Pres_" ></app-mp>

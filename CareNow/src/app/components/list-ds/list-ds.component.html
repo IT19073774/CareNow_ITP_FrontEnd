@@ -1,0 +1,32 @@
+
+<div id="back">
+    <div class="textpaddleft">
+    <h1 class="display-3">Drug Stock.</h1></div>    
+    <br>   <br>   <br>   
+
+<table class="table table-hover  " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead class="thead-light">
+    <tr>
+    <th>Drug ID</th>
+    <th>Drug Name</th>
+    <th>Drug EXP</th>
+    <th>Drug Quntity</th>
+    <th>Add</th>
+</tr>
+</thead>
+<tbody>
+    <tr *ngFor="let DS of ds_">
+        <td>{{DS.drugID}}</td>
+        <td>{{DS.drugname}}</td>
+        <td>{{DS.drugexpdate}}</td>
+        <td>{{DS.drugquantity}}</td>
+        <td><button (click)="AddDrug(DS.drugname)" class='btn btn-success'>
+        ------ Add ------</button></td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+<app-prescription [Drugs]="P_Drugs" ></app-prescription>
+
+

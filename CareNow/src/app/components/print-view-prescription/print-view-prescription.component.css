@@ -1,0 +1,13 @@
+
+#boxx {
+    border: 1px solid;
+    padding: 10px;
+    margin: 10%;
+    box-shadow: 5px 10px;
+  }
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+

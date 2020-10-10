@@ -1,0 +1,56 @@
+<div>
+<div class="container" id="elemet-to export">
+<div class="row">
+<div class="col">
+    <h1>CareNow Clinic</h1>
+    <h5>94/b Kepungoda,</h5>
+    <h5>Pamunugama</h5>
+    <h6>Telephone: 032-6421801</h6>
+</div>
+<div class="col">
+<img  [src]="imagePath" style="float: right; width:70%;">
+</div></div>
+<br>
+<hr>
+<br> 
+<h5>Name : {{P_name}}</h5>
+<h5>Age : {{P_age}}</h5>
+<h5>Date : {{P_date}}</h5>
+<br>
+
+<br><br> 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Drug name</th>
+            <th>Frequency</th>
+            <th></th>
+            <th>Special Record</th>
+            <th></th>
+            <th>Duration</th>   
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <tr *ngFor = "let TD of tds">
+            <td>{{TD.tdrugname}}</td>
+            <td>{{TD.tfrequencyselect}}</td>
+            <td>{{TD.tfrequencyinput}}</td>
+            <td>{{TD.trecordselect}}</td>
+            <td>{{TD.trecordinput}}</td>
+            <td>{{TD.tdurationinput}}</td>
+    </tr> 
+</tbody> 
+</table>
+</div>
+
+<br><br><br><br>
+<div class="container">
+    <div class="vertical-center">
+        <button type="button" class="btn btn-lg btn-primary" (click)="pdfnow()">Download PDF</button>
+    </div>
+</div>
+
+
+
+</div>

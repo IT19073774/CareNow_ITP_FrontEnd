@@ -1,0 +1,55 @@
+<div id="back">
+  <div class="textpaddleft">
+  <h1 class="display-3">Instructions.</h1></div>
+
+<div *ngFor="let drug of Drugs">
+  <form (ngSubmit)= "saveTempDrug()" >
+   
+    <table class="table">
+      <thead>
+        <td><textarea class="form-control" rows="1" >{{drug}}</textarea></td>
+
+        <td><select class="form-control"  [(ngModel)]="TD_.tfrequencyselect" name="tfrequencyselect" >
+            <option value=null selected>Select Frequency</option>
+            <option value="OD">Once A Day</option>
+            <option value="bd">Twice A Day</option>
+            <option value="tds">Three times A day</option>
+            <option value="qds">Three times A day</option>
+            <option value="SOS">If needed</option>
+            <option value="5 hly">5 hourly</option>
+            <option value="2 hly">2 hourly</option>
+            <option value="mane">In the Morning</option>
+            <option value="vesper">In the Evening</option>
+            <option value="nocte">At Night</option>
+          </select>
+        </td>
+
+        <td><input type="text" class="form-control" placeholder="Add Frequency" [(ngModel)]="TD_.tfrequencyinput" name="tfrequencyinput"></td>
+
+          <td><select class="form-control" [(ngModel)]="TD_.trecordselect" name="trecordselect">
+            <option value= null selected>Select Special Record</option>
+            <option value="Before Meal">Before Meal</option>
+            <option value="After Meal">After Meal</option>
+            <option value="With Meal">With Meal</option>
+            <option value="Chewing">Chewing</option>
+            <option value="Sublingual">Sublingual</option>
+            
+          </select>
+        </td>
+
+        <td><input type="text" class="form-control" placeholder="Add Special Record" [(ngModel)]="TD_.trecordinput" name="trecordinput"></td>
+
+        <td><input type="text" class="form-control" placeholder="Add Duration" [(ngModel)]="TD_.tdurationinput" name="tdurationinput"></td>
+
+        <td><button type="submit" class="btn btn-primary">Submit</button></td> 
+
+      </thead>
+    </table>
+  </form>
+</div>
+<br><br>
+</div>
+
+<app-list-td></app-list-td>
+
+

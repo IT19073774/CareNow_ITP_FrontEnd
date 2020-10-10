@@ -19,7 +19,6 @@ import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, MonthS
 import { CarenowService } from './services/carenow.service';
 import { LoginUiComponent } from './components/login-ui/login-ui.component';
 import { TestComponent } from './components/test/test.component';
-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 //opny
@@ -28,8 +27,21 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { DelivererComponent } from './components/deliverer/deliverer.component';
 import { ReportComponent } from './components/report/report.component';
 
+//kaveen
+import { DataTablesModule } from 'angular-datatables';
+import { ListPRComponent } from './components/list-pr/list-pr.component';
+import { AddPRComponent } from './components/add-pr/add-pr.component';
+import { ListDsComponent } from './components/list-ds/list-ds.component';
+import { ListTDComponent } from './components/list-td/list-td.component';
+import { MPComponent } from './components/mp/mp.component';
+import { PrintViewPrescriptionComponent} from './components/print-view-prescription/print-view-prescription.component';
+import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
+import { PatientHomeComponent } from './components/patient-home/patient-home.component';
+import { PrescriptionComponent } from './components/prescription/prescription.component'
+
 @NgModule({
   declarations: [
+    //ashvinn
     AppComponent,
     CalendarComponent,
     AppointmentTodayComponent,
@@ -39,12 +51,24 @@ import { ReportComponent } from './components/report/report.component';
     CarenowMemoComponent,
     LoginUiComponent,
     TestComponent,
+    //opny
     DrugComponent,
     DeliveryComponent,
     DelivererComponent,
-    ReportComponent
+    ReportComponent,
+    //kaveen
+    ListPRComponent,
+    AddPRComponent,
+    ListDsComponent,
+    PrescriptionComponent,
+    ListTDComponent,
+    MPComponent,
+    PrintViewPrescriptionComponent,
+    DoctorHomeComponent,
+    PatientHomeComponent
   ],
   imports: [
+    //ashvinn
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -53,6 +77,8 @@ import { ReportComponent } from './components/report/report.component';
     ScheduleModule, RecurrenceEditorModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    //kaveen
+    DataTablesModule
   ],
   providers: [DayService, WeekService, MonthService, CarenowService],
   bootstrap: [AppComponent]

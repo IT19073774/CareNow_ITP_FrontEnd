@@ -1,0 +1,50 @@
+
+<div id="back">
+  
+<div class="vertical-center2">
+<h1 class="display-3">Prescription.</h1>
+  </div>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+      <div class="col-6">
+        <div class="form-group">
+    
+      <form (ngSubmit)= "savePres()" >
+        <div class="form-row">
+          <div class="col">
+     
+          <h4>Patient ID</h4>
+         <input type="number" class="form-control form-control-lg" placeholder="Patient ID" [(ngModel)]="pres_.prespatientid" name="prespatientid">
+<br></div><div class="col">
+         <h4>Date</h4>
+         <input type="date" class="form-control form-control-lg" placeholder="Date" [(ngModel)]="pres_.presdate" name="presdate" id="today">
+<br></div></div>
+<h4>Patient Name</h4>
+         <input type="text" class="form-control form-control-lg" placeholder="Patient Name" [(ngModel)]="pres_.prespatientName" name="prespatientName">
+<br>
+
+<div class="form-row">
+  <div class="col">
+    <h4>Age</h4>
+         <input type="number" class="form-control form-control-lg" placeholder="Age" [(ngModel)]="pres_.prespatientAge" name="prespatientAge">
+<br> </div><div class="col">
+  <h4>Doctor Fee | Rs.</h4>
+         <input type="number" class="form-control form-control-lg" placeholder="Doctor Fee (Rs.)" [(ngModel)]="pres_.docfee" name="docfee">
+<br></div></div><br>   
+
+
+         <textarea hidden class="form-control" rows="6" disabled  placeholder="Drugs Added " [(ngModel)]="pres_.presdrugs" name="presdrugs"></textarea>
+<br>
+    <div class="vertical-center2"> 
+      <button type="submit" class="btn btn-primary btn-lg " >Submit Prescription</button>
+    </div>
+<br>
+    </form>
+  </div>
+</div>
+<div class="col-3"></div>
+</div>
+</div>

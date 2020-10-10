@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Appointment } from '../models/appointment';
 import { Employee } from '../models/Employee';
+import { DS } from '../models/DS';
+import { MP } from '../models/mp';
+import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { Credential } from '../models/credential';
 import { Router } from '@angular/router';
-import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Memo } from '../models/memo';
-import { Prescription } from '../models/prescription';
-import { Deliverer } from '../models/deliverer';
-import { Drug } from '../models/drug';
-import { OnlineOrder } from '../models/online-order';
-import { DeliveryRecord } from '../models/delivery-record'
-import { Patient } from '../models/patient'
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { reorder } from '../models/reorder';
+import { PR } from '../models/pr';
+import { TD } from '../models/td';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +27,104 @@ export class CarenowService {
       Authorization: 'Basic ' +  btoa('carenow:password')
     })
   };
+
+  //kaveen
+  private getURL2 : string ="http://localhost:8080/api/";
+
+  getDS(): Observable<DS[]>{
+    return this.http.get<DS[]>(this.getURL2 + "all-DS", this.httpOptions);
+  }
+
+  //
+
+  private _refreshNeeded$ = new Subject<void>();
+
+  get refreshNeeded$(){
+    return this._refreshNeeded$;
+  }
+
+  getPres(): Observable<MP[]>{
+    return this.http.get<MP[]>(this.getURL2 + "all-Pres", this.httpOptions).pipe(
+      map(response => response)
+    )
+  }
+
+  savePres(MP_: MP):Observable<MP>{
+    return this.http.post<MP>(this.getURL2 + "add-Pres" ,MP_ , this.httpOptions)
+    .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+    );
+  }
+
+  deletethis(presid: number): Observable<any> {
+    return this.http.delete(this.getURL2 + "delete_Pres/" + presid, this.httpOptions);
+  }
+
+  addreorder(reorder_ : reorder):Observable<reorder>{
+    return this.http.post<reorder>(this.getURL2 + "addReorder",reorder_ , this.httpOptions)
+    .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+    );
+  }
+
+  //
+
+  getPR(): Observable<PR[]>{
+    return this.http.get<PR[]>(this.getURL2 + "all-PR", this.httpOptions).pipe(
+      map(response => response)
+    )
+  }
+  
+  
+  savepr(PR_: PR):Observable<PR>{
+    return this.http.post<PR>(this.getURL2 + "add-PR" ,PR_ , this.httpOptions);
+  }
+  
+  
+  getPRbyid(patientRecordID: number): Observable<PR> {
+    return this.http.get<PR>(`${this.getURL2}`+'find_PR/'+`${patientRecordID}`, this.httpOptions).pipe(
+      map(response => response)
+    )
+  }
+  
+  deletePR(patientRecordID: number): Observable<any> {
+    return this.http.delete(this.getURL2 + "delete_PR/" + patientRecordID, this.httpOptions);
+  }
+
+  //
+
+  getTD(): Observable<TD[]>{
+    return this.http.get<TD[]>(this.getURL2 + "all-TD",this.httpOptions).pipe(
+      map(response => response)
+    )
+  }
+
+  saveTD(TD_: TD):Observable<TD>{
+    return this.http.post<TD>(`${this.getURL2}`+'add-TD',TD_ ,this.httpOptions)
+    .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+    );
+  }
+
+  getTDbyid(tpid: number): Observable<TD> {
+    return this.http.get<TD>(`${this.getURL2}`+'find_TD/'+`${tpid}`, this.httpOptions).pipe(
+      map(response => response)
+    )
+  }
+
+  deleteTD(tpid: number): Observable<any> {
+    return this.http.delete(this.getURL2 + "delete_TD/" + tpid, this.httpOptions);
+  }
+
+  clearTD(): Observable<any> {
+    return this.http.delete(this.getURL2  + "clear_TD", this.httpOptions);
+  }
 
   //OPNY
 

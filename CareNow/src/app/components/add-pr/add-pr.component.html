@@ -1,0 +1,103 @@
+
+
+<div id="back">
+<div class="container">
+<div id="padd">  
+
+<h1 class="display-3">Patient Record.</h1>    
+<br>   
+<div class="form-group ">
+<form (ngSubmit)= "savePR()">
+
+<div class="form-row">
+<div class="col">
+    <h4 for="PID">Patient ID</h4>   
+    <input type="number"
+    class="form-control form-control-lg "
+            id="PID"
+            name="patientID"
+            [(ngModel)]="PR_.patientID"
+            placeholder="Enter Patient ID">
+            <br>
+</div>
+<div class="col">
+<h4 for="Pdate">Date</h4>        
+    <input type="date"
+    id="Pdate"
+    class="form-control form-control-lg"
+            name="patientrecorddate"
+            [(ngModel)]="PR_.patientrecorddate"
+            placeholder="Enter Date">
+            <br>
+</div>
+<div class="col"></div>
+<div class="col"></div>
+</div>
+<h4>Subjective</h4>
+    <textarea rows="5"
+    class="form-control form-control-lg"
+            name="patientrecordsubjective"
+            [(ngModel)]="PR_.patientrecordsubjective"
+            placeholder="Enter Subjective"></textarea>
+            <br>
+
+
+<h4>Objective</h4>
+<textarea rows="5"            
+    class="form-control form-control-lg"
+            name="patientrecordobjective"
+            [(ngModel)]="PR_.patientrecordobjective"
+            placeholder="Enter Objective"></textarea>
+            <br>  
+
+<h4>Assessment</h4>
+<textarea rows="5"            
+           class="form-control form-control-lg"
+            name="patientrecordassessment"
+            [(ngModel)]="PR_.patientrecordassessment"
+            placeholder="Enter Assessment"></textarea>
+            <br>  
+
+<h4>Plan</h4>
+<textarea rows="5"            
+            class="form-control form-control-lg"
+            name="patientrecordplan"
+            [(ngModel)]="PR_.patientrecordplan"
+            placeholder="Enter Plan"></textarea>
+            <br>  
+
+<h4>Essential</h4>
+<textarea rows="5"            
+           class="form-control form-control-lg"
+            name="patientrecordessential"
+            [(ngModel)]="PR_.patientrecordessential"
+            placeholder="Enter Essential"></textarea>
+            <br>  
+
+<h4>Extra</h4>
+<textarea rows="7"            
+            class="form-control form-control-lg"
+            name="patientrecordextra"
+            [(ngModel)]="PR_.patientrecordextra"
+            placeholder="Enter Extra"></textarea>
+            <br>   <br>   <br>  
+           
+
+    <div class="vertical-center">
+        <button type="submit" class="btn btn-lg btn-primary" >Add Patient Record</button>
+    </div>
+
+    <div class="vertical-center">
+        <button class="btn btn-lg btn-outline-danger" (click) ="addprdemo()" >DEMO</button>
+      
+    </div>
+    
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+
+ 

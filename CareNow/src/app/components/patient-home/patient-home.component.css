@@ -1,0 +1,332 @@
+
+.background {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-image: url("/assets/img/bg3.png");
+  }
+  .mainContent {
+    position:absolute;
+    top:13%;
+    left:8%;
+    background-color:white;
+    width:88%;
+    height:69%;
+    border-radius: 45px 0 0 0;
+    z-index:16;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+    overflow: auto;
+    padding:3% 2%;
+    font-family: "Segoe UI";
+
+  }
+  .header {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    margin-top:1%;
+  }
+  .logoclass {
+    margin-left:2%;
+  }
+  .notiIcon {
+    float:right;
+    width:2.5%;
+    padding:0.5%;
+    margin-top:0.3%;
+    cursor:pointer;
+    margin-right:1%;
+  }
+  .notiIcon:hover {
+    opacity:0.5;
+  }
+  .profileBlock {
+    float:right;
+    border-left:solid lightgrey 3px;
+    border-right:solid lightgrey 3px;
+    margin-right:1%;
+    padding-left:2%;
+    padding-right:2%;
+    width:20%;
+    color: white;
+
+  }
+  .subProfileBlock {
+    margin-left:26%;
+    font-family:calibri;
+    letter-spacing:2px;
+    font-weight:bold;
+    margin-top:4%;
+  }
+  .profileAvatar {
+    float:left;
+    border-radius:50%;
+    border:solid white 2px;
+    cursor:pointer;
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+    position:relative;
+  }
+
+  .profileAvatar:hover {
+    transform: scale(1.2) translateX(-10%);
+    z-index:999;
+  }
+  .profile:hover > .profileAvatar
+         {
+     transform: scale(1.2) translateX(-10%);
+     z-index:999;
+         }
+  .profile:hover > .logoutMenu
+         {
+            display: block;
+    transform: scale(1.2) translateX(-10%);
+         }
+  .userName {
+    color:white;
+    font-size:100%;
+  }
+  .userType {
+    color:grey;
+    font-size:80%;
+  }
+  .footer {
+    background-color:black;
+    width:98%;
+    position:fixed;
+    bottom:0;
+    left:0;
+    padding:1%;
+    color:grey;
+    font-family:calibri;
+    font-size:80%;
+    z-index:997;
+  }
+  .socialMediaclass {
+    float:right;
+    margin-right:0.2%;
+    width:3%;
+    cursor:pointer;
+  }
+  .socialMediaclass:hover {
+    opacity:0.5;
+  }
+  .notiAlert {
+
+    display:none;
+    display:inline-block;
+    position: relative;
+    top: -40px;
+    right: -20px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size:80%;
+  }
+  .navigation {
+    position: absolute;
+    top:190px;
+    left:1%;
+    width:4%;
+  }
+  .naviIcon {
+    max-width:100%;
+    background-color:grey;
+    border-radius:10%;
+    margin-bottom:8px;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,0.9);
+    padding:0 2px;
+    transition: transform .2s ease-in-out;
+    transform: scale(1);
+    transform-origin: 70% 50%;
+    position:relative;
+  }
+  .naviIcon:hover {
+    transform: scale(1.5) translateX(32%);
+    z-index:999;
+  }
+  .logoutMenu {
+    display:none;
+    position: absolute;
+    top: 15%;
+    left:67%;
+    margin-top:2%;
+    background-color:white;
+    width:6%;
+    padding:0.5%;
+    text-align:center;
+    border-radius:10%;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,0.8);
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+    z-index:99;
+  }
+  .logoutMenu a {
+    background-color: white;
+    color: grey;
+    display: block;
+    padding: 8%;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .logoutMenu a:hover {
+    background-color: rgba(13,149,176,0.5);
+    color:black;
+  }
+  .logoutMenu a.logout {
+    background-color: rgba(250,0,0,0.3);
+    color: black;
+  }
+  .logoutMenu a.logout:hover {
+    opacity:0.7;
+  }
+
+  .notificationPanel {
+          height: 625px;
+          width: 0;
+          position: fixed;
+          z-index: 99;
+          top: 95px;
+          right: 0;
+          background-color: rgba(0,0,0,0.9);
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 0;
+          padding-bottom:10px;
+        }
+
+        .notificationPanel a {
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+          font-family: "Lato", sans-serif;
+        }
+
+        .notificationPanel a:hover {
+          color: #f1f1f1;
+        }
+
+        .notificationPanel .closebtn {
+          font-size: 50px;
+            float:left;
+          margin-left: 0;
+        }
+        .closebtn{
+            cursor: pointer;
+        }
+        .timecapsule{
+            background-color: rgba(255,255,255,0.9);
+            width:95%;
+            float:left;
+            height:auto;
+            border-radius:10px;
+            margin-left:10px;
+            padding:10px;
+    padding-bottom:0;
+            margin-bottom: 5px;
+            padding-right : 40px;
+            font-family: arial;
+    border : solid 3px lightgrey;
+    
+    background-color: grey;
+        }
+  .notiHead{
+    font-family:calibri;
+    color:lightgrey; font-size:20px; letter-spacing:8px; float:left; margin-top:28px; margin-left:20px;
+  }
+  .notiContent {
+    font-family:arial;margin-right:10px;margin-top:0;color:black;
+  }
+  .mainContent {
+    position:absolute;
+    top:13%;
+    left:8%;
+    background-color:white;
+    width:88%;
+    height:69%;
+    border-radius: 45px 0 0 0;
+    z-index:16;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+    overflow: auto;
+    padding:3% 2%;
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: lightgrey;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(#0D95B0, #0A55A0);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(#2FADD5, #2F82D5);
+  }
+
+
+
+  /* cards */
+  .bigcards .card {
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  .bigcards hr {
+    margin: 1.5rem 0;
+    
+  }
+  
+  .bigcards .card-title {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+  }
+  
+  .bigcards .card-head {
+    font-size: 3rem;
+    margin: 0;
+  }
+  
+  .bigcards .card-head .period {
+    font-size: 0.8rem;
+  }
+  
+  
+  .bigcards .text-muted {
+    opacity: 0.7;
+  }
+  
+  
+  
+  @media (min-width: 992px) {
+    .bigcards .card:hover {
+      margin-top: -.25rem;
+      margin-bottom: .25rem;
+      background:  rgba(18, 201, 247, 0.3);
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+      
+    }
+    .bigcards .card:hover .btn {
+      opacity: 1;
+    }
+  }
+ 
