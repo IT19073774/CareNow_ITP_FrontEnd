@@ -1,7 +1,8 @@
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { DS } from './../../models/ds';
+import { Drug } from './../../models/drug';
 import { CarenowService } from 'src/app/services/carenow.service';
+
 
 
 @Component({
@@ -12,8 +13,8 @@ import { CarenowService } from 'src/app/services/carenow.service';
 export class ListDsComponent implements OnInit {
 
  
-  ds$ : Observable<DS[]>;
-  ds_ : DS[] = [];
+  ds$ : Observable<Drug[]>;
+  ds_ : Drug[] = [];
 
   //datatables
   dtOptions: DataTables.Settings = {};  

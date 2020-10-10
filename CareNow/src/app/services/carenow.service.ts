@@ -14,6 +14,7 @@ import { tap } from 'rxjs/operators';
 import { reorder } from '../models/reorder';
 import { PR } from '../models/pr';
 import { TD } from '../models/td';
+import { Drug } from '../models/drug';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,8 @@ export class CarenowService {
   //kaveen
   private getURL2 : string ="http://localhost:8080/api/";
 
-  getDS(): Observable<DS[]>{
-    return this.http.get<DS[]>(this.getURL2 + "all-DS", this.httpOptions);
+  getDS(): Observable<Drug[]>{
+    return this.http.get<Drug[]>(this.getURL2 + "all-DS", this.httpOptions);
   }
 
   //
@@ -98,13 +99,13 @@ export class CarenowService {
   //
 
   getTD(): Observable<TD[]>{
-    return this.http.get<TD[]>(this.getURL2 + "all-TD",this.httpOptions).pipe(
+    return this.http.get<TD[]>("http://localhost:8080/api/all-TD",this.httpOptions).pipe(
       map(response => response)
     )
   }
 
   saveTD(TD_: TD):Observable<TD>{
-    return this.http.post<TD>(`${this.getURL2}`+'add-TD',TD_ ,this.httpOptions)
+    return this.http.post<TD>("http://localhost:8080/api/add-TD" ,TD_ ,this.httpOptions)
     .pipe(
         tap(() => {
           this._refreshNeeded$.next();
@@ -118,8 +119,8 @@ export class CarenowService {
     )
   }
 
-  deleteTD(tpid: number): Observable<any> {
-    return this.http.delete(this.getURL2 + "delete_TD/" + tpid, this.httpOptions);
+  deleteTD(id): Observable<any> {
+    return this.http.delete("http://localhost:8080/api/delete_TD/" + id, this.httpOptions);
   }
 
   clearTD(): Observable<any> {
@@ -316,6 +317,26 @@ export class CarenowService {
     
     this.credAuthenticate(JSON.stringify(credentials)).subscribe(data => {
       if (data == true) {
+        this.getAllPatients().subscribe(patients => {
+          console.log(patients)
+          for(let pat of patients) {
+            if (pat["patientEmail"] == credentials.getEmail()) {
+              this.sessionUser_EMAIL += pat["patientEmail"];
+              this.sessionUser_ID += pat["patientId"]
+              if (pat["patientGender"] == "Male")
+                this.sessionUser_NAME = "Mr. ";
+              else if (pat["patientGender"] == "Female")
+                this.sessionUser_NAME = "Mrs./ Ms. ";
+              this.sessionUser_NAME = this.sessionUser_NAME + pat["patientName"];
+
+                this.sessionUser_TYPE = "PATIENT";
+                this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
+                this.isAuthenticated = true;
+                this.router.navigate(['/patientHome']);
+                this.isPatient = true;
+            }
+          }
+        })
         this.getAllEmployees().subscribe(employee => {
           for (let emp of employee){
             if (emp["email"] == credentials.getEmail()) {

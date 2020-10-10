@@ -1,45 +1,5 @@
-<div>
-    <div class="background"></div>
-      <div class="header">
-        <img src="assets/img/LOGO.png" alt="CARENOW LOGO" width="15%" class="logoclass">
-        <div class="notiIcon" title="NOTIFICATION" onclick="openTimeLine()">
-          <img src="assets/img/notiIcon.png" alt="Notification Icon" width="100%">
-          <span class="notiAlert">2</span>
-        </div>
-        <div class="profileBlock">
-          <div class="profile">
-            <img src="assets/img/profile-avatar.jpg" alt="PROFILE AVATAR" width="20%" class="profileAvatar">
-            <div class="logoutMenu">
-              <a>Profile</a>
-              <a>Settings</a>
-              <hr style="margin-top:15%;margin-bottom:2%;">
-              <!-- <a class="logout" (click)="logout()">Logout</a> -->
-            </div>
-          </div>
-      
-          <div class="subProfileBlock">
-            <a class="userName">MR. ANTHONY ALWIS</a><br>
-            <a class="userType">PATIENT</a>
-          </div>
-        </div>
-      </div>
-      <div id="notificationPanel" class="notificationPanel">
-        <a class="closebtn" onclick="closeTimeLine()">&times;</a>
-        <p class="notiHead">NOTIFICATION</p>
-        <div class="timecapsule">
-          <label style="color: white;">Monday, 10 Aug, 2020 10:13 AM</label><br>
-          <label style="color: white;">From: Mr.Goutham Vijay</label><br>
-          <hr><br>
-          <p class="notiContent">Content Here ...</p>
-        </div>
-      </div>
-      <div class="mainContent" style="background-color:rgba(13,149,176,0.8); z-index:11;left:7.3%;"></div>
-      
-      <!-- <div class="mainContent" style="background-color :#ffffff; height:5%; width:90%;box-shadow:none;padding:0;"> -->
-        <div class="mainContent">
 
-
-<!-- pres -->
+<div class="mainContent">
 
   <div id= font-selection>
   <br> <br> 
@@ -67,57 +27,7 @@
 </div>
 </div>
 
-
- </div>
-
+</div>
 
 
 
-      <footer class="footer">
-        <div style="float:left;">
-          <a>24/7 Church Road, Kepungoda</a><br>
-          <a>+94 071 652 2177 / +94 076 378 1644</a><br>
-          <a>CareNow Holdings PLC @2020, All Rights Reserved</a><br>
-        </div>
-        <div class="" style="margin-top:0.5%;">
-          <img src="assets/img/linkedinLOGO.png" alt="Linkedin LOGO" width="15%" class="socialMediaclass" title="LinkedIn">
-          <img src="assets/img/twitterLOGO.png" alt="Twitter LOGO" width="15%" class="socialMediaclass" title="Twitter">
-          <img src="assets/img/fbLOGO.png" alt="Facebook LOGO" width="15%" class="socialMediaclass" title="Facebook">
-        </div>
-      </footer>
-      </div>
-      <div class="navigation">
-        <div class="naviIcon" title="Calendar" routerLink="calendars">
-          <img src="assets/img/calIcon.png" alt="Calendar Icon" width="100%">
-        </div>
-        <div class="naviIcon" title="Appointments' Today" routerLink="appointments">
-          <img src="assets/img/appointmentIcon.png" alt="Appointment Icon" width="100%">
-        </div>
-        <!-- <div class="naviIcon" title="Patient Records" routerLink="patients"> 
-          <img src="assets/img/patientRecIcon.png" alt="Patient Record Icon" width="100%">
-        </div>
-        <div class="naviIcon" title="Doctor Records" routerLink="doctors">
-          <img src="assets/img/doctorRecIcon.png" alt="Doctor Record Icon" width="100%">
-        </div>
-        <div class="naviIcon" title="Generate Reports" routerLink="reports">
-          <img src="assets/img/diagnosisIcon.png" alt="Diagnosis Record Icon" width="100%">
-        </div>
-        <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
-          <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
-        </div> -->
-      </div>
-    
-      <router-outlet></router-outlet>
-    
-    
-    
-      
-      <script type="text/javascript">
-        function openTimeLine() {
-          document.getElementById("notificationPanel").style.width = "340px";
-        }
-    
-        function closeTimeLine() {
-          document.getElementById("notificationPanel").style.width = "0";
-        }
-      </script>

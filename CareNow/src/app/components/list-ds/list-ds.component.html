@@ -1,5 +1,5 @@
-
-<div id="back">
+<div class="mainContent">
+   
     <div class="textpaddleft">
     <h1 class="display-3">Drug Stock.</h1></div>    
     <br>   <br>   <br>   
@@ -15,18 +15,19 @@
 </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let DS of ds_">
-        <td>{{DS.drugID}}</td>
-        <td>{{DS.drugname}}</td>
-        <td>{{DS.drugexpdate}}</td>
-        <td>{{DS.drugquantity}}</td>
-        <td><button (click)="AddDrug(DS.drugname)" class='btn btn-success'>
+    <tr *ngFor="let Drug of ds_">
+        <td>{{Drug.drugId}}</td>
+        <td>{{Drug.drugName}}</td>
+        <td>{{Drug.drugExpDate}}</td>
+        <td>{{Drug.drugQuantity}}</td>
+        <td><button (click)="AddDrug(Drug.drugName)" class='btn btn-success'>
         ------ Add ------</button></td>
     </tr>
 </tbody>
 </table>
-</div>
+
+
 
 <app-prescription [Drugs]="P_Drugs" ></app-prescription>
-
+</div>
 

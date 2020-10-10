@@ -1,9 +1,16 @@
+<!--REC-->
 <div class="backgroundRec" *ngIf="service.isReceptionist"></div>
 <div *ngIf="service.isReceptionist" class="mainContent" style="background-color:rgba(13,149,176,0.8); z-index:11;left:7.3%;"></div>
+<!--DOC-->
 <div class="backgroundDoc" *ngIf="service.isDoctor"></div>
 <div *ngIf="service.isDoctor" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
+<!--PHARMACIST-->
 <div class="backgroundPha" *ngIf="service.isPharmacist"></div>
 <div *ngIf="service.isPharmacist" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
+<!--PATIENT-->
+<div class="backgroundPat" *ngIf="service.isPatient"></div>
+<div *ngIf="service.isPatient" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
+
 <div *ngIf="service.isAuthenticated">
   <div class="header">
     <img src="assets/img/LOGO.png" alt="CARENOW LOGO" width="15%" class="logoclass">
@@ -116,6 +123,13 @@
     <div class="naviIcon" title="Calendar" routerLink="/patientHome">
       <img src="assets/img/calanderIcon.png" alt="Calendar Icon" width="100%">
     </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isPatient">
+    
     <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
       <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
     </div>

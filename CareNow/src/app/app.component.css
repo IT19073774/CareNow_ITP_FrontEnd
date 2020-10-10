@@ -22,6 +22,14 @@
     height:100%;
     background-image: url("../assets/img/bgdoc2.jpg");
   }
+  .backgroundPat {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-image: url("../assets/img/bgdoc2.jpg");
+  }
   
   .header {
     position:absolute;

@@ -1,11 +1,16 @@
+@import "~bootstrap/dist/css/bootstrap.css";  
 
-#back {
-	margin: 0;
-	height: 100%;
-	background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
-	background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-	padding-bottom: 2%;
-	font-family: "Segoe UI";
-}
+.mainContent {
+    position:absolute;
+    top:13%;
+    left:8%;
+    background-color:white;
+    width:92%;
+    height:77%;
+    border-radius: 45px 0 0 0;
+    z-index:15;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+    overflow: auto;
+    padding:3% 2%;
+     
+  }

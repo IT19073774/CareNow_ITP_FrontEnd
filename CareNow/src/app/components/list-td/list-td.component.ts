@@ -54,10 +54,11 @@ this.Pres_.push(PresDrugs);
 }
 
 
-deleteTD(tpid:number){
+deleteTD(tpid:any){
+  console.log(tpid)
   this._tdService.deleteTD(tpid).subscribe(
     data => {
-      console.log('Deleted TD' , data);
+      console.log('Deleted TD');
       this.ngOnInit();
     }
   )
