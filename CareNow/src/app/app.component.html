@@ -1,5 +1,7 @@
 <div class="backgroundRec" *ngIf="service.isReceptionist"></div>
 <div *ngIf="service.isReceptionist" class="mainContent" style="background-color:rgba(13,149,176,0.8); z-index:11;left:7.3%;"></div>
+<div class="backgroundDoc" *ngIf="service.isDoctor"></div>
+<div *ngIf="service.isDoctor" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
 <div class="backgroundPha" *ngIf="service.isPharmacist"></div>
 <div *ngIf="service.isPharmacist" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
 <div *ngIf="service.isAuthenticated">
@@ -22,7 +24,8 @@
   
       <div class="subProfileBlock">
         <a class="userName">{{service.sessionUser_NAME}}</a><br>
-        <a class="userType">{{service.sessionUser_TYPE}}</a>
+        <a class="userType" *ngIf="!service.isDoctor">{{service.sessionUser_TYPE}}</a>
+        <a class="userType" style = "color:white" *ngIf="service.isDoctor">{{service.sessionUser_TYPE}}</a>
       </div>
     </div>
   </div>
@@ -91,6 +94,27 @@
     </div>
     <div class="naviIcon" title="Reports" routerLink="phareports">
       <img src="assets/img/reports.png" alt="Report Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isDoctor">
+    <div class="naviIcon" title="Generate Reports" routerLink="/addPR">
+      <img src="assets/img/ADDPRicon.png" alt="Diagnosis Record Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="New Prescription" routerLink="/ADDpres">
+      <img src="assets/img/presIcon.png" alt="Prescription Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Patient Records" routerLink="/viewPRs"> 
+      <img src="assets/img/PRicon.png" alt="Patient Record Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Appointments' Today" routerLink="appointments">
+      <img src="assets/img/apoIcon.png" alt="Appointment Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Calendar" routerLink="/patientHome">
+      <img src="assets/img/calanderIcon.png" alt="Calendar Icon" width="100%">
     </div>
     <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
       <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">

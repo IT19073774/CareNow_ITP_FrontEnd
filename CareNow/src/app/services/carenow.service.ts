@@ -304,6 +304,8 @@ export class CarenowService {
   isAuthenticated = false;
   isReceptionist = false;
   isPharmacist = false;
+  isDoctor = false;
+  isPatient = false;
   sessionUser_EMAIL = "";
   sessionUser_NAME = "";
   sessionUser_TYPE = "";
@@ -322,7 +324,7 @@ export class CarenowService {
               if (emp["gender"] == "Male")
                 this.sessionUser_NAME = "Mr. ";
               else if (emp["gender"] == "Female")
-                this.sessionUser_NAME = "Ms. ";
+                this.sessionUser_NAME = "Mrs./ Ms. ";
               this.sessionUser_NAME = this.sessionUser_NAME + emp["firstName"] + " " + emp["lastName"];
 
               if (emp["type"] == "RECEPTIONIST") {
@@ -339,7 +341,14 @@ export class CarenowService {
                 this.isAuthenticated = true;
                 this.router.navigate(['drugs']);
                 this.isPharmacist = true;
-              }
+
+              } else if (emp["type"] == "DOCTOR") {
+                this.sessionUser_TYPE = "DOCTOR";
+                this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
+                this.isAuthenticated = true;
+                this.router.navigate(['/docHome']);
+                this.isDoctor = true;
+              } 
             }
           }
          
@@ -357,6 +366,8 @@ export class CarenowService {
     this.isAuthenticated = false;
     this.isReceptionist = false;
     this.isPharmacist = false;
+    this.isDoctor = false;
+    this.isPatient = false;
     this.sessionUser_EMAIL = "";
     this.sessionUser_NAME = "";
     this.sessionUser_TYPE = "";

@@ -24,10 +24,10 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { PatientHomeComponent } from './components/patient-home/patient-home.component';
 
 const routes: Routes = [
-  //{ path:'',redirectTo: 'calendars', pathMatch: 'full'},
+  { path:'',redirectTo: 'login', pathMatch: 'prefix'},
 
   //ashvinn
-   { path:'', component: LoginUiComponent},
+   { path:'login', component: LoginUiComponent},
   { path: 'calendars', component: CalendarComponent, canActivate: [AuthGuard]},
   { path: 'appointments', component: AppointmentTodayComponent, canActivate: [AuthGuard]},  
   { path: 'patients', component: PatientRecordsComponent, canActivate: [AuthGuard]},
@@ -48,7 +48,7 @@ const routes: Routes = [
   {path: 'editPR/:id', component: AddPRComponent},
   {path: 'viewDS', component: ListDsComponent},
   {path: 'viewTD', component: ListTDComponent},
-  {path: 'docHome', component: DoctorHomeComponent},
+  {path: 'docHome', component: DoctorHomeComponent, canActivate: [AuthGuard]},
   {path: 'patientHome', component: PatientHomeComponent},
   {path: 'ADDpres', component: ListDsComponent},
   {path: 'PrintPres/:name/:age/:date', component: PrintViewPrescriptionComponent},
