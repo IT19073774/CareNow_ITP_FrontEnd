@@ -33,7 +33,7 @@ export class AddPRComponent implements OnInit {
     this.PR_service.savepr(this.PR_).subscribe(
       data =>{
         console.log('response',data);
-        this.PR_router.navigateByUrl("docHome");
+        this.PR_router.navigate(['docHome']);
       }
     )
   }
@@ -52,7 +52,7 @@ export class AddPRComponent implements OnInit {
 
     this.PR_service.savepr(this.PR_DEMO).subscribe(
       data =>{
-        this.PR_router.navigateByUrl("docHome");
+        this.PR_router.navigate(['docHome']);
       }
     )
   }

@@ -44,7 +44,7 @@ const routes: Routes = [
 
   //kaveen
   {path: 'viewPRs', component: ListPRComponent},
-  {path: 'addPR', component: AddPRComponent},
+  {path: 'addPR', component: AddPRComponent, canActivate: [AuthGuard]},
   {path: 'editPR/:id', component: AddPRComponent},
   {path: 'viewDS', component: ListDsComponent},
   {path: 'viewTD', component: ListTDComponent},
