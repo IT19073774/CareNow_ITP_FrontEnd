@@ -13,8 +13,6 @@ export class ListPRComponent implements OnInit {
   
   filtersPR = {
     keyword:''
-
-
   }
 
 
@@ -42,7 +40,6 @@ export class ListPRComponent implements OnInit {
       data => this.prs = this.filter_PR(data)
       )
   }
-
 
   filter_PR(PR_ : PR[]){
     return PR_.filter((pr) =>{
