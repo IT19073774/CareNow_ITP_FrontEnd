@@ -1,0 +1,93 @@
+<div class="mainContent">
+
+    <h2 style="font-family: Arial; margin-left:450px;"> Availiable Pharmacists
+    -</h2>
+    <div >
+      <table id="orders">
+        <tr>
+          <th>Empoyee ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>nic</th>
+          <th>Gender</th>
+          
+          <th>Contact Number </th>
+          <th>Email</th>
+          <th>DOB </th>
+          <th>Hired Date </th>
+    
+        </tr>
+          
+             <tr  *ngFor="let pharma of pharmacist">
+                  <td>{{pharma.employeeId}}</td>
+                  <td >{{pharma.firstName}}</td>
+                  <td >{{pharma.lastName}}</td>
+                  <td >{{pharma.nic}}</td>
+                  <td >{{pharma.gender}}</td>
+                  <td >{{pharma.contactNo}}</td>
+                  <td >{{pharma.email}}</td>
+                  <td >{{pharma.dob}}</td>
+                  <td >{{pharma.hiredDate}}</td>
+                  
+  
+                  
+                  <td ><a routerLink="/editorder/{{pharma.employeeId}}">Edit</a></td>
+                  <td><button  ng-model="myVar" style="background-color: #379683;border-color:#379683 ;border: 1px;"  (click)="deletePharmacist(pharma.employeeId) " class='btn btn-info' (click)="this.isButtonVisible = false" ><mat-icon aria-hidden="false" aria-label="Example delete icon">delete</mat-icon></button>   
+
+                  <td ><div class="row" (click)="deletePharmacist(pharma.employeeId)"  >
+                    <input type="submit" value="  Delete  " style="background-color: black;"></div></td>
+                  
+              
+             </tr> 
+         
+      </table>  
+   
+
+</div>
+<!---
+<div class="backShader" [style.display]="isDetVisible ? 'block' : 'none'">
+  <span class="close" (click)="closeDetail()">&times;</span>
+
+  <form (ngSubmit)="savePharmacist()" >
+
+              
+    <input type="text" name="drugname" [(ngModel)]="pharmacistadd.firstName"
+    placeholder="Enter First name" />
+
+    <input type="text" name="drugtype" [(ngModel)]="pharmacistadd.lastName" 
+    placeholder="Enter last name" />
+
+    <input type="text" name="quantity" [(ngModel)]="pharmacistadd.nic"
+    placeholder="Enter NIC" />
+
+    <input type="text" name="size" [(ngModel)]="pharmacistadd.contactNo" 
+    placeholder="Enter Contact Number" />
+
+    <input type="text" name="drugname" [(ngModel)]="pharmacistadd.address"
+    placeholder="Enter address" />
+
+    <input type="email" name="drugname" [(ngModel)]="pharmacistadd.email" 
+    placeholder="Enter email" />
+
+    <input type="date" name="dueDate" [(ngModel)]="pharmacistadd.dob"
+    placeholder="Enter DOB" />
+
+    <input type="date" name="recievedDate" [(ngModel)]="pharmacistadd.hiredDate" 
+    placeholder="Enter Hired date" />
+
+    <select name="gender" id="gender" [(ngModel)]="pharmacistadd.gender" >
+
+      <option selected value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+
+    <input type="password" name="drugname" [(ngModel)]="this.password"
+    placeholder="Enter Password" />
+<button type="submit" class="button" >Submit</button>
+
+
+
+</form> 
+</div>
+-->
+  </div>

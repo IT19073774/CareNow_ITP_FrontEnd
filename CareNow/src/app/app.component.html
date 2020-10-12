@@ -19,6 +19,9 @@
 <!--Deliverer-->
 <div class="backgroundDel" *ngIf="service.isDeliverer"></div>
 <div *ngIf="service.isDeliverer" class="mainContent" style="background-color:#D48166; z-index:11;left:7.3%;"></div>
+<!--Administrator-->
+<div class="backgroundAdm" *ngIf="service.isAdministrator"></div>
+<div *ngIf="service.isAdministrator" class="mainContent" style="background-color:#2e2e2e; z-index:11;left:7.3%;"></div>
 
 <div *ngIf="service.isAuthenticated">
   <div class="header">
@@ -168,6 +171,28 @@
   <div class="navigation" *ngIf="service.isDeliverer">
     <div class="naviIcon" title="Delivery-records" routerLink="deliver">
       <img src="../assets/img/delivery.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <!--ADMINISTRATOR-->
+  <div class="navigation" *ngIf="service.isAdministrator">
+    <div class="naviIcon" title="Pharmacist" routerLink="listPharmacist">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listCash">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listDoc">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listStockManager">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listRec">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
     </div>
     <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
       <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">

@@ -310,6 +310,7 @@ export class CarenowService {
   isCashier = false;
   isDeliverer = false;
   isStockManager = false;
+  isAdministrator = false;
   sessionUser_EMAIL = "";
   sessionUser_NAME = "";
   sessionUser_TYPE = "";
@@ -390,6 +391,12 @@ export class CarenowService {
                 this.isAuthenticated = true;
                 this.router.navigate(['/deliver']);
                 this.isDeliverer = true;
+              } else if (emp["type"] == "ADMINISTRATOR") {
+                this.sessionUser_TYPE = "ADMINISTRATOR";
+                this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
+                this.isAuthenticated = true;
+                this.router.navigate(['/listCash']);
+                this.isAdministrator = true;
               }
             }
           }
@@ -413,6 +420,7 @@ export class CarenowService {
     this.isStockManager = false;
     this.isDeliverer = false;
     this.isCashier = false;
+    this.isAdministrator = false;
     this.sessionUser_EMAIL = "";
     this.sessionUser_NAME = "";
     this.sessionUser_TYPE = "";

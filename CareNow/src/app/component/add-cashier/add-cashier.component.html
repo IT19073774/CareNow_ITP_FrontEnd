@@ -1,0 +1,127 @@
+<router-outlet></router-outlet>
+
+
+<div class="mainContent">
+
+            <form (ngSubmit)="saveCashier()" id= "form" class="form" >
+             
+            <div class="container2" >
+              <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add Cashier</h1>
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="firstName" [(ngModel)]="cashier.firstname"
+                                      placeholder="Enter Cashier name" required />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="LastName" [(ngModel)]="cashier.lastname" 
+                  placeholder="Enter LastName" required/>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                      <select name="gender" id="gender" [(ngModel)]="cashier.gender" required >
+                
+                          <option selected value="M">M</option>
+                          <option value="F">F</option>
+                          <option value="NB">Non-Binary</option>
+                          
+                  </select>
+                </div>
+              </div>
+
+            
+                  
+                      <div class="row">
+                        <div class="col-75">
+                          <input type="password" name="password" [(ngModel)]="cashier.password" 
+                                              placeholder="Enter Password" ng-minlength='4' required />
+                      <p ng-show ="form.password.$error.ng-minlength || form.password.$invalid" > </p>
+                        </div>
+                      </div>
+                  
+                  <div class="row">
+                    <div class="col-75">
+                      <input  type="text" name="email" [(ngModel)]="cashier.email"
+                      placeholder="Enter Email" required />
+                     
+                    </div>
+                  </div>
+                                  
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="nic" [(ngModel)]="cashier.nic" 
+                  placeholder="Enter NIC" required />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="contactno" [(ngModel)]="cashier.contactno" 
+                  placeholder="Enter Contact No" required/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input required type="text" name="address" [(ngModel)]="cashier.address" 
+                  placeholder="Enter Address" required/>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="date" name="dob" [(ngModel)]="cashier.dob" 
+                  placeholder="Enter DOB" required/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="date" name="hiredDate" [(ngModel)]="cashier.hiredDate" 
+                  placeholder="Enter Hired Date" required />
+                </div>
+              </div>           
+          
+              <button type = "submit" class = "submit" >  Save   </button>
+
+             
+             
+            
+            </div>  
+            </form> 
+   
+</div>
+
+<script type= "text/javascript">
+
+function validation()
+{
+  var form = document.getElementById("form");
+  var email = document.getElementById("email").value;
+  var text =document.getElementById("");
+  var pattern= /^[^ ]+@[^ ]+\.[A-Z]{2,3}$/;
+
+  if (email.match(pattern))
+  {
+    form.classList.add("valid");
+    form.classList.remove("invalid");
+    text.innerHTML= "Your Email Address in Valid. ";
+    text.style.color = "#ff0000";
+  }
+  else
+  {
+    form.classList.remove("valid");
+    form.classList.add("invalid");
+    text.innerHTML= "Please Enter Valid Email Address. "; 
+    text.style.color = "#ff0000";
+  }
+
+}
+
+</script>
+

@@ -54,6 +54,14 @@
     height:100%;
     background-image: url("../assets/img/smBGDS.jpg");
   }
+  .backgroundAdm {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-image: url("../assets/img/admbg.jpg");
+  }
   .header {
     position:absolute;
     left:0;
