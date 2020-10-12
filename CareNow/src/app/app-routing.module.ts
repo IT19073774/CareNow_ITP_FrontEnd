@@ -28,6 +28,9 @@ import { AddsupplierComponent } from './addsupplier/addsupplier.component';
 import { AddorderComponent } from './addorder/addorder.component';
 import { ListorderComponent } from './listorder/listorder.component';
 
+import { DelivererNComponent } from './components/deliverer-n/deliverer.component';
+import { ListBillComponent } from './components/list-bill/list-bill.component';
+
 
 const routes: Routes = [
   { path:'',redirectTo: 'login', pathMatch: 'prefix'},
@@ -49,14 +52,14 @@ const routes: Routes = [
   { path:'phareports', component: ReportComponent, canActivate: [AuthGuard]},
 
   //kaveen
-  {path: 'viewPRs', component: ListPRComponent},
+  {path: 'viewPRs', component: ListPRComponent, canActivate: [AuthGuard]},
   {path: 'addPR', component: AddPRComponent, canActivate: [AuthGuard]},
-  {path: 'editPR/:id', component: AddPRComponent},
-  {path: 'viewDS', component: ListDsComponent},
-  {path: 'viewTD', component: ListTDComponent},
+  {path: 'editPR/:id', component: AddPRComponent, canActivate: [AuthGuard]},
+  {path: 'viewDS', component: ListDsComponent, canActivate: [AuthGuard]},
+  {path: 'viewTD', component: ListTDComponent, canActivate: [AuthGuard]},
   {path: 'docHome', component: DoctorHomeComponent, canActivate: [AuthGuard]},
-  {path: 'patientHome', component: PatientHomeComponent},
-  {path: 'ADDpres', component: ListDsComponent},
+  {path: 'patientHome', component: PatientHomeComponent, canActivate: [AuthGuard]},
+  {path: 'ADDpres', component: ListDsComponent, canActivate: [AuthGuard]},
   {path: 'PrintPres/:name/:age/:date', component: PrintViewPrescriptionComponent},
 
   //Dinodi
@@ -66,8 +69,12 @@ const routes: Routes = [
   {path: 'editsupplier/:id', component: AddsupplierComponent, canActivate: [AuthGuard]},
   {path: 'orders', component: ListorderComponent, canActivate: [AuthGuard]},
   {path: 'addorder', component: AddorderComponent, canActivate: [AuthGuard]},
-  {path: 'editorder/:id', component: AddorderComponent, canActivate: [AuthGuard]}
+  {path: 'editorder/:id', component: AddorderComponent, canActivate: [AuthGuard]},
   
+
+  //NAnduni
+  { path: 'viewbill', component:ListBillComponent, canActivate: [AuthGuard] },  
+  { path: 'deliver', component: DelivererNComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
