@@ -46,7 +46,7 @@ getthis(){
     });
 console.log(array);
 var PresDrugs = JSON.stringify(array);
-
+alert(PresDrugs);
 
 this.Pres_.push(PresDrugs);
 

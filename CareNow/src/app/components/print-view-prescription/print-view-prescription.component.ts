@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as html2pdf from 'html2pdf.js';
 import { TD } from './../../models/td';
 import { CarenowService } from 'src/app/services/carenow.service';
-import { MP } from './../../models/mp';
+import { Prescription } from './../../models/Prescription';
 
 
 @Component({
@@ -22,16 +22,11 @@ export class PrintViewPrescriptionComponent implements OnInit {
   P_age : number;
   P_date : Date;
 
-  
-
-  mp : MP;
-
-
+  Prescription : Prescription;
   tds :  TD[] = [];
 
   constructor(private _tdService: CarenowService,
               private route : ActivatedRoute,
-              private _mpService: CarenowService,
               private router_: Router,
               ) { }
 
@@ -73,7 +68,7 @@ export class PrintViewPrescriptionComponent implements OnInit {
     .set(options)
     .save ();
 
-    this.router_.navigateByUrl("docHome");
+    this.router_.navigate(['docHome']);
 
 
 

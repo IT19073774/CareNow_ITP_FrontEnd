@@ -1,7 +1,7 @@
 import { reorder } from './../../models/reorder';
 import { CarenowService } from 'src/app/services/carenow.service';
 import { Component, OnInit } from '@angular/core';
-import { MP } from 'src/app/models/mp';
+import { Prescription } from 'src/app/models/Prescription';
 
 @Component({
   selector: 'app-patient-home',
@@ -10,7 +10,7 @@ import { MP } from 'src/app/models/mp';
 })
 export class PatientHomeComponent implements OnInit {
 
-  pres : MP[] =[];
+  pres : Prescription[] =[];
   patientID = {
     keyword:'2'
   }
@@ -28,9 +28,9 @@ export class PatientHomeComponent implements OnInit {
 
   }
 
-  Reorder(presidID:number,patientID:number){
-    this.reorder_.patientID = patientID;
-    this.reorder_.presidID = presidID;
+  Reorder(prescription_id:number,patient_id:number){
+    this.reorder_.patientID = patient_id;
+    this.reorder_.presidID = prescription_id;
     this._presService.addreorder(this.reorder_).subscribe(
       data =>{
         console.log('response',data);
@@ -46,9 +46,9 @@ export class PatientHomeComponent implements OnInit {
   }
 
 
-  filter_PR(Pres_ : MP[]){
+  filter_PR(Pres_ : Prescription[]){
     return Pres_.filter((mp) =>{
-     return mp.prespatientid.toString().includes(this.patientID.keyword);
+     return mp.patient_id.toString().includes(this.patientID.keyword);
       
     })
   }

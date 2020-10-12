@@ -1,15 +1,4 @@
 @import "~bootstrap/dist/css/bootstrap.css";  
-#padd{
-    padding-top: 5%;
-  
-}
-
-#font-selection{
-    font-family: "Segoe UI";  
-}
-
-
-
 .mainContent {
     position:absolute;
     top:13%;
@@ -24,3 +13,4 @@
     padding:3% 2%;
     font-family: "Segoe UI";
 }
+

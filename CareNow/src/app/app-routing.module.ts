@@ -23,6 +23,7 @@ import { PrintViewPrescriptionComponent} from './components/print-view-prescript
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { PatientHomeComponent } from './components/patient-home/patient-home.component';
 
+
 const routes: Routes = [
   { path:'',redirectTo: 'login', pathMatch: 'prefix'},
 
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path: 'patientHome', component: PatientHomeComponent},
   {path: 'ADDpres', component: ListDsComponent},
   {path: 'PrintPres/:name/:age/:date', component: PrintViewPrescriptionComponent},
+
 
 ];
 

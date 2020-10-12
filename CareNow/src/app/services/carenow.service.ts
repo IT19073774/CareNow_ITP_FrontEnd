@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Appointment } from '../models/appointment';
 import { Employee } from '../models/Employee';
-import { DS } from '../models/DS';
-import { MP } from '../models/mp';
+import { Prescription } from '../models/Prescription';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { Credential } from '../models/credential';
@@ -44,14 +43,14 @@ export class CarenowService {
     return this._refreshNeeded$;
   }
 
-  getPres(): Observable<MP[]>{
-    return this.http.get<MP[]>(this.getURL2 + "all-Pres", this.httpOptions).pipe(
+  getPres(): Observable<Prescription[]>{
+    return this.http.get<Prescription[]>(this.getURL2 + "all-Pres", this.httpOptions).pipe(
       map(response => response)
     )
   }
 
-  savePres(MP_: MP):Observable<MP>{
-    return this.http.post<MP>(this.getURL2 + "add-Pres" ,MP_ , this.httpOptions)
+  savePres(MP_: Prescription):Observable<Prescription>{
+    return this.http.post<Prescription>(this.getURL2 + "add-Pres" ,MP_ , this.httpOptions)
     .pipe(
         tap(() => {
           this._refreshNeeded$.next();

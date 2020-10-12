@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   
   <div class="textpaddleft">
   <h1 class="display-3">Prescribed Drugs.</h1></div>    
@@ -12,6 +12,7 @@
       <th>Special Record</th>
       <th>Additional Record</th>
       <th>Duration</th>   
+      
   </tr>
 </thead>
       <tbody>
@@ -22,7 +23,9 @@
           <td>{{TD.trecordselect}}</td>
           <td>{{TD.trecordinput}}</td>
           <td>{{TD.tdurationinput}}</td>
-          <button class='btn btn-danger' (click) ="deleteTD(TD.tpid)" >Delete</button> 
+          <button (click) ="deleteTD(TD.tpid)" class='btn btn-lg btn-outline-danger'>
+            <i class="fas fa-minus"></i></button>
+          
       </tr> 
 </tbody> 
 </table> 

@@ -40,6 +40,7 @@ import { PatientHomeComponent } from './components/patient-home/patient-home.com
 import { PrescriptionComponent } from './components/prescription/prescription.component';
 
 
+
 @NgModule({
   declarations: [
     //ashvinn
