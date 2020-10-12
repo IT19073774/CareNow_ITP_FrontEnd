@@ -14,10 +14,10 @@
 <div class="backgroundPha" *ngIf="service.isStockManager"></div>
 <div *ngIf="service.isStockManager" class="mainContent" style="background-color:rgba(0, 0, 0, 0.8); z-index:11;left:7.3%;"></div>
 <!--Cashier-->
-<div class="backgroundPha" *ngIf="service.isCashier"></div>
+<div class="backgroundCas" *ngIf="service.isCashier"></div>
 <div *ngIf="service.isCashier" class="mainContent" style="background-color:#379683; z-index:11;left:7.3%;"></div>
 <!--Deliverer-->
-<div class="backgroundSM" *ngIf="service.isDeliverer"></div>
+<div class="backgroundDel" *ngIf="service.isDeliverer"></div>
 <div *ngIf="service.isDeliverer" class="mainContent" style="background-color:#D48166; z-index:11;left:7.3%;"></div>
 
 <div *ngIf="service.isAuthenticated">
