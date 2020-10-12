@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+    position: relative;
+    margin-top: 50px;
+    border-top: 20px;
+  }
+  
+  .mainContent {
+    position:absolute;
+    top:13%;
+    left:8%;
+    background-color:white;
+    width:88%;
+    height:69%;
+    border-radius: 45px 0 0 0;
+    z-index:15;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+    overflow: auto;
+    padding:3% 2%;
+  }
+  /*.del{
+    padding-top: 15px;
+    background-image: url(../../../assets/img/download.jpg);
+    width: 100%;
+    height: 125px;
+    margin-bottom: 20px;
+    z-index: 15;
+  }*/
+
+
+

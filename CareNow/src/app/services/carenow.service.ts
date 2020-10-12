@@ -307,6 +307,8 @@ export class CarenowService {
   isPharmacist = false;
   isDoctor = false;
   isPatient = false;
+  isCashier = false;
+  isDeliverer = false;
   isStockManager = false;
   sessionUser_EMAIL = "";
   sessionUser_NAME = "";
@@ -376,7 +378,19 @@ export class CarenowService {
                 this.isAuthenticated = true;
                 this.router.navigate(['/suppliers']);
                 this.isStockManager = true;
-              } 
+              } else if (emp["type"] == "CASHIER") {
+                this.sessionUser_TYPE = "CASHIER";
+                this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
+                this.isAuthenticated = true;
+                this.router.navigate(['/viewbill']);
+                this.isCashier = true;
+              } else if (emp["type"] == "DELIVERER") {
+                this.sessionUser_TYPE = "DELIVERER";
+                this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
+                this.isAuthenticated = true;
+                this.router.navigate(['/deliver']);
+                this.isDeliverer = true;
+              }
             }
           }
          
@@ -397,6 +411,8 @@ export class CarenowService {
     this.isDoctor = false;
     this.isPatient = false;
     this.isStockManager = false;
+    this.isDeliverer = false;
+    this.isCashier = false;
     this.sessionUser_EMAIL = "";
     this.sessionUser_NAME = "";
     this.sessionUser_TYPE = "";

@@ -45,6 +45,9 @@ import { AddsupplierComponent } from './addsupplier/addsupplier.component';
 import { AddorderComponent } from './addorder/addorder.component';
 import { ListorderComponent } from './listorder/listorder.component';
 
+//Nanduni
+import { DelivererNComponent } from './components/deliverer-n/deliverer.component';
+import { ListBillComponent } from './components/list-bill/list-bill.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,10 @@ import { ListorderComponent } from './listorder/listorder.component';
     ListsupplierComponent,
     AddsupplierComponent,
     AddorderComponent,
-    ListorderComponent
+    ListorderComponent,
+    //Nanduni
+    ListBillComponent,
+    DelivererNComponent,
   ],
   imports: [
     //ashvinn

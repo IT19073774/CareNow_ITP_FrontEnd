@@ -11,8 +11,14 @@
 <div class="backgroundPat" *ngIf="service.isPatient"></div>
 <div *ngIf="service.isPatient" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
 <!--Stock Manager-->
-<div class="backgroundSM" *ngIf="service.isStockManager"></div>
+<div class="backgroundPha" *ngIf="service.isStockManager"></div>
 <div *ngIf="service.isStockManager" class="mainContent" style="background-color:rgba(0, 0, 0, 0.8); z-index:11;left:7.3%;"></div>
+<!--Cashier-->
+<div class="backgroundPha" *ngIf="service.isCashier"></div>
+<div *ngIf="service.isCashier" class="mainContent" style="background-color:#379683; z-index:11;left:7.3%;"></div>
+<!--Deliverer-->
+<div class="backgroundSM" *ngIf="service.isDeliverer"></div>
+<div *ngIf="service.isDeliverer" class="mainContent" style="background-color:#D48166; z-index:11;left:7.3%;"></div>
 
 <div *ngIf="service.isAuthenticated">
   <div class="header">
@@ -144,6 +150,24 @@
     </div>
     <div class="naviIcon" title="Oreders' Today" routerLink="orders">
       <img src="assets/img/orderIcon.png"  width="100%"style="border-radius: 5px;">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isCashier">
+    <div class="naviIcon" title="viewbill" routerLink="viewbill">
+      <img src="../assets/img/newbill.png" alt="bill-list Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isDeliverer">
+    <div class="naviIcon" title="Delivery-records" routerLink="deliver">
+      <img src="../assets/img/delivery.png" alt="CareNow Memo Icon" width="100%">
     </div>
     <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
       <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
