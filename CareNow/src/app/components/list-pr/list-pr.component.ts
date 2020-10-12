@@ -15,22 +15,20 @@ export class ListPRComponent implements OnInit {
     keyword:''
   }
 
-
-
   constructor(private _prService: CarenowService ) { }
 
-  ngOnInit(): void {
-  
-  this.listPR();
-
+  ngOnInit(){
+    this._prService.refreshNeeded$.subscribe(() => {
+      this.listPR();
+    });
+    this.listPR();
   }
 
-  deletePR(patientRecordID: number){
+  deletePR(patientRecordID: any){
     this._prService.deletePR(patientRecordID).subscribe(
       data =>{
-        console.log('Deleted response', data);
-         this.listPR();
-      
+        console.log('Deleted PR', data);
+        this.ngOnInit();
       }
     )
 }

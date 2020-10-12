@@ -91,11 +91,9 @@ export class CarenowService {
     )
   }
   
-  deletePR(patientRecordID: number): Observable<any> {
-    return this.http.delete(this.getURL2 + "delete_PR/" + patientRecordID, this.httpOptions);
+  deletePR(id): Observable<any> {
+    return this.http.delete("http://localhost:8080/api/delete_PR/" + id, this.httpOptions);
   }
-
-  //
 
   getTD(): Observable<TD[]>{
     return this.http.get<TD[]>("http://localhost:8080/api/all-TD",this.httpOptions).pipe(

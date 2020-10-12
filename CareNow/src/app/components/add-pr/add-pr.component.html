@@ -6,36 +6,28 @@
         <h1 class="display-3">Patient Record</h1>    
         <br>   
         <div class="form-group ">
-        <form [formGroup] = "AddPRForm" (ngSubmit)= "savePR()">
+        <form (ngSubmit)= "savePR()">
         
         <div class="form-row">
         <div class="col">
-            <div class="form-group">
             <h4 for="PID">Patient ID</h4>   
             <input type="number"
             class="form-control form-control-lg "
                     id="PID"
-                    formControlName = "patientID"
                     name="patientID"
                     [(ngModel)]="PR_.patientID"
-                    placeholder="Enter Patient ID"
-                    >
-            <span class ="error"*ngIf ="patientID.invalid && patientID.touched">Patient ID Required</span>       
-                </div>
+                    placeholder="Enter Patient ID">
                     <br>
         </div>
         <div class="col">
-        <div class="form-group">
         <h4 for="Pdate">Date</h4>        
             <input type="date"
             class="form-control form-control-lg"
                     id="Pdate"
-                    formControlName = "patientrecorddate"
                     name="patientrecorddate"
                     [(ngModel)]="PR_.patientrecorddate"
                     placeholder="Enter Date">
-            <span class ="error"*ngIf ="patientrecorddate.invalid && patientrecorddate.touched">Date Required</span>           
-        </div>
+
                     <br>
         </div>
         <div class="col"></div>

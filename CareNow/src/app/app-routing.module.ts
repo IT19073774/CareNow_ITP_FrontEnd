@@ -44,12 +44,12 @@ const routes: Routes = [
   { path:'phareports', component: ReportComponent, canActivate: [AuthGuard]},
 
   //kaveen
-  {path: 'viewPRs', component: ListPRComponent},
+  {path: 'viewPRs', component: ListPRComponent, canActivate: [AuthGuard]},
   {path: 'addPR', component: AddPRComponent, canActivate: [AuthGuard]},
   {path: 'editPR/:id', component: AddPRComponent},
   {path: 'viewDS', component: ListDsComponent},
   {path: 'viewTD', component: ListTDComponent},
-  {path: 'docHome', component: DoctorHomeComponent, canActivate: [AuthGuard]},
+  {path: 'docHome', component: DoctorHomeComponent, },
   {path: 'patientHome', component: PatientHomeComponent},
   {path: 'ADDpres', component: ListDsComponent},
   {path: 'PrintPres/:name/:age/:date', component: PrintViewPrescriptionComponent},
