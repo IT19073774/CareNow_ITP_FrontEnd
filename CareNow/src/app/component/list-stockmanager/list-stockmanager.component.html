@@ -1,0 +1,46 @@
+<div class="mainContent">
+
+    <h2 style="font-family: Arial; margin-left:450px;"> Availiable Stock Managers
+    -</h2>
+    <div >
+      <table id="orders">
+        <tr>
+          <th>Empoyee ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>nic</th>
+          <th>Gender</th>
+          
+          <th>Contact Number </th>
+          <th>Email</th>
+          <th>DOB </th>
+          <th>Hired Date </th>
+    
+        </tr>
+          
+             <tr  *ngFor="let stock of stockmanager">
+                  <td>{{stock.employeeId}}</td>
+                  <td >{{stock.firstName}}</td>
+                  <td >{{stock.lastName}}</td>
+                  <td >{{stock.nic}}</td>
+                  <td >{{stock.gender}}</td>
+                  <td >{{stock.contactNo}}</td>
+                  <td >{{stock.email}}</td>
+                  <td >{{stock.dob}}</td>
+                  <td >{{stock.hiredDate}}</td>
+                  
+  
+                  
+                  <td ><a routerLink="/editorder/{{order.employee_id}}">Edit</a></td>
+                  
+                  <td ><div class="row" (click)="deleteStockmanager(stock.employeeId)"  >
+                    <input type="submit" value="  Delete  " style="background-color: black;"></div></td>
+                  
+              
+             </tr> 
+         
+      </table>  
+   
+
+</div>
+  

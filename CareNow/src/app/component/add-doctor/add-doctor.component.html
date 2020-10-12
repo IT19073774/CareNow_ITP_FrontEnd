@@ -1,0 +1,116 @@
+<router-outlet></router-outlet>
+ 
+
+<div class="mainContent">
+
+            <form (ngSubmit)="saveDoctor()" name = "form" class="form" >
+             
+            <div class="container2" >
+              <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add Doctor</h1>
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="firstName" [(ngModel)]="doctor.firstname"
+                                      placeholder="Enter Cashier name" />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="LastName" [(ngModel)]="doctor.lastname" 
+                  placeholder="Enter LastName" />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                      <select name="gender" id="gender" [(ngModel)]="doctor.gender" >
+                
+                          <option selected value="M">M</option>
+                          <option value="F">F</option>
+                          <option value="NB">Non-Binary</option>
+                          
+                  </select>
+                </div>
+              </div>
+
+            
+                 
+                      <div class="row">
+                        <div class="col-75">
+                          <input type="text" name="password" [(ngModel)]="doctor.password" 
+                                              placeholder="Enter Password" ng-minlength='4' required />
+                     
+                        </div>
+                      </div>
+                 
+                  <div class="row">
+                    <div class="col-75">
+                      <input type="text" name="email" [(ngModel)]="doctor.email" 
+                      placeholder="Enter Email" />
+                    </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="nic" [(ngModel)]="doctor.nic" 
+                  placeholder="Enter NIC" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="contactno" [(ngModel)]="doctor.contactno" 
+                  placeholder="Enter Contact No" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="email" [(ngModel)]="doctor.address" 
+                  placeholder="Enter Address" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="email" [(ngModel)]="doctor.education" 
+                  placeholder="Enter Degree" />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="date" name="dob" [(ngModel)]="doctor.dob" 
+                  placeholder="Enter DOB" class="textbox-n" type="text" onfocus="(this.type='date')"
+                  onblur="(this.type='text')"type="date" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input  placeholder="Enter Hired Date" class="textbox-n" type="text" onfocus="(this.type='date')"
+                   onblur="(this.type='text')"type="date" name="hiredDate" [(ngModel)]="doctor.hiredDate" 
+                  />
+                </div>
+              </div>
+              
+          
+              <button type = "submit" class = "submit" >  Save   </button>
+
+            
+             
+            
+            </div>  
+            </form> 
+   
+</div>
+
+<script>
+$("#myel").on("input",function(){
+  if($(this).val().length>0){
+  $(this).addClass("full");
+}
+else{
+ $(this).removeClass("full");
+ }
+});
+</script>

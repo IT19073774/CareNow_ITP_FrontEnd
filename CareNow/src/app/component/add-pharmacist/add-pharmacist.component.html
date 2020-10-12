@@ -1,0 +1,45 @@
+<div class="mainContent">
+       
+  <div class="meow" >
+      <form (ngSubmit)="savePharmacist()" >
+
+              
+                      <input type="text" name="drugname" [(ngModel)]="pharmacistadd.firstName"
+                      placeholder="Enter First name" />
+              
+                      <input type="text" name="drugtype" [(ngModel)]="pharmacistadd.lastName" 
+                      placeholder="Enter last name" />
+
+                      <input type="text" name="quantity" [(ngModel)]="pharmacistadd.nic"
+                      placeholder="Enter NIC" />
+              
+                      <input type="text" name="size" [(ngModel)]="pharmacistadd.contactNo" 
+                      placeholder="Enter Contact Number" />
+
+                      <input type="text" name="drugname" [(ngModel)]="pharmacistadd.address"
+                      placeholder="Enter address" />
+
+                      <input type="email" name="drugname" [(ngModel)]="pharmacistadd.email" 
+                      placeholder="Enter email" />
+
+                      <input type="date" name="dueDate" [(ngModel)]="pharmacistadd.dob"
+                      placeholder="Enter DOB" />
+              
+                      <input type="date" name="recievedDate" [(ngModel)]="pharmacistadd.hiredDate" 
+                      placeholder="Enter Hired date" />
+
+                      <select name="gender" id="gender" [(ngModel)]="pharmacistadd.gender" >
+                
+                        <option selected value="M">Male</option>
+                        <option value="F">Female</option>
+                      </select>
+
+                      <input type="password" name="drugname" [(ngModel)]="this.password"
+                      placeholder="Enter Password" />
+              <button type="submit" class="button" >Submit</button>
+              
+  
+              
+      </form>
+  </div>
+</div>

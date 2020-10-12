@@ -31,6 +31,16 @@ import { ListorderComponent } from './listorder/listorder.component';
 import { DelivererNComponent } from './components/deliverer-n/deliverer.component';
 import { ListBillComponent } from './components/list-bill/list-bill.component';
 
+import { ListPharmacistComponent } from './component/listpharmacist/listpharmacist.component';
+import { ListStockmanagerComponent } from './component/list-stockmanager/list-stockmanager.component';
+import { AddPharmacistComponent } from './component/add-pharmacist/add-pharmacist.component';
+
+import { RegisComponent } from './component/add-reception/regis.component'
+import { ListReceptionComponent } from './component/list-reception/list-reception.component';
+import { ListCashierComponent } from './component/list-cashier/list-cashier.component';
+import { AddCashierComponent } from './component/add-cashier/add-cashier.component';
+import { AddDoctorComponent } from './component/add-doctor/add-doctor.component';
+import { ListDoctorComponent } from './component/list-doctor/list-doctor.component';
 
 const routes: Routes = [
   { path:'',redirectTo: 'login', pathMatch: 'prefix'},
@@ -74,7 +84,22 @@ const routes: Routes = [
 
   //NAnduni
   { path: 'viewbill', component:ListBillComponent, canActivate: [AuthGuard] },  
-  { path: 'deliver', component: DelivererNComponent, canActivate: [AuthGuard] }
+  { path: 'deliver', component: DelivererNComponent, canActivate: [AuthGuard] },
+
+  //Naveen
+  { path: 'listPharmacist' , component:ListPharmacistComponent, canActivate: [AuthGuard] },
+  { path: 'listStockManager' ,component:ListStockmanagerComponent, canActivate: [AuthGuard] },
+  { path: 'addPharmacist' , component:AddPharmacistComponent, canActivate: [AuthGuard] },
+
+  //Osura
+  { path:'Regis', component: RegisComponent , canActivate: [AuthGuard] },
+  {  path:'editR/:RecId', component: RegisComponent , canActivate: [AuthGuard] },
+  {  path:'listRec', component: ListReceptionComponent , canActivate: [AuthGuard] },
+  {  path: 'listCash', component: ListCashierComponent, canActivate: [AuthGuard] },
+  {  path: 'addCash', component: AddCashierComponent, canActivate: [AuthGuard] },
+  {  path: 'editC/:cid', component: AddCashierComponent, canActivate: [AuthGuard] },
+  {  path: 'addDoc', component: AddDoctorComponent, canActivate: [AuthGuard] },
+  {  path: 'listDoc', component: ListDoctorComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
