@@ -2,6 +2,7 @@ import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { CarenowService } from 'src/app/services/carenow.service';
 import { Prescription } from './../../models/Prescription';
 import { Router} from '@angular/router';
+import { FormGroup,Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-mp',
@@ -10,15 +11,35 @@ import { Router} from '@angular/router';
 })
 export class MPComponent implements OnInit {
 
+  AddPresform = new FormGroup({
+    patient_id : new FormControl('', Validators.required),
+    prescription_date : new FormControl('', Validators.required),
+    patient_name : new FormControl('', Validators.required),
+    patient_age : new FormControl('', Validators.required),
+    docFee : new FormControl('', Validators.required),
+
+  })
+  get patient_id(){
+    return this.AddPresform.get('patient_id')
+  }
+  get prescription_date(){
+    return this.AddPresform.get('prescription_date')
+  }
+  get patient_name(){
+    return this.AddPresform.get('patient_name')
+  }
+  get patient_age(){
+    return this.AddPresform.get('patient_age')
+  }
+  get docFee(){
+    return this.AddPresform.get('docFee')
+  }
+  
+
+
+
   @Input() Pres: string[] = [];
  
-  status_ = {
-    keyword:'DONE'
-  }
-  doctorID_ = {
-    keyword:'1'
-  }
-
   pres_ : Prescription = new Prescription();
   
   
@@ -35,13 +56,15 @@ export class MPComponent implements OnInit {
   }
 
   savePres(){
+    let status_: string = "REVIEWED";
+    let doctorID_: number = 1;
+
     console.log(this.Pres);
     this.pres_.drugs = this.Pres[0];
-    this.pres_.status = String(this.status_);
-    this.pres_.doctor_id = Number(this.doctorID_);
+    this.pres_.status = status_;
+    this.pres_.doctor_id = doctorID_;
 
     this.MP_service.savePres(this.pres_).subscribe(
-     
       data => {
         console.log('until THIS' ,data);
 
