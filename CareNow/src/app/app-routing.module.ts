@@ -23,6 +23,12 @@ import { PrintViewPrescriptionComponent} from './components/print-view-prescript
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { PatientHomeComponent } from './components/patient-home/patient-home.component';
 
+import { ListsupplierComponent } from './listsupplier/listsupplier.component';
+import { AddsupplierComponent } from './addsupplier/addsupplier.component';
+import { AddorderComponent } from './addorder/addorder.component';
+import { ListorderComponent } from './listorder/listorder.component';
+
+
 const routes: Routes = [
   { path:'',redirectTo: 'login', pathMatch: 'prefix'},
 
@@ -53,6 +59,15 @@ const routes: Routes = [
   {path: 'ADDpres', component: ListDsComponent},
   {path: 'PrintPres/:name/:age/:date', component: PrintViewPrescriptionComponent},
 
+  //Dinodi
+
+  {path: 'suppliers', component: ListsupplierComponent, canActivate: [AuthGuard]},
+  {path: 'addsupplier', component: AddsupplierComponent, canActivate: [AuthGuard]},
+  {path: 'editsupplier/:id', component: AddsupplierComponent, canActivate: [AuthGuard]},
+  {path: 'orders', component: ListorderComponent, canActivate: [AuthGuard]},
+  {path: 'addorder', component: AddorderComponent, canActivate: [AuthGuard]},
+  {path: 'editorder/:id', component: AddorderComponent, canActivate: [AuthGuard]}
+  
 ];
 
 @NgModule({

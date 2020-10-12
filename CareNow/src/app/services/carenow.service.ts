@@ -307,6 +307,7 @@ export class CarenowService {
   isPharmacist = false;
   isDoctor = false;
   isPatient = false;
+  isStockManager = false;
   sessionUser_EMAIL = "";
   sessionUser_NAME = "";
   sessionUser_TYPE = "";
@@ -369,6 +370,12 @@ export class CarenowService {
                 this.isAuthenticated = true;
                 this.router.navigate(['/docHome']);
                 this.isDoctor = true;
+              } else if (emp["type"] == "STOCK MANAGER") {
+                this.sessionUser_TYPE = "STOCK MANAGER";
+                this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
+                this.isAuthenticated = true;
+                this.router.navigate(['/suppliers']);
+                this.isStockManager = true;
               } 
             }
           }
@@ -389,6 +396,7 @@ export class CarenowService {
     this.isPharmacist = false;
     this.isDoctor = false;
     this.isPatient = false;
+    this.isStockManager = false;
     this.sessionUser_EMAIL = "";
     this.sessionUser_NAME = "";
     this.sessionUser_TYPE = "";
