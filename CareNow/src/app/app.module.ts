@@ -39,6 +39,13 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { PatientHomeComponent } from './components/patient-home/patient-home.component';
 import { PrescriptionComponent } from './components/prescription/prescription.component'
 
+//Dinodi
+import { ListsupplierComponent } from './listsupplier/listsupplier.component';
+import { AddsupplierComponent } from './addsupplier/addsupplier.component';
+import { AddorderComponent } from './addorder/addorder.component';
+import { ListorderComponent } from './listorder/listorder.component';
+
+
 @NgModule({
   declarations: [
     //ashvinn
@@ -65,7 +72,12 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
     MPComponent,
     PrintViewPrescriptionComponent,
     DoctorHomeComponent,
-    PatientHomeComponent
+    PatientHomeComponent,
+    //Dinodi
+    ListsupplierComponent,
+    AddsupplierComponent,
+    AddorderComponent,
+    ListorderComponent
   ],
   imports: [
     //ashvinn

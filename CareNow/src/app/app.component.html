@@ -10,6 +10,9 @@
 <!--PATIENT-->
 <div class="backgroundPat" *ngIf="service.isPatient"></div>
 <div *ngIf="service.isPatient" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
+<!--Stock Manager-->
+<div class="backgroundSM" *ngIf="service.isStockManager"></div>
+<div *ngIf="service.isStockManager" class="mainContent" style="background-color:rgba(0, 0, 0, 0.8); z-index:11;left:7.3%;"></div>
 
 <div *ngIf="service.isAuthenticated">
   <div class="header">
@@ -130,6 +133,18 @@
 
   <div class="navigation" *ngIf="service.isPatient">
     
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isStockManager">
+    <div class="naviIcon" title="Suppliers" routerLink="suppliers">
+      <img src="assets/img/supplierIcon.png"  width="100%"style="border-radius: 5px;">
+    </div>
+    <div class="naviIcon" title="Oreders' Today" routerLink="orders">
+      <img src="assets/img/orderIcon.png"  width="100%"style="border-radius: 5px;">
+    </div>
     <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
       <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
     </div>
