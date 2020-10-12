@@ -2,6 +2,7 @@ import { CarenowService } from 'src/app/services/carenow.service';
 import { PR } from './../../models/pr';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup,Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-pr',
@@ -9,6 +10,18 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-pr.component.css']
 })
 export class AddPRComponent implements OnInit {
+
+  AddPRForm = new FormGroup({
+    patientID : new FormControl('', Validators.required),
+    patientrecorddate : new FormControl('', Validators.required)
+  })
+    get patientID(){
+      return this.AddPRForm.get('patientID')
+    }
+    get patientrecorddate(){
+      return this.AddPRForm.get('patientrecorddate')
+    }
+
 
   PR_: PR = new PR();
   PR_DEMO: PR = new PR();
