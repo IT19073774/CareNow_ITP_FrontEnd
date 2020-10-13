@@ -1,0 +1,78 @@
+<router-outlet></router-outlet>
+
+
+
+<div class="mainContent">
+
+
+
+            <form (ngSubmit)="saveReception()" name = "form" >
+              
+            <div class="container2" >
+
+              <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add Receptionist</h1>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="firstName" [(ngModel)]="reception.firstName"
+                                      placeholder="Enter Receptionist name" />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="email" [(ngModel)]="reception.lastName" 
+                  placeholder="Enter LastName" />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                      <select name="gender" id="gen" [(ngModel)]="reception.gender" >
+                        <option value="g" disabled selected hidden >Enter Gender</option>
+                      <option value="M">M</option>
+                      <option value="F">F</option>
+                      <option value="F">Non Binary</option>
+                  </select>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="tp" [(ngModel)]="reception.password" 
+                                      placeholder="Enter Password" ng-minlength='4' required />
+              <p ng-show ="form.password.$error.ng-minlength || form.password.$invalid" > </p>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="text" name="drugtype" [(ngModel)]="reception.email" 
+                  placeholder="Enter Email" />
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-75">
+                  <input type="date" name="drugtype" [(ngModel)]="reception.dob" 
+                  placeholder="Enter DOB" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-75">
+                  <input type="date" name="drugtype" [(ngModel)]="reception.hiredDate" 
+                  placeholder="Enter hiredDate" />
+                </div>
+              </div>
+              
+          
+              <button type = "submit" class = submit >  Save   </button>
+              <button *ngIf = "reception.RecId" (click)="deleteReception(reception.RecId)"> Delete </button>
+             
+            
+            </div>  
+            </form> 
+   
+</div>
+

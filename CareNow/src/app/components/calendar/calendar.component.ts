@@ -32,6 +32,50 @@ export class CalendarComponent implements OnInit {
 
   constructor(private service:CarenowService, private router: Router) { }
 
+  ngOnInit(): void {
+    this.patientCollections = []
+    this.appointments = []
+    this.eventSettings = {}
+
+    this.service.getAllAppointment()
+        .subscribe(data => {
+          for (let dat of data){
+              this.obj = {};
+              this.obj.Id = dat["appointmentId"]
+              this.obj.Subject = dat["subject"]
+              this.obj.Description = dat["description"]
+              this.obj.StartTime = new Date(dat["startTime"])
+              this.obj.EndTime = new Date(dat["endTime"])
+              this.obj.StatusId = Number(dat["statusId"])
+              this.obj.patientId = dat["patientId"]
+              this.pushObject(this.obj)
+          }
+          this.eventSettings = {
+            dataSource: this.appointments,
+            fields: {
+              id: 'Id',
+              subject: { name: 'Subject', title: 'Appointment Title' },
+              location: { name: 'Location', title: 'Appointment Location'},
+              description: { name: 'Description', title: 'Appointment Description' },
+              startTime: { name: 'StartTime', title: 'Start' },
+              endTime: { name: 'EndTime', title: 'End'  }
+            }
+          };
+  
+        })
+
+        this.service.getAllPatients()
+                    .subscribe(patients => {
+                      for(let patient of patients) {
+                        this.obj = {}
+                        this.obj.patientId = patient["patientId"]
+                        this.obj.patientName = patient["patientName"] + " - " +  "PAT0" + patient["patientId"] 
+                        this.patientCollections.push(this.obj)
+                      }
+                      this.resourceDataSource = this.patientCollections
+                    })
+                    
+  }
 
   oneventRendered(args: EventRenderedArgs): void {
     let categoryColor = '#A9A9A9';
@@ -95,51 +139,6 @@ export class CalendarComponent implements OnInit {
                     .subscribe(checker => console.log(checker));
       }
     } 
-  }
-
-  ngOnInit(): void {
-    this.patientCollections = []
-    this.appointments = []
-    this.eventSettings = {}
-
-    this.service.getAllAppointment()
-        .subscribe(data => {
-          for (let dat of data){
-              this.obj = {};
-              this.obj.Id = dat["appointmentId"]
-              this.obj.Subject = dat["subject"]
-              this.obj.Description = dat["description"]
-              this.obj.StartTime = new Date(dat["startTime"])
-              this.obj.EndTime = new Date(dat["endTime"])
-              this.obj.StatusId = Number(dat["statusId"])
-              this.obj.patientId = dat["patientId"]
-              this.pushObject(this.obj)
-          }
-          this.eventSettings = {
-            dataSource: this.appointments,
-            fields: {
-              id: 'Id',
-              subject: { name: 'Subject', title: 'Appointment Title' },
-              location: { name: 'Location', title: 'Appointment Location'},
-              description: { name: 'Description', title: 'Appointment Description' },
-              startTime: { name: 'StartTime', title: 'Start' },
-              endTime: { name: 'EndTime', title: 'End'  }
-            }
-          };
-  
-        })
-
-        this.service.getAllPatients()
-                    .subscribe(patients => {
-                      for(let patient of patients) {
-                        this.obj = {}
-                        this.obj.patientId = patient["patientId"]
-                        this.obj.patientName = patient["patientName"] + " - " +  "PAT0" + patient["patientId"] 
-                        this.patientCollections.push(this.obj)
-                      }
-                      this.resourceDataSource = this.patientCollections
-                    })
-                    
   }
 
   public eventSettings: EventSettingsModel

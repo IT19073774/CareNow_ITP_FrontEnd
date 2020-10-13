@@ -1,0 +1,96 @@
+#orders {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #orders td, #orders th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  .mainContent {
+    position:absolute;
+    top:13%;
+    left:8%;
+    background-color:white;
+    width:88%;
+    height:69%;
+    border-radius: 45px 0 0 0;
+    z-index:15;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+    overflow: auto;
+    padding:3% 2%;
+  }
+  
+  #orders tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #orders tr:hover {background-color: rgb(169, 161, 241);}
+  
+  #orders th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #5547cc;
+    color: white;
+  }
+  
+.addo {
+  border-radius: 5px;
+  background-color:  rgb(169, 161, 241);
+  padding: 20px;
+  width: 30%;
+  display: inline-block;
+  margin: 20px;
+  
+}
+.addo2 {
+  border-radius: 5px;
+  background-color:  rgb(169, 161, 241);
+  padding: 20px;
+  width: 20%;
+  margin-left: 40%;
+  margin-top: 2%;
+  display: inline-block;
+  
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #4d54c2;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position:relative;
+  margin-left: 20%;
+  margin-top: 23px;
+}
+
+input[type=text] {
+  background-color: white;
+  width: 15%;
+  padding: 12px;
+  padding-right: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position:relative;
+  margin: 10px;
+}
+
+.addo3 {
+  border-radius: 5px;
+  background-color:  rgba(169, 161, 241, 0.356);
+  padding-left: 17%;
+  width: 100%;
+  display: flexbox;
+  
+}
+
+.meow {
+  border-radius: 5px;
+  width: 60%;
+  margin-left: 30%;
+  display: flexbox;
+}

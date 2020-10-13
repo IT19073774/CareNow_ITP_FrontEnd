@@ -10,6 +10,18 @@
 <!--PATIENT-->
 <div class="backgroundPat" *ngIf="service.isPatient"></div>
 <div *ngIf="service.isPatient" class="mainContent" style="background-color:rgba(111, 106, 121, 0.8); z-index:11;left:7.3%;"></div>
+<!--Stock Manager-->
+<div class="backgroundPha" *ngIf="service.isStockManager"></div>
+<div *ngIf="service.isStockManager" class="mainContent" style="background-color:rgba(0, 0, 0, 0.8); z-index:11;left:7.3%;"></div>
+<!--Cashier-->
+<div class="backgroundCas" *ngIf="service.isCashier"></div>
+<div *ngIf="service.isCashier" class="mainContent" style="background-color:#379683; z-index:11;left:7.3%;"></div>
+<!--Deliverer-->
+<div class="backgroundDel" *ngIf="service.isDeliverer"></div>
+<div *ngIf="service.isDeliverer" class="mainContent" style="background-color:#D48166; z-index:11;left:7.3%;"></div>
+<!--Administrator-->
+<div class="backgroundAdm" *ngIf="service.isAdministrator"></div>
+<div *ngIf="service.isAdministrator" class="mainContent" style="background-color:#2e2e2e; z-index:11;left:7.3%;"></div>
 
 <div *ngIf="service.isAuthenticated">
   <div class="header">
@@ -129,9 +141,62 @@
     </div>
   </div>
 
+
+  <div class="navigation" *ngIf="service.isStockManager">
+    <div class="naviIcon" title="Suppliers" routerLink="suppliers">
+      <img src="assets/img/supplierIcon.png"  width="100%"style="border-radius: 5px;">
+    </div>
+    <div class="naviIcon" title="Oreders' Today" routerLink="orders">
+      <img src="assets/img/orderIcon.png"  width="100%"style="border-radius: 5px;">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isCashier">
+    <div class="naviIcon" title="viewbill" routerLink="viewbill">
+      <img src="../assets/img/newbill.png" alt="bill-list Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <div class="navigation" *ngIf="service.isDeliverer">
+    <div class="naviIcon" title="Delivery-records" routerLink="deliver">
+      <img src="../assets/img/delivery.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+  <!--ADMINISTRATOR-->
+  <div class="navigation" *ngIf="service.isAdministrator">
+    <div class="naviIcon" title="Pharmacist" routerLink="listPharmacist">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listCash">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listDoc">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listStockManager">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="Cashier" routerLink="listRec">
+      <img src="assets/img/list.png" alt="Calendar Icon" width="100%">
+    </div>
+    <div class="naviIcon" title="CareNow Memo" routerLink="create_memo">
+      <img src="assets/img/memoIcon.png" alt="CareNow Memo Icon" width="100%">
+    </div>
+  </div>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>
-
   <router-outlet></router-outlet>
 
 

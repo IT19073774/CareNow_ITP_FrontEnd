@@ -41,6 +41,30 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
 
 
 
+//Dinodi
+import { ListsupplierComponent } from './listsupplier/listsupplier.component';
+import { AddsupplierComponent } from './addsupplier/addsupplier.component';
+import { AddorderComponent } from './addorder/addorder.component';
+import { ListorderComponent } from './listorder/listorder.component';
+
+//Nanduni
+import { DelivererNComponent } from './components/deliverer-n/deliverer.component';
+import { ListBillComponent } from './components/list-bill/list-bill.component';
+
+//Naveen
+import { ListPharmacistComponent } from './component/listpharmacist/listpharmacist.component';
+import { ListStockmanagerComponent } from './component/list-stockmanager/list-stockmanager.component';
+import { AddPharmacistComponent } from './component/add-pharmacist/add-pharmacist.component';
+
+//Osura
+import { RegisComponent } from './component/add-reception/regis.component';
+import { ListReceptionComponent } from './component/list-reception/list-reception.component'
+import { ListCashierComponent } from './component/list-cashier/list-cashier.component';
+import { AddCashierComponent } from './component/add-cashier/add-cashier.component';
+import {AddDoctorComponent} from './component/add-doctor/add-doctor.component';
+import {ListDoctorComponent} from './component/list-doctor/list-doctor.component';
+
+
 @NgModule({
   declarations: [
     //ashvinn
@@ -67,7 +91,26 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
     MPComponent,
     PrintViewPrescriptionComponent,
     DoctorHomeComponent,
-    PatientHomeComponent
+    PatientHomeComponent,
+    //Dinodi
+    ListsupplierComponent,
+    AddsupplierComponent,
+    AddorderComponent,
+    ListorderComponent,
+    //Nanduni
+    ListBillComponent,
+    DelivererNComponent,
+    //Naveen
+    ListPharmacistComponent,
+    ListStockmanagerComponent,
+    AddPharmacistComponent,
+    //Osura
+    RegisComponent,
+    ListReceptionComponent,
+    ListCashierComponent,
+    AddCashierComponent,
+    AddDoctorComponent,
+    ListDoctorComponent
   ],
   imports: [
     //ashvinn

@@ -1,0 +1,78 @@
+<div class="mainContent">
+  <div class="meow">
+  <div class="addo">
+    
+    <img src="assets/img/supplierIcon.png"  width="20%"style="border-radius: 100%; ">
+    <a routerLink="/addsupplier">Add Supplier</a>
+  </div>
+  
+  <div class="addo">
+    
+    <img src="assets/img/reports.png"  width="20%"style="border-radius: 100%; ">
+    <a  (click)= "download()">Generate Report</a>
+  </div>
+  </div>
+  
+  
+  <label style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">Sort By</label>
+
+  <select name="sortBy" 
+                [(ngModel)]="filters.sortBy" 
+                (change)="listSupplier()"
+                class="form-control">
+            <option>No sort</option>
+            <option>Name</option>
+        </select>
+  <br>
+  <div class="addo3">
+  
+     
+    <label style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">Filter By Name</label>
+    <input type="text"
+    [(ngModel)] = "filters.keyword" 
+    name="keyword"
+    (input)="listSupplier()">
+  
+    <label style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">Filter By Address</label>
+    <input type="text"
+    [(ngModel)] = "filtersAd.keywordAd" 
+    name="keyword"
+    (input)="listSupplierAd()">
+  
+    <label style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">Filter By Drug Type </label>
+    <input type="text"
+    [(ngModel)] = "filtersDt.keywordDt" 
+    name="keyword"
+    (input)="listSupplierDt()">
+    </div>
+  <div >
+  <table id="suppliers">
+    <tr>
+      <th>Supplier Name</th>
+      <th>Supplier ID</th>
+      <th>Supplier Tp</th>
+      <th>Supplier email</th>
+      <th>Supplier address</th>
+      <th>Supplier drugtype</th>
+      <th>Edit Supplier </th>
+      <th>Delete Supplier </th>
+
+    </tr>
+      
+         <tr  *ngFor="let supplier of suppliers">
+              <td >{{supplier.name}}</td>
+              <td >{{supplier.id}}</td>
+              <td >{{supplier.tp}}</td>
+              <td >{{supplier.email}}</td>
+              <td >{{supplier.address}}</td>
+              <td >{{supplier.drugtype}}</td>
+              <td ><a routerLink="/editsupplier/{{supplier.id}}">Edit</a></td>
+              <td ><div class="row" (click)="deleteSupplier(supplier.id)" >
+                <input type="submit" value="  Delete  " style="background-color: black;"></div></td>
+              
+                
+         </tr> 
+     
+  </table>  
+</div>  
+</div>

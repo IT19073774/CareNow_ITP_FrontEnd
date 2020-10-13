@@ -1,0 +1,40 @@
+
+<div class="mainContent">
+
+    <h1 style="font-family: Arial; margin-left:500px;"> Availiable Doctors</h1>
+
+   
+
+   <input class = "search" type = "text" [(ngModel)] = "filters.keyword"
+    name= "keyword"
+    placeholder="Search"
+    (input)="listDoctor()">
+
+    <select class = "inputx" name = "sortBy" [(ngModel)] = "filters.sortBy" (change) = "listDoctor()" >
+      
+        <option> FirstName </option>
+        <option> LastName </option>
+        <option> Email </option>
+        <option> DOB </option>
+        <option> Hired Date </option>
+
+    </select>
+
+<div *ngFor= "let doc of this.doctor" class= "list">
+
+    <p> {{doc.employeeId}}
+    <p> First Name: {{doc.firstName}} </p>
+    <p> Last Name: {{doc.lastName}} </p>
+    <p> Nic: {{doc.nic}}
+    <p> Gender: {{doc.gender}} </p>
+    <p> Contact No: {{doc.contactNo}} </p>
+    <p> Email: {{doc.email}} </p>
+    <p> DOB: {{doc.dob}} </p>
+    <p> HiredDate: {{doc.hiredDate}} </p>
+
+    <button class = "delete" (click)="deleteDoctor(doc.employeeId)"> Delete </button>
+    
+   
+    
+</div>
+</div>

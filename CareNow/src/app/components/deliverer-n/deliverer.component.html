@@ -1,0 +1,110 @@
+<div class="mainContent">
+  <div >
+ 
+<h1 style="text-align: center;margin-top: 50px;margin-bottom: 50px;">Delivery records</h1>
+
+
+
+</div>
+
+<!--<form>
+  
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="records ">
+
+ 
+      
+    
+    <ng-container matColumnDef="recordid">
+      <mat-header-cell *matHeaderCellDef> recordid </mat-header-cell>
+      <mat-cell *matCellDef="let records"> {{records.recordid}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Patient_Name">
+      <mat-header-cell *matHeaderCellDef> Patient_Name </mat-header-cell>
+      <mat-cell *matCellDef="let records"> {{records.patientname}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Deliverer_name">
+      <mat-header-cell *matHeaderCellDef> Deliverer_name </mat-header-cell>
+      <mat-cell *matCellDef="let records"> {{records.deliverer_name}} </mat-cell>
+    </ng-container>
+       
+    <ng-container matColumnDef="delivery_address">
+      <mat-header-cell *matHeaderCellDef> delivery_address</mat-header-cell>
+      <mat-cell *matCellDef="let records"> {{records.delivery_address}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> status</mat-header-cell>
+      <mat-cell *matCellDef="let records"> {{records.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Accept">
+      <mat-header-cell  *matHeaderCellDef > </mat-header-cell>
+      <mat-cell *matCellDef="let records " >
+           <button    class="btn btn-info" (click)="this.isButtonVisible=true" >Accept</button>
+      </mat-cell>
+      </ng-container>
+    
+    
+  <ng-container matColumnDef="Confirm">
+  <mat-header-cell  *matHeaderCellDef > </mat-header-cell>
+  <mat-cell *matCellDef="let records " >
+       <button type="button" (click)="updaterecordsconfirm(records.recordid)"  class="btn btn-info" *ngIf="isButtonVisible"  [disabled]="clicked" (click)="actionMethod(); clicked = true;">Confirm</button>
+  </mat-cell>
+  </ng-container>
+
+   <ng-container matColumnDef="Error">
+    <mat-header-cell  *matHeaderCellDef > </mat-header-cell>
+    <mat-cell *matCellDef="let records" >
+         <button  (click)="updaterecordserror(records.recordid)"class="btn btn-danger" *ngIf="isButtonVisible" [disabled]="clicked" (click)="actionMethod(); clicked = true;">Error</button>
+    </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"  ></mat-header-row>
+    <mat-row   *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+  </mat-table>
+    
+     <mat-paginator [length]="5" [pagesize]="3" [pageSizeOptions]="[5, 10, 20]" ></mat-paginator>
+</div>
+</form> -->
+<div  class="panel-body" >
+  <table  datatable class="myTable"  style="color: #D48166;"   class="table table-hover table-sm" [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger" > 
+    <thead class="thead-light">
+      <tr>
+      <th style="padding-left:50px;color: #D48166;">Recordd_Id</th>  
+      
+      <th style="color: #D48166;" >Patient_Name </th>
+      <th style="color: #D48166;" >Patient_Contact </th>
+      <th  style="color: #D48166;">Deliverer_name</th>
+      <th  style="color: #D48166;">Delivery_Address</th>
+      <th style="color: #D48166;">Delivery_Status</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>  
+    </thead>
+    <tbody>
+    <tr  *ngFor= "let deliveryrecords of record " > 
+      <td style="padding-left:55px;">{{deliveryrecords.deliveryRecordId}}</td>   
+      <td>{{deliveryrecords.patientName}}</td>
+      <td>{{deliveryrecords.patientContact}}</td>
+      <td>{{deliveryrecords.delivererName}}</td>
+      <td style="padding-left:50px ;">{{deliveryrecords.deliveryAddress}}</td>
+      <td>{{deliveryrecords.status}}</td> 
+      <td><button style="background-color: #D48166;border-color:#D48166;border: 1px;"  class="btn btn-info"  (click)="this.isButtonVisible=true"  class='btn btn-info'  >Accept</button>
+        <td><button    (click)="updaterecordsconfirm(deliveryrecords.deliveryRecordId)" class='btn btn-info' *ngIf="isButtonVisible"  [disabled]="clicked" (click)="this.isButtonVisible=false" (click)="actionMethod(); clicked = true;">Confirm</button>  
+          <td><button  (click)="updaterecordserror(deliveryrecords.deliveryRecordId)"    class="btn btn-danger" *ngIf="isButtonVisible" [disabled]="clicked" (click)="this.isButtonVisible=false" (click)="actionMethod(); clicked = true;" >Error</button>    
+    </tr>  
+    </tbody>  
+    
+</table> 
+
+
+</div>
+</div>
+
+
