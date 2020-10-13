@@ -11,9 +11,7 @@ import { Prescription } from 'src/app/models/Prescription';
 export class PatientHomeComponent implements OnInit {
 
   pres : Prescription[] =[];
-  // patientID = {
-  //   keyword:'1'
-  // }
+ 
 
 
   reorder_: OnlineOrder = new OnlineOrder();

@@ -57,7 +57,7 @@ export class MPComponent implements OnInit {
   }
 
   savePres(){
-    let status_: string = "REVIEWED";
+    let status_: string = "PENDING";
     
 
     console.log(this.Pres);
@@ -67,7 +67,7 @@ export class MPComponent implements OnInit {
 
     this.MP_service.savePres(this.pres_).subscribe(
       data => {
-        console.log('until THIS' ,data);
+        
 
         this.__name = this.pres_.patient_name;
         this.__age = this.pres_.patient_age;

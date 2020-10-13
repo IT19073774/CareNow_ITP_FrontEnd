@@ -81,7 +81,12 @@ export class CarenowService {
   
   
   savepr(PR_: PR):Observable<PR>{
-    return this.http.post<PR>(this.getURL2 + "add-PR" ,PR_ , this.httpOptions);
+    return this.http.post<PR>(this.getURL2 + "add-PR" ,PR_ , this.httpOptions)
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+      );
   }
   
   

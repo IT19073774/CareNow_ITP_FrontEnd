@@ -41,6 +41,7 @@ export class AddPRComponent implements OnInit {
 
 
   addprdemo(){
+    console.log("hi")
     this.PR_DEMO.patientID = Number('2');
     var date = '2020-11-16';
     this.PR_DEMO.patientrecorddate = new Date(date);
