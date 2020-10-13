@@ -51,18 +51,19 @@ export class MPComponent implements OnInit {
               private MP_router: Router,) { }
 
   ngOnInit(): void {
+    this.MP_service.sessionUser_ID;
     
  
   }
 
   savePres(){
     let status_: string = "REVIEWED";
-    let doctorID_: number = 1;
+    
 
     console.log(this.Pres);
     this.pres_.drugs = this.Pres[0];
     this.pres_.status = status_;
-    this.pres_.doctor_id = doctorID_;
+    this.pres_.doctor_id = Number(this.MP_service.sessionUser_ID);
 
     this.MP_service.savePres(this.pres_).subscribe(
       data => {

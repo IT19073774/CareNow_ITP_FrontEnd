@@ -1,4 +1,4 @@
-import { reorder } from './../../models/reorder';
+import { OnlineOrder } from './../../models/online-order';
 import { CarenowService } from 'src/app/services/carenow.service';
 import { Component, OnInit } from '@angular/core';
 import { Prescription } from 'src/app/models/Prescription';
@@ -11,29 +11,33 @@ import { Prescription } from 'src/app/models/Prescription';
 export class PatientHomeComponent implements OnInit {
 
   pres : Prescription[] =[];
-  patientID = {
-    keyword:'2'
-  }
+  // patientID = {
+  //   keyword:'1'
+  // }
 
-  filtersPres = {
-    keyword:''
-  }
 
-  reorder_: reorder = new reorder();
+  reorder_: OnlineOrder = new OnlineOrder();
 
   constructor(private _presService: CarenowService) { }
 
   ngOnInit(): void {
+    this._presService.sessionUser_ID;
     this.listPres();
 
   }
 
   Reorder(prescription_id:number,patient_id:number){
-    this.reorder_.patientID = patient_id;
-    this.reorder_.presidID = prescription_id;
+    
+    let Pres_status: string = "pending";
+    
+    this.reorder_.patientId = Number (this._presService.sessionUser_ID);
+    this.reorder_.prescriptionId = prescription_id;
+    this.reorder_.status = Pres_status;
+
     this._presService.addreorder(this.reorder_).subscribe(
       data =>{
-        console.log('response',data);
+        alert("Reorder Requested Successful | Prescription ID :" + prescription_id);
+        console.log('response', this.reorder_);
       }
     )
   }
@@ -48,7 +52,7 @@ export class PatientHomeComponent implements OnInit {
 
   filter_PR(Pres_ : Prescription[]){
     return Pres_.filter((mp) =>{
-     return mp.patient_id.toString().includes(this.patientID.keyword);
+     return mp.patient_id.toString().includes(this._presService.sessionUser_ID);
       
     })
   }

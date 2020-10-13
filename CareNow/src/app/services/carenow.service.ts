@@ -1,3 +1,4 @@
+import { OnlineOrder } from './../models/online-order';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
@@ -10,7 +11,6 @@ import { Credential } from '../models/credential';
 import { Router } from '@angular/router';
 import { Memo } from '../models/memo';
 import { tap } from 'rxjs/operators';
-import { reorder } from '../models/reorder';
 import { PR } from '../models/pr';
 import { TD } from '../models/td';
 import { Drug } from '../models/drug';
@@ -62,13 +62,13 @@ export class CarenowService {
     return this.http.delete(this.getURL2 + "delete_Pres/" + presid, this.httpOptions);
   }
 
-  addreorder(reorder_ : reorder):Observable<reorder>{
-    return this.http.post<reorder>(this.getURL2 + "addReorder",reorder_ , this.httpOptions)
+  addreorder(reorder_ : OnlineOrder):Observable<OnlineOrder>{
+    return this.http.post<OnlineOrder>("http://localhost:8080/api/addReorders",reorder_ , this.httpOptions)
     .pipe(
-        tap(() => {
-          this._refreshNeeded$.next();
-        })
-    );
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+  );
   }
 
   //
@@ -339,10 +339,14 @@ export class CarenowService {
             if (emp["email"] == credentials.getEmail()) {
               this.sessionUser_EMAIL += emp["email"];
               this.sessionUser_ID += emp["employeeId"]
-              if (emp["gender"] == "Male")
+              if (emp["type"] == "DOCTOR")
+                this.sessionUser_NAME = "Dr. ";
+              else {
+                if (emp["gender"] == "Male")
                 this.sessionUser_NAME = "Mr. ";
               else if (emp["gender"] == "Female")
                 this.sessionUser_NAME = "Mrs./ Ms. ";
+              }
               this.sessionUser_NAME = this.sessionUser_NAME + emp["firstName"] + " " + emp["lastName"];
 
               if (emp["type"] == "RECEPTIONIST") {
