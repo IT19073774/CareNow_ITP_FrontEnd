@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AddPRComponent implements OnInit {
 
+
   PR_: PR = new PR();
   PR_DEMO: PR = new PR();
 
@@ -43,12 +44,12 @@ export class AddPRComponent implements OnInit {
     this.PR_DEMO.patientID = Number('2');
     var date = '2020-11-16';
     this.PR_DEMO.patientrecorddate = new Date(date);
-    this.PR_DEMO.patientrecordsubjective = String("No further Chest Pain or Shortness of Breath. 'Feeling better today.' Patient reports headache. - Demo");
-    this.PR_DEMO.patientrecordobjective = String("");
-    this.PR_DEMO.patientrecordassessment = String("Demo");
-    this.PR_DEMO.patientrecordplan = String("Demo");
-    this.PR_DEMO.patientrecordessential = String("Demo");
-    this.PR_DEMO.patientrecordextra = String("Demo");
+    this.PR_DEMO.patientrecordsubjective = String("Fever - 3days. Rash - 1day. Varicella contact h/o 2wk back - Demo");
+    this.PR_DEMO.patientrecordobjective = String("Fever - 101f. Vesicopapular Rash. Multistage lesions,raindrops with erythematous base. Crusted top. - Demo");
+    this.PR_DEMO.patientrecordassessment = String("Varicella infection  - Demo");
+    this.PR_DEMO.patientrecordplan = String("Isolation , Notification,Bed rest, plenty of fluids. Paracetamol. 1gr. 6hly. 5days | Acyclovir. 800mg 5hly. 7days | Pirtion 4mg BD. 5days  - Demo");
+    this.PR_DEMO.patientrecordessential = String("RV in 2wks for MC  - Demo");
+    this.PR_DEMO.patientrecordextra = String("Provided instructions for Isolation  - Demo");
 
     this.PR_service.savepr(this.PR_DEMO).subscribe(
       data =>{

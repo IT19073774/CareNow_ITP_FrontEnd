@@ -42,6 +42,7 @@ import { AddCashierComponent } from './component/add-cashier/add-cashier.compone
 import { AddDoctorComponent } from './component/add-doctor/add-doctor.component';
 import { ListDoctorComponent } from './component/list-doctor/list-doctor.component';
 
+
 const routes: Routes = [
   { path:'',redirectTo: 'login', pathMatch: 'prefix'},
 
@@ -64,13 +65,15 @@ const routes: Routes = [
   //kaveen
   {path: 'viewPRs', component: ListPRComponent, canActivate: [AuthGuard]},
   {path: 'addPR', component: AddPRComponent, canActivate: [AuthGuard]},
-  {path: 'editPR/:id', component: AddPRComponent, canActivate: [AuthGuard]},
-  {path: 'viewDS', component: ListDsComponent, canActivate: [AuthGuard]},
-  {path: 'viewTD', component: ListTDComponent, canActivate: [AuthGuard]},
-  {path: 'docHome', component: DoctorHomeComponent, canActivate: [AuthGuard]},
-  {path: 'patientHome', component: PatientHomeComponent, canActivate: [AuthGuard]},
-  {path: 'ADDpres', component: ListDsComponent, canActivate: [AuthGuard]},
+
+  {path: 'editPR/:id', component: AddPRComponent},
+  {path: 'viewDS', component: ListDsComponent},
+  {path: 'viewTD', component: ListTDComponent},
+  {path: 'docHome', component: DoctorHomeComponent, },
+  {path: 'patientHome', component: PatientHomeComponent},
+  {path: 'ADDpres', component: ListDsComponent},
   {path: 'PrintPres/:name/:age/:date', component: PrintViewPrescriptionComponent},
+
 
   //Dinodi
 
@@ -100,6 +103,7 @@ const routes: Routes = [
   {  path: 'editC/:cid', component: AddCashierComponent, canActivate: [AuthGuard] },
   {  path: 'addDoc', component: AddDoctorComponent, canActivate: [AuthGuard] },
   {  path: 'listDoc', component: ListDoctorComponent, canActivate: [AuthGuard] },
+
 ];
 
 @NgModule({

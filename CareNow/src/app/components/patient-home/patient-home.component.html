@@ -13,13 +13,13 @@
       <div class="card mb-5 mb-lg-0">
         <div class="card-body">
             <br>
-          <h6 class="card-head text-center">{{MP.presdate}}</h6>
+          <h6 class="card-head text-center">{{MP.prescription_date}}</h6>
           <hr>
-          <h5>Prescription ID : {{MP.presid}}</h5>
-          <h5>Patient ID : {{MP.prespatientid}}</h5> 
-          <p>Name : {{MP.prespatientName}} | Age : {{MP.prespatientAge}} </p>
+          <h5>Prescription ID : {{MP.prescription_id}}</h5>
+          <h5>Patient ID : {{MP.patient_id}}</h5> 
+          <p>Name : {{MP.patient_name}} | Age : {{MP.patient_age}} </p>
           <br>
-          <button class="btn btn-lg btn-primary" (click) ="Reorder(MP.presid,MP.prespatientid)" >Reorder</button>
+          <button class="btn btn-lg btn-primary" (click) ="Reorder(MP.prescription_id,MP.patient_id)" >Reorder</button>
       </div>
     </div>
   </div>

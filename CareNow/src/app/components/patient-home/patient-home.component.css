@@ -1,25 +1,19 @@
+@import "~bootstrap/dist/css/bootstrap.css";  
 
-.background {
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background-image: url("/assets/img/bg3.png");
-  }
-  .mainContent {
-    position:absolute;
-    top:13%;
-    left:8%;
-    background-color:white;
-    width:88%;
-    height:69%;
-    border-radius: 45px 0 0 0;
-    z-index:15;
-    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
-    overflow: auto;
-    padding:3% 2%;
-  }
+.mainContent {
+  position:absolute;
+  top:13%;
+  left:8%;
+  background-color:white;
+  width:92%;
+  height:77%;
+  border-radius: 45px 0 0 0;
+  z-index:15;
+  box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+  overflow: auto;
+  padding:3% 2%;
+  font-family: "Segoe UI";
+}
   .header {
     position:absolute;
     left:0;
@@ -243,19 +237,7 @@
   .notiContent {
     font-family:arial;margin-right:10px;margin-top:0;color:black;
   }
-  .mainContent {
-    position:absolute;
-    top:13%;
-    left:8%;
-    background-color:white;
-    width:88%;
-    height:69%;
-    border-radius: 45px 0 0 0;
-    z-index:16;
-    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
-    overflow: auto;
-    padding:3% 2%;
-  }
+  
   /* width */
   ::-webkit-scrollbar {
     width: 10px;

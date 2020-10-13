@@ -37,7 +37,9 @@ import { MPComponent } from './components/mp/mp.component';
 import { PrintViewPrescriptionComponent} from './components/print-view-prescription/print-view-prescription.component';
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { PatientHomeComponent } from './components/patient-home/patient-home.component';
-import { PrescriptionComponent } from './components/prescription/prescription.component'
+import { PrescriptionComponent } from './components/prescription/prescription.component';
+
+
 
 //Dinodi
 import { ListsupplierComponent } from './listsupplier/listsupplier.component';

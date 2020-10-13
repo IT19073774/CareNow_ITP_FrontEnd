@@ -1,16 +1,16 @@
 @import "~bootstrap/dist/css/bootstrap.css";  
 
 .mainContent {
-    position:absolute;
-    top:13%;
-    left:8%;
-    background-color:white;
-    width:92%;
-    height:77%;
-    border-radius: 45px 0 0 0;
-    z-index:15;
-    box-shadow:0 4px 8px 0 rgba(0,0,0,1);
-    overflow: auto;
-    padding:3% 2%;
-     
-  }
+  position:absolute;
+  top:13%;
+  left:8%;
+  background-color:white;
+  width:92%;
+  height:77%;
+  border-radius: 45px 0 0 0;
+  z-index:15;
+  box-shadow:0 4px 8px 0 rgba(0,0,0,1);
+  overflow: auto;
+  padding:3% 2%;
+  font-family: "Segoe UI";
+}

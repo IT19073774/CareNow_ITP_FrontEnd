@@ -1,17 +1,16 @@
+import { OnlineOrder } from './../models/online-order';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Appointment } from '../models/appointment';
 import { Employee } from '../models/Employee';
-import { DS } from '../models/DS';
-import { MP } from '../models/mp';
+import { Prescription } from '../models/Prescription';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { Credential } from '../models/credential';
 import { Router } from '@angular/router';
 import { Memo } from '../models/memo';
 import { tap } from 'rxjs/operators';
-import { reorder } from '../models/reorder';
 import { PR } from '../models/pr';
 import { TD } from '../models/td';
 import { Drug } from '../models/drug';
@@ -44,14 +43,14 @@ export class CarenowService {
     return this._refreshNeeded$;
   }
 
-  getPres(): Observable<MP[]>{
-    return this.http.get<MP[]>(this.getURL2 + "all-Pres", this.httpOptions).pipe(
+  getPres(): Observable<Prescription[]>{
+    return this.http.get<Prescription[]>(this.getURL2 + "all-Pres", this.httpOptions).pipe(
       map(response => response)
     )
   }
 
-  savePres(MP_: MP):Observable<MP>{
-    return this.http.post<MP>(this.getURL2 + "add-Pres" ,MP_ , this.httpOptions)
+  savePres(MP_: Prescription):Observable<Prescription>{
+    return this.http.post<Prescription>(this.getURL2 + "add-Pres" ,MP_ , this.httpOptions)
     .pipe(
         tap(() => {
           this._refreshNeeded$.next();
@@ -63,13 +62,13 @@ export class CarenowService {
     return this.http.delete(this.getURL2 + "delete_Pres/" + presid, this.httpOptions);
   }
 
-  addreorder(reorder_ : reorder):Observable<reorder>{
-    return this.http.post<reorder>(this.getURL2 + "addReorder",reorder_ , this.httpOptions)
+  addreorder(reorder_ : OnlineOrder):Observable<OnlineOrder>{
+    return this.http.post<OnlineOrder>("http://localhost:8080/api/addReorders",reorder_ , this.httpOptions)
     .pipe(
-        tap(() => {
-          this._refreshNeeded$.next();
-        })
-    );
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+  );
   }
 
   //
@@ -92,11 +91,9 @@ export class CarenowService {
     )
   }
   
-  deletePR(patientRecordID: number): Observable<any> {
-    return this.http.delete(this.getURL2 + "delete_PR/" + patientRecordID, this.httpOptions);
+  deletePR(id): Observable<any> {
+    return this.http.delete("http://localhost:8080/api/delete_PR/" + id, this.httpOptions);
   }
-
-  //
 
   getTD(): Observable<TD[]>{
     return this.http.get<TD[]>("http://localhost:8080/api/all-TD",this.httpOptions).pipe(
@@ -346,10 +343,14 @@ export class CarenowService {
             if (emp["email"] == credentials.getEmail()) {
               this.sessionUser_EMAIL += emp["email"];
               this.sessionUser_ID += emp["employeeId"]
-              if (emp["gender"] == "Male")
+              if (emp["type"] == "DOCTOR")
+                this.sessionUser_NAME = "Dr. ";
+              else {
+                if (emp["gender"] == "Male")
                 this.sessionUser_NAME = "Mr. ";
               else if (emp["gender"] == "Female")
                 this.sessionUser_NAME = "Mrs./ Ms. ";
+              }
               this.sessionUser_NAME = this.sessionUser_NAME + emp["firstName"] + " " + emp["lastName"];
 
               if (emp["type"] == "RECEPTIONIST") {

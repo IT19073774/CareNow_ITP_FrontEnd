@@ -22,11 +22,12 @@
         <div class="col">
         <h4 for="Pdate">Date</h4>        
             <input type="date"
-            id="Pdate"
             class="form-control form-control-lg"
+                    id="Pdate"
                     name="patientrecorddate"
                     [(ngModel)]="PR_.patientrecorddate"
                     placeholder="Enter Date">
+
                     <br>
         </div>
         <div class="col"></div>
@@ -85,7 +86,7 @@
             <div class="vertical-center">
                 <button type="submit" class="btn btn-lg btn-primary" >Add Patient Record</button>
             </div>
-        
+        <br>
             <div class="vertical-center">
                 <button class="btn btn-lg btn-outline-danger" (click) ="addprdemo()" >DEMO</button>
               
