@@ -4,10 +4,8 @@
 
    
 
-   <input class = "search" type = "text" [(ngModel)] = "filters.keyword"
-    name= "keyword"
-    placeholder="Search"
-    (input)="listCashier()">
+   <input class = "search" type = "text" [(ngModel)]="filterterm"
+    name= "keyword" placeholder="Search"/>
 
     <select class = "inputx" name = "sortBy" [(ngModel)] = "filters.sortBy" (change) = "listCashier()" >
       
@@ -18,7 +16,8 @@
         <option> Hired Date </option>
 
     </select>
-
+    <button class = "export" (click) = "downloadPDF()"> Export PDF </button>
+    <button class = "add" (click)="addCashier()" > add cash </button>
   <!-- 
 <div *ngFor= "let cash of this.cashier" class= "list" id = "table">
 
@@ -36,7 +35,7 @@
 </div>
 --> 
   <div >
-    <table class= "orders" id ="contentToConvert">
+    <table class= "list" id ="contentToConvert">
       <tr style="text-align:center; "  >
         <th >Employee ID</th>
         <th>First Name</th>
@@ -45,126 +44,137 @@
         <th>Gender</th>
         
         <th>Contact Number </th>
+        <th>Address </th>
         <th>Email</th>
         <th>DOB </th>
         <th>Hired Date </th>
   
       </tr>
         
-           <tr style="text-align:center; " *ngFor="let cash of cashier">
+           <tr style="text-align:center; " *ngFor="let cash of cashier | filter:filterterm ">
                 <td>{{cash.employeeId}}</td>
                 <td >{{cash.firstName}}</td>
                 <td >{{cash.lastName}}</td>
                 <td >{{cash.nic}}</td>
                 <td >{{cash.gender}}</td>
                 <td >{{cash.contactNo}}</td>
+                <td >{{cash.address}}</td>
                 <td >{{cash.email}}</td>
                 <td >{{cash.dob}}</td>
                 <td >{{cash.hiredDate}}</td>
            
                  <button class = "delete" (click)="deleteCashier(cash.employeeId)"> Delete </button> 
-                  <button class = "edit"  (click)="updateCashier(cash.employeeId)" > Edit </button>   
+                  <button class = "edit"  (click)="edit(cash)" > Edit </button>   
                  
            </tr> 
            
     </table>  
-    <button class = "export" (click) = "downloadPDF()"> Export PDF </button>
+
 </div>
-<!--
+
 <div class="backShader" [style.display]="isDetVisible ? 'block' : 'none'">
     <span class="close" (click)="closeDetail()">&times;</span>
   
-        <form (ngSubmit)="saveCashier()" name = "form" >
-
-          <div class="container2" >
-            <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add Cashier</h1>
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="firstName" [(ngModel)]="cashier.firstname"
-                                    placeholder="Enter Cashier name" />
-              </div>
-            </div>
+    <form (ngSubmit)="updateCashier()" id= "form" class="form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" >
+             
+      <div class="container2" >
+        <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add Cashier</h1>
         
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="LastName" [(ngModel)]="cashier.lastname" 
-                placeholder="Enter LastName" />
-              </div>
-            </div>
-        
-            <div class="row">
-              <div class="col-75">
-                    <select name="gender" id="gender" [(ngModel)]="cashier.gender" >
-              
-                        <option selected value="M">M</option>
-                        <option value="F">F</option>
-                        <option value="NB">Non-Binary</option>
-                        
-                </select>
-              </div>
-            </div>
-
+        <div class="row">
+          <div class="col-75">
+            <input required #firstName="ngModel" type="text" name="firstName" [(ngModel)]="cashierEdit.firstName"
+                                placeholder="Enter Cashier name" />
+                                
+          </div>
+          <span *ngIf="firstName.invalid && firstName.touched" class = "error" > First Name requried</span>
+        </div>
+    
+        <div class="row">
+          <div class="col-75">
+            <input type="text" #lastName="ngModel"  name="LastName" [(ngModel)]="cashierEdit.lastName" 
+            placeholder="Enter LastName" required/>
+          </div>
+          <span *ngIf="lastName.invalid && lastName.touched" class = "error" > Last Name requried</span>
+        </div>
+    
+        <div class="row">
+          <div class="col-75">
+                <select name="gender" id="gender" [(ngModel)]="cashierEdit.gender" required >
           
-                
-                    <div class="row">
-                      <div class="col-75">
-                        <input type="text" name="password" [(ngModel)]="cashier.cashpassword" 
-                                            placeholder="Enter Password" ng-minlength='4' required />
-                    <p ng-show ="form.password.$error.ng-minlength || form.password.$invalid" > </p>
-                      </div>
-                    </div>
-                
-                <div class="row">
-                  <div class="col-75">
-                    <input type="text" name="email" [(ngModel)]="cashier.email" 
-                    placeholder="Enter Email" />
-                  </div>
-                </div>
-
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="nic" [(ngModel)]="cashier.nic" 
-                placeholder="Enter NIC" />
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="contactno" [(ngModel)]="cashier.contactno" 
-                placeholder="Enter Contact No" />
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="email" [(ngModel)]="cashier.address" 
-                placeholder="Enter Address" />
-              </div>
-            </div>
+                    <option selected value="M">M</option>
+                    <option value="F">F</option>
+                    <option value="NB">Non-Binary</option>
+                    
+            </select>
+          </div>
+        </div>
+<!--
+        <div class="row">
+          <div class="col-75">
+            <input type="password" minlength="4" name="password" [(ngModel)]="this.password" 
+                                placeholder="Enter Password"  required />
         
+          </div>
+        </div>
+      -->
+            
             <div class="row">
               <div class="col-75">
-                <input type="date" name="dob" [(ngModel)]="cashier.dob" 
-                placeholder="Enter DOB" />
+                <input  type="text" #email="ngModel" email  name="email" [(ngModel)]="cashierEdit.email"
+                placeholder="Enter Email" required />
               </div>
+              <span *ngIf="email.invalid && email.touched" class = "error" > Please enter a valid email</span>
             </div>
+                            
 
-            <div class="row">
-              <div class="col-75">
-                <input type="date" name="hiredDate" [(ngModel)]="cashier.hiredDate" 
-                placeholder="Enter Hired Date" />
-              </div>
-            </div>
-            
-        
-            <button type = "submit" class = "submit" >  Save   </button>
+        <div class="row">
+          <div class="col-75">
+            <input type="text" #nic="ngModel"  name="nic" [(ngModel)]="cashierEdit.nic" 
+            placeholder="Enter NIC" required />
+          </div>
+          <span *ngIf="nic.invalid && nic.touched" class = "error" > NIC is requried</span>
+        </div>
 
-            <button *ngIf = "cashier.cid" (click)="deleteCashier(cashier.cid)"> Delete </button>
-            
+        <div class="row">
+          <div class="col-75">
+            <input type="text" #contactNo="ngModel"  name="contactno" [(ngModel)]="cashierEdit.contactNo" 
+            placeholder="Enter Contact No" required/>
+          </div>
+          <span *ngIf="contactNo.invalid && contactNo.touched" class = "error" > Contact No is requried</span>
+        </div>
+
+        <div class="row">
+          <div class="col-75">
+            <input required #address="ngModel"  type="text" name="address" [(ngModel)]="cashierEdit.address" 
+            placeholder="Enter Address" required/>
+          </div>
+          <span *ngIf="address.invalid && address.touched" class = "error" > Address requried</span>
+        </div>
+    
+        <div class="row">
+          <div class="col-75">
+            <input type="date" #dob="ngModel"  name="dob" [(ngModel)]="cashierEdit.dob" 
+            placeholder="Enter DOB" required/>
+          </div>
+          <span *ngIf="dob.invalid && dob.touched" class = "error" > Date of birth is requried</span>
+        </div>
+
+        <div class="row">
+          <div class="col-75">
+            <input type="date" #hiredDate="ngModel"  name="hiredDate" [(ngModel)]="cashierEdit.hiredDate" 
+            placeholder="Enter Hired Date" required />
+          </div>
+          <span *ngIf="hiredDate.invalid && hiredDate.touched" class = "error" > Hired Date is requried</span>
+        </div>           
+    
+        <button [disabled]="userForm.invalid" type = "submit" class = "submit" >  Save   </button>
+        <span *ngIf="userForm.invalid && userForm.touched" class = "error" > Invalid Form Entry</span>
+       
+       
+      
+      </div>  
+      </form> 
           
-          </div>  
-            </form>  
-        -->    
          
 </div>
   

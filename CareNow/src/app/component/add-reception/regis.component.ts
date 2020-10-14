@@ -9,15 +9,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./regis.component.css']
 })
 export class RegisComponent implements OnInit {
+  onSubmit(data)
+  {
+    console.warn(data);
+  }
 
-  reception: Reception = new Reception();
+ reception : Reception = new Reception();
+ 
+  public password = "";
+  
 
   constructor(private _receptionService: ReceptionService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+/*
     const isIdPresent = this._activatedRoute.snapshot.paramMap.has('id');
     if (isIdPresent)
     {
@@ -26,17 +33,24 @@ export class RegisComponent implements OnInit {
         data =>this.reception = data
       )
     }
+    */
   }
 
 saveReception() {
-  this._receptionService.saveReception(this.reception).subscribe(
-    data =>{
-      console.log('response', data);
-      this._router.navigateByUrl("/list");
-    }
-  )
-
+  console.log("Entered Save ");
+  if(this.reception.email.includes("@") && this.reception.email.includes(".com")){
+    console.log(" Save ");
+    console.log(this.password)
+    this._receptionService.saveReception(JSON.stringify(this.reception), this.password).subscribe(
+        data =>{
+          console.log('response', data);
+          this._router.navigate(["/listRec"])
+        }
+      )
+      console.log("Finished Save ");
+      }
 }
+
 
 deleteReception(RecId:number)
 {

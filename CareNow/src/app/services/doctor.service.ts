@@ -30,15 +30,8 @@ export class DoctorService {
 
   }
 
-  saveDoctor(cashier: any):Observable<any> {
-    return this.http.post(`http://localhost:8080/saveCashier`,cashier)
+  saveDoctor(doctor,education, password):Observable<any> {
+    return this.http.post<any>("http://localhost:8080/saveDoctor/"+ password + education, doctor, this.httpOptions )
   }
 
-
-
-  updateDoctor(val: number):Observable<any> {
-    return this.http.put<any>("http://localhost:8080/updateCashier",this.httpOptions)
-  }
-
- 
 }

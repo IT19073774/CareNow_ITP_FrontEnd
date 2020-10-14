@@ -4,11 +4,13 @@ export class Doctor {
 	firstname: string;
 	lastname: string;
 	gender: string;
-	password: string;
+	//password: string;
 	email: string;
-	dob: Date;
+	dob: string;
+	address: string;
 	contactno: string;
 	nic: string;
-	hiredDate: Date;
+	hiredDate: string;
 	education: string
+	type:string="DOCTOR";
 }
