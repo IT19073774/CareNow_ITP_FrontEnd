@@ -33,14 +33,14 @@ export class CashierService {
   }
 
   saveCashier(cashier, password):Observable<any> {
-    return this.http.post("http://localhost:8080/saveCashier/" + password, cashier, this.httpOptions);
+    return this.http.post<any>("http://localhost:8080/saveCashier/" + password, cashier, this.httpOptions);
   }
-
+  /*
   savePharmacist(pharmacist, password):Observable<any> {
     return this.http.post<any>("http://localhost:8080/savePharmacist/" + password, pharmacist, this.httpOptions);
-  }
+  }*/
 
-  updateCashier(val: number):Observable<any> {
-    return this.http.put<any>("http://localhost:8080/updateCashier",this.httpOptions)
+  updateCashier(cashier):Observable<any> {
+    return this.http.post<any>("http://localhost:8080/updateCashier",cashier,this.httpOptions)
   }
 }

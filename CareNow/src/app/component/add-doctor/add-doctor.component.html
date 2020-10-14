@@ -3,72 +3,75 @@
 
 <div class="mainContent">
 
-            <form (ngSubmit)="saveDoctor()" name = "form" class="form" >
+            <form (ngSubmit)="saveDoctor()" #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" name  = "form" class="form" >
              
             <div class="container2" >
               <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add Doctor</h1>
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="firstName" [(ngModel)]="doctor.firstname"
+                  <input type="text" required #firstName="ngModel" name="firstName" [(ngModel)]="doctor.firstname"
                                       placeholder="Enter Cashier name" />
                 </div>
+                <span *ngIf="firstName.invalid && firstName.touched" class = "error" > First Name requried</span>
               </div>
           
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="LastName" [(ngModel)]="doctor.lastname" 
+                  <input type="text" #lastName="ngModel" required  name="LastName" [(ngModel)]="doctor.lastname" 
                   placeholder="Enter LastName" />
                 </div>
+                <span *ngIf="lastName.invalid && lastName.touched" class = "error" > Last Name requried</span>
               </div>
           
               <div class="row">
                 <div class="col-75">
                       <select name="gender" id="gender" [(ngModel)]="doctor.gender" >
                 
-                          <option selected value="M">M</option>
-                          <option value="F">F</option>
-                          <option value="NB">Non-Binary</option>
-                          
+                          <option selected value="M">Male</option>
+                          <option value="F">Female</option>      
                   </select>
                 </div>
               </div>
 
-            
-                 
+                      
+              <div class="row">
+                <div class="col-75">
+                  <input type="email" name="email" #email="ngModel" email required [(ngModel)]="doctor.email" 
+                  placeholder="Enter Email" />
+                </div>
+                <span *ngIf="email.invalid && email.touched" class = "error" > Please enter a valid email</span>
+              </div>
                       <div class="row">
                         <div class="col-75">
-                          <input type="text" name="password" [(ngModel)]="doctor.password" 
-                                              placeholder="Enter Password" ng-minlength='4' required />
+                          <input type="password" name="password" [(ngModel)]="this.password" 
+                                              placeholder="Enter Password" required />
                      
                         </div>
                       </div>
-                 
-                  <div class="row">
-                    <div class="col-75">
-                      <input type="text" name="email" [(ngModel)]="doctor.email" 
-                      placeholder="Enter Email" />
-                    </div>
-                  </div>
+         
 
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="nic" [(ngModel)]="doctor.nic" 
+                  <input type="text" #nic="ngModel" required  name="nic" [(ngModel)]="doctor.nic" 
                   placeholder="Enter NIC" />
                 </div>
+                <span *ngIf="nic.invalid && nic.touched" class = "error" > NIC is requried</span>
               </div>
 
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="contactno" [(ngModel)]="doctor.contactno" 
+                  <input type="text" #contactNo="ngModel" required name="contactno" [(ngModel)]="doctor.contactno" 
                   placeholder="Enter Contact No" />
                 </div>
+                <span *ngIf="contactNo.invalid && contactNo.touched" class = "error" > Contact No is requried</span>
               </div>
 
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="email" [(ngModel)]="doctor.address" 
+                  <input type="text" name="address" required #address="ngModel"  [(ngModel)]="doctor.address" 
                   placeholder="Enter Address" />
                 </div>
+                <span *ngIf="address.invalid && address.touched" class = "error" > Address requried</span>
               </div>
               <div class="row">
                 <div class="col-75">
@@ -79,38 +82,23 @@
           
               <div class="row">
                 <div class="col-75">
-                  <input type="date" name="dob" [(ngModel)]="doctor.dob" 
-                  placeholder="Enter DOB" class="textbox-n" type="text" onfocus="(this.type='date')"
-                  onblur="(this.type='text')"type="date" />
+                  <input type="text" name="dob" #dob="ngModel" required [(ngModel)]="doctor.dob" 
+                  placeholder="Enter DOB" class="textbox-n" type="text" type="date" />
                 </div>
+                <span *ngIf="dob.invalid && dob.touched" class = "error" > Date of birth is requried</span>
               </div>
 
               <div class="row">
                 <div class="col-75">
-                  <input  placeholder="Enter Hired Date" class="textbox-n" type="text" onfocus="(this.type='date')"
-                   onblur="(this.type='text')"type="date" name="hiredDate" [(ngModel)]="doctor.hiredDate" 
+                  <input  placeholder="Enter Hired Date" #hiredDate="ngModel" required  class="textbox-n" type="text" type="date" name="hiredDate" [(ngModel)]="doctor.hiredDate" 
                   />
-                </div>
+                </div> <span *ngIf="hiredDate.invalid && hiredDate.touched" class = "error" > Hired Date is requried</span>
               </div>
-              
-          
-              <button type = "submit" class = "submit" >  Save   </button>
-
-            
-             
-            
+  
+              <button type = "submit" class = "submit" [disabled]="userForm.invalid" >  Save   </button>
+              <span *ngIf="userForm.invalid && userForm.touched" class = "error" > Invalid Form Entry</span>
             </div>  
             </form> 
    
 </div>
 
-<script>
-$("#myel").on("input",function(){
-  if($(this).val().length>0){
-  $(this).addClass("full");
-}
-else{
- $(this).removeClass("full");
- }
-});
-</script>

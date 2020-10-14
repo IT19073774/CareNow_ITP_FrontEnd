@@ -5,36 +5,56 @@
 
    
 
-   <input class = "search" type = "text" [(ngModel)] = "filters.keyword"
+   <input class = "search" type = "text" [(ngModel)] = "filterterm"
     name= "keyword"
-    placeholder="Search"
-    (input)="listDoctor()">
+    placeholder="Search">
 
     <select class = "inputx" name = "sortBy" [(ngModel)] = "filters.sortBy" (change) = "listDoctor()" >
       
         <option> FirstName </option>
         <option> LastName </option>
-        <option> Email </option>
-        <option> DOB </option>
-        <option> Hired Date </option>
-
+        
     </select>
+    <button class = "export" (click) = "downloadPDF()"> Export PDF </button>
+    <button class = "add" (click)="addDoctor()" > Add Doctor </button>
 
-<div *ngFor= "let doc of this.doctor" class= "list">
-
-    <p> {{doc.employeeId}}
-    <p> First Name: {{doc.firstName}} </p>
-    <p> Last Name: {{doc.lastName}} </p>
-    <p> Nic: {{doc.nic}}
-    <p> Gender: {{doc.gender}} </p>
-    <p> Contact No: {{doc.contactNo}} </p>
-    <p> Email: {{doc.email}} </p>
-    <p> DOB: {{doc.dob}} </p>
-    <p> HiredDate: {{doc.hiredDate}} </p>
-
-    <button class = "delete" (click)="deleteDoctor(doc.employeeId)"> Delete </button>
-    
-   
+ <div >
+    <table class= "list" id ="contentToConvert">
+      <tr style="text-align:center; "  >
+        <th >Employee ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>NIC</th>
+        <th>Gender</th>
+        <th>Contact Number </th>
+        <th>Address </th>
+        <th>Email</th>
+        <th>DOB </th>
+        <th>Hired Date </th>
+        <th> Education </th>
+  
+      </tr>
+        
+           <tr style="text-align:center; " *ngFor="let doc of doctor | filter:filterterm">
+                <td>{{doc.employeeId}}</td>
+                <td >{{doc.firstname}}</td>
+                <td >{{doc.lastname}}</td>
+                <td >{{doc.nic}}</td>
+                <td >{{doc.gender}}</td>
+                <td >{{doc.contactno}}</td>
+                <td >{{doc.address}}</td>
+                <td >{{doc.email}}</td>
+                <td >{{doc.education}}</td>
+                <td >{{doc.dob}}</td>
+                <td >{{doc.hiredDate}}</td>
+           
+                 <button class = "delete" (click)="deleteDoctor(doc.employeeId)"> Delete </button>
+                 
+           </tr> 
+           
+    </table>  
     
 </div>
+    
 </div>
+

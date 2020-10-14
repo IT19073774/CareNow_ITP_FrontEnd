@@ -25,10 +25,8 @@ export class ReceptionService {
     return this.http.get<any>("http://localhost:8080/getReceptionist", this.httpOptions);
   }
 
-  
-
-  saveReception(reception: Reception): Observable<Reception> {
-    return this.http.post<Reception>(this.getUrl, reception);
+  saveReception(reception, password): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/saveReceptionist/" + password, reception, this.httpOptions);
   }
 
   getReceptions(RecId: number): Observable<Reception> {
@@ -36,9 +34,12 @@ export class ReceptionService {
       map(response => response)
     )
   }
+  updateReception(reception):Observable<any> {
+    return this.http.post<any>("http://localhost:8080/updateReceptionist",reception,this.httpOptions)
+  }
 
-  deleteReception(RecId: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/deleteReceptionist/${RecId}`, this.httpOptions);
+  deleteReception(employeeid: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/deleteReceptionist/${employeeid}`, this.httpOptions);
   }
 
 }
