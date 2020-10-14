@@ -34,6 +34,7 @@ import { ListBillComponent } from './components/list-bill/list-bill.component';
 import { ListPharmacistComponent } from './component/listpharmacist/listpharmacist.component';
 import { ListStockmanagerComponent } from './component/list-stockmanager/list-stockmanager.component';
 import { AddPharmacistComponent } from './component/add-pharmacist/add-pharmacist.component';
+import { AddStockmanagerComponent } from './component/add-stockmanager/add-stockmanager.component';
 
 import { RegisComponent } from './component/add-reception/regis.component'
 import { ListReceptionComponent } from './component/list-reception/list-reception.component';
@@ -93,6 +94,7 @@ const routes: Routes = [
   { path: 'listPharmacist' , component:ListPharmacistComponent, canActivate: [AuthGuard] },
   { path: 'listStockManager' ,component:ListStockmanagerComponent, canActivate: [AuthGuard] },
   { path: 'addPharmacist' , component:AddPharmacistComponent, canActivate: [AuthGuard] },
+  { path: 'addStockmanager' , component:AddStockmanagerComponent, canActivate: [AuthGuard] },
 
   //Osura
   { path:'Regis', component: RegisComponent , canActivate: [AuthGuard] },

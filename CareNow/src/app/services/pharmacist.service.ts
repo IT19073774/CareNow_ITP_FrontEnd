@@ -36,7 +36,7 @@ export class PharmacistService {
   }
 
 
-//
+
 
   savePharmacist(pharmacist, password):Observable<any> {
     return this.http.post<any>("http://localhost:8080/savePharmacist/" + password, pharmacist, this.httpOptions);
@@ -44,8 +44,8 @@ export class PharmacistService {
 
 
 
-  updatePharmacist(val: number):Observable<any> {
-    return this.http.put<any>("http://localhost:8080/updatePharmacist",this.httpOptions);
+  updatePharmacist(pharmacist):Observable<any> {
+    return this.http.post<any>("http://localhost:8080/updatePharmacist",pharmacist,this.httpOptions);
   }
 
  

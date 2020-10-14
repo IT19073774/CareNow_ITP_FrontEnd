@@ -3,95 +3,89 @@
 
 <div class="mainContent">
 
-            <form (ngSubmit)="savePharmacist()" id= "form" class="form" >
+            <form (ngSubmit)="saveStockmanager()" id= "form" class="form" >
              
             <div class="container2" >
-              <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add  Pharmacist</h1>
+              <h1 style="font-family: Arial; color: white; margin-left: 150px;"> Add  Stock Manager</h1>
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="firstName" [(ngModel)]="pharmacist.firstName"
-                                      placeholder="Enter Pharmacist name" required />
-                
-                
+                  <input type="text" name="firstName" [(ngModel)]="stockmanager.firstName"
+                                      placeholder="Enter Stock Manager name" required />
                 </div>
               </div>
           
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="LastName" [(ngModel)]="pharmacist.lastName" 
+                  <input type="text" name="LastName" [(ngModel)]="stockmanager.lastName" 
                   placeholder="Enter LastName" required/>
                 </div>
               </div>
           
               <div class="row">
                 <div class="col-75">
-                      <select name="gender" id="gender" [(ngModel)]="pharmacist.gender" required >
+                      <select name="gender" id="gender" [(ngModel)]="stockmanager.gender" required >
                 
                           <option selected value="Male">Male</option>
                           <option value="Female">Female</option>
                           
-                          
                   </select>
                 </div>
               </div>
-
+                
               <div class="row">
                 <div class="col-75">
-                  <input required #email="ngModel" type="email" name="email" email ngModel class="form-control"[(ngModel)]="pharmacist.email"
+                  <input required #email="ngModel" type="email" name="email" email ngModel class="form-control"[(ngModel)]="stockmanager.email"
                   placeholder="Enter Email"  />
                   <span *ngIf="email.invalid && email.touched" class="error">Email is Required</span>
                 </div>
               </div>
-                             
             
                   
                       <div class="row">
                         <div class="col-75">
-                          <input required type="password"  name="password" [(ngModel)]="this.password" 
-                                              placeholder="Enter Password"  />
-                           
-
+                          <input type="password" name="password" [(ngModel)]="this.password" 
+                                              placeholder="Enter Password" ng-minlength='4' required />
+                      <p ng-show ="form.password.$error.ng-minlength || form.password.$invalid" > </p>
                         </div>
                       </div>
-                  
-                   
+                                
 
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="nic" [(ngModel)]="pharmacist.nic" 
+                  <input type="text" name="nic" [(ngModel)]="stockmanager.nic" 
                   placeholder="Enter NIC" required />
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-75">
-                  <input type="text" name="contactno" [(ngModel)]="pharmacist.contactNo" 
+                  <input type="text" name="contactno" [(ngModel)]="stockmanager.contactNo" 
                   placeholder="Enter Contact No" required/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-75">
-                  <input required type="text" name="address" [(ngModel)]="pharmacist.address" 
+                  <input required type="text" name="address" [(ngModel)]="stockmanager.address" 
                   placeholder="Enter Address" required/>
                 </div>
               </div>
           
               <div class="row">
                 <div class="col-75">
-                  <input type="date" name="dob" [(ngModel)]="pharmacist.dob" 
+                  <input type="date" name="dob" [(ngModel)]="stockmanager.dob" 
                   placeholder="Enter DOB" required/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-75">
-                  <input type="date" name="hiredDate" [(ngModel)]="pharmacist.hiredDate" 
+                  <input type="date" name="hiredDate" [(ngModel)]="stockmanager.hiredDate" 
                   placeholder="Enter Hired Date" required />
                 </div>
               </div>           
           
-              <button type = "submit" class = "submit" disabled="pharmacist.firstName==''||pharmacist.lastName==''||pharmacist.gender==''||pharmacist.email==''||pharmacist.dob==''||pharmacist.contactNo==''||pharmacist.nic==''||pharmacist.hiredDate==''||pharmacist.address==''">  Save   </button>
+              <button type = "submit" class = "submit" [disabled]="stockmanager.firstName==''||stockmanager.lastName==''||stockmanager.gender==''||stockmanager.email==''||stockmanager.dob==''||stockmanager.contactNo==''||stockmanager.nic==''||stockmanager.hiredDate==''||stockmanager.address==''">  Save   </button>
 
              
              
