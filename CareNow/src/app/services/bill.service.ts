@@ -1,9 +1,8 @@
-import { prescription } from './../modles/Precription';
-import { Bill } from './../modles/bill';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { data } from 'jquery';
 
 
@@ -26,34 +25,34 @@ export class BillService {
   
   
   
-  public getBills():Observable<any>
+   getBills():Observable<any>
   {
-    return this.http.get<any>("http://localhost:8080/bill");
+    return this.http.get<any>("http://localhost:8080/bill", this.httpOptions);
   }
 
    deletebill(id: number): Observable<any> {  
-    return this.http.delete(`${this.baseUrl}/deletebill/${id}`);  
+    return this.http.delete(`${this.baseUrl}/deletebill/${id}`,this.httpOptions);  
   }
 
   searchdetails(date :string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/search/${date}`);
+    return this.http.get(`${this.baseUrl}/search/${date}`,this.httpOptions);
   }
 
   getbilldetails(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}create/${id}`);
+    return this.http.get(`${this.baseUrl}create/${id}`,this.httpOptions);
   }
 
   createNewBill(id : number):Observable<Object>{
-    return this.http.post(`${this.baseUrl}create/${id}`,data );
+    return this.http.post(`${this.baseUrl}create/${id}`,data,this.httpOptions );
 
   }
 
   updatepaymentStatus(id:number):Observable<Object>{
-    return this.http.post(`${this.baseUrl}updatepay/${id}`,data);
+    return this.http.post(`${this.baseUrl}updatepay/${id}`,data,this.httpOptions);
   }
 
   updatePrintingStatus(id:number):Observable<Object>{
-    return this.http.post(`${this.baseUrl}updateprint/${id}`,data)
+    return this.http.post(`${this.baseUrl}updateprint/${id}`,data,this.httpOptions)
   }
 
  

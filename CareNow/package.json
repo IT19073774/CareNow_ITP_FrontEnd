@@ -22,7 +22,7 @@
     "@syncfusion/ej2-angular-schedule": "^18.3.35",
     "@syncfusion/ej2-material-theme": "~18.2.47",
     "angular-datatables": "^9.0.2",
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.22",
     "html2canvas": "^1.0.0-rc.7",

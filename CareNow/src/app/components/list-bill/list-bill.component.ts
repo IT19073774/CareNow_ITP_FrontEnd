@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import  jspdf from 'jspdf';
 import { Component,Input, TemplateRef, Injectable, ViewChild } from '@angular/core';
 import { drug } from 'src/app/modles/drug';
+import { CarenowService } from 'src/app/services/carenow.service';
 
 interface LooseObject{
   [key:string]:any
@@ -49,7 +50,7 @@ export class ListBillComponent implements OnInit {
 
  
  
-  constructor(private _billservices:BillService) { }
+  constructor(private _billservices:BillService,public service: CarenowService) { }
  
   ngOnInit(): void {
     this.dtOptions = {  
@@ -61,7 +62,7 @@ export class ListBillComponent implements OnInit {
     
     console.log("START")
 
-    this._billservices.getBills().subscribe(
+    this.service.getBills().subscribe(
       data => {
         console.log(data)
         this.bill = data

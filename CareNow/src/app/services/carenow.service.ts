@@ -295,6 +295,11 @@ export class CarenowService {
     return this.http.delete("http://localhost:8080/deletePatient/" + id, this.httpOptions);
   }
 
+  getBills():Observable<any>
+  {
+    return this.http.get<any>("http://localhost:8080/bill", this.httpOptions);
+  }
+
  /* deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
   }
