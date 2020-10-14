@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { Doctor } from 'src/app/models/doctor';
 import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
@@ -10,44 +14,48 @@ export class ListDoctorComponent implements OnInit {
 
   
   public isDetVisible = false
-  doctor: any = [];
-  doctorEdit:any = {}
+  doctor: Doctor []= [];
+  filterterm: string;
 
   filters = {
     keyword: '',
     sortBy: ''
   }
-
-  constructor(private _doctorServices: DoctorService) { }
-
+  constructor(private _doctorService: DoctorService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) { }
+    
 
   ngOnInit(): void {
     
     this.listDoctor();
   }
 
-  closeDetail() {
-    this.isDetVisible = false
+ 
+  downloadPDF() {
+    var data = document.getElementById('contentToConvert');
+    html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('newPDF.pdf');
+    });
+  }
+  addDoctor()
+  {
+    this._router.navigate(["/addDoc"]);
   }
 
-  updateCashier(val:Number) {
-    
-    this.doctorEdit = {}
-    for(let doc of this.doctor) {
-      if (doc["cid"] == val ) {
-        this.doctorEdit = doc
-        break;
-      }
-    }
-    console.log(this.doctorEdit)
-    this.isDetVisible = true
-  }
-  deleteDcotor(id:number)
+ 
+  deleteDoctor(id:number)
   {
-  this._doctorServices.deleteDoctor(id).subscribe(
+  this._doctorService.deleteDoctor(id).subscribe(
     data =>{
       console.log('deleted response',data);
-      this._doctorServices.getDoctor().subscribe(data =>{
+      this._doctorService.getDoctor().subscribe(data =>{
         this.listDoctor();
         },
         error => console.log(error)
@@ -55,20 +63,10 @@ export class ListDoctorComponent implements OnInit {
     },
     error => console.log(error));   
 }
-   
-  saveCashier() {
-    this._doctorServices.saveDoctor(this.doctor).subscribe(
-      data =>{
-        console.log('response', data);
-
-      }
-    )
-  
-  }
 
   listDoctor()
   {
-    this._doctorServices.getDoctor().subscribe(
+    this._doctorService.getDoctor().subscribe(
       data => {
         console.log(data)
         this.doctor =data}

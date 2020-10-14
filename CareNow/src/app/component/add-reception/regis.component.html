@@ -6,7 +6,7 @@
 
 
 
-            <form (ngSubmit)="saveReception()" name = "form" >
+            <form (ngSubmit)="saveReception()" name = "form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" >
               
               <div class="container2" >
 
@@ -14,21 +14,23 @@
   
                 <div class="row">
                   <div class="col-75">
-                    <input type="text" name="firstName" [(ngModel)]="reception.firstname"
+                    <input type="text" required #firstName="ngModel" name="firstName" [(ngModel)]="reception.firstName"
                                         placeholder="Enter Receptionist name" />
                   </div>
+                  <span *ngIf="firstName.invalid && firstName.touched" class = "error" > First Name requried</span>
                 </div>
             
                 <div class="row">
                   <div class="col-75">
-                    <input type="text" name="email" [(ngModel)]="reception.lastname" 
+                    <input type="text"  #lastName="ngModel" required name="lastname" [(ngModel)]="reception.lastName" 
                     placeholder="Enter LastName" />
                   </div>
+                  <span *ngIf="lastName.invalid && lastName.touched" class = "error" > Last Name requried</span>
                 </div>
             
                 <div class="row">
                   <div class="col-75">
-                        <select name="gender" id="gen" [(ngModel)]="reception.gender" >
+                        <select name="gender" id="gen" [(ngModel)]="reception.gender" required >
                           <option value="g"  selected  >Enter Gender</option>
                         <option value="M">M</option>
                         <option value="F">F</option>
@@ -36,59 +38,67 @@
                     </select>
                   </div>
                 </div>
-            <!--
-                <div class="row">
-                  <div class="col-75">
-                    <input type="text" name="tp" [(ngModel)]="reception.password" 
-                                        placeholder="Enter Password" ng-minlength='4' required />
-                <p ng-show ="form.password.$error.ng-minlength || form.password.$invalid" > </p>
-                  </div>
-                </div>
-            -->
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="nic" [(ngModel)]="reception.nic" 
-                placeholder="Enter NIC" />
-              </div>
-            </div>
-  
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="contactno" [(ngModel)]="reception.contactno" 
-                placeholder="Enter Contact No" />
-              </div>
-            </div>
-  
-            <div class="row">
-              <div class="col-75">
-                <input type="text" name="email" [(ngModel)]="reception.address" 
-                placeholder="Enter Address" />
-              </div>
-            </div>
+
                 <div class="row">
                   <div class="col-75" style>
-                    <input type="text" name="drugtype" [(ngModel)]="reception.email" 
-                    placeholder="Enter Email" />
+                    <input type="email" name="email" [(ngModel)]="reception.email" 
+                    placeholder="Enter Email" #email="ngModel" email />
                   </div>
+                  <span *ngIf="email.invalid && email.touched" class = "error" > Please enter a valid email</span>
                 </div>
             
                 <div class="row">
                   <div class="col-75">
-                    <input type="date" name="drugtype" [(ngModel)]="reception.dob" 
+                    <input type="password" minlength="4" name="password" [(ngModel)]="this.password" 
+                                        placeholder="Enter Password"  required />
+                
+                  </div>
+                </div>
+           
+            <div class="row">
+              <div class="col-75">
+                <input type="text" #nic="ngModel" required name="nic" [(ngModel)]="reception.nic" 
+                placeholder="Enter NIC" />
+              </div>
+              <span *ngIf="nic.invalid && nic.touched" class = "error" > NIC is requried</span>
+            </div>
+  
+            <div class="row">
+              <div class="col-75">
+                <input type="text" #contactNo="ngModel"  name="contactno" [(ngModel)]="reception.contactNo" 
+                placeholder="Enter Contact No" />
+              </div>
+              <span *ngIf="contactNo.invalid && contactNo.touched" class = "error" > Contact No is requried</span>
+            </div>
+  
+            <div class="row">
+              <div class="col-75">
+                <input type="text" #address="ngModel" name="address" [(ngModel)]="reception.address" 
+                placeholder="Enter Address" />
+              </div>
+              <span *ngIf="address.invalid && address.touched" class = "error" > Address requried</span>
+            </div>
+
+            
+                <div class="row">
+                  <div class="col-75">
+                    <input type="date"  #dob="ngModel" name="dob" [(ngModel)]="reception.dob" 
                     placeholder="Enter DOB" />
                   </div>
+                  <span *ngIf="dob.invalid && dob.touched" class = "error" > Hired Date is requried</span>
                 </div>
   
                 <div class="row">
                   <div class="col-75">
-                    <input type="date" name="drugtype" [(ngModel)]="reception.hiredDate" 
+                    <input type="date"  #hiredDate="ngModel" name="hiredDate" [(ngModel)]="reception.hiredDate" 
                     placeholder="Enter hiredDate" />
                   </div>
+                  <span *ngIf="hiredDate.invalid && hiredDate.touched" class = "error" > Hired Date is requried</span>
                 </div>
                 
             
-                <button type = "submit" class = submit >  Save   </button>
-                <button *ngIf = "reception.employeeId" (click)="deleteReception(reception.employeeId)"> Delete </button>
+                <button [disabled]="userForm.invalid" type = "submit" class = submit >  Save   </button>
+                <span *ngIf="userForm.invalid && userForm.touched" class = "error" > Invalid Form Entry</span>
                
               
               </div>  

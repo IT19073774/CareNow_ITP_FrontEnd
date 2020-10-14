@@ -43,9 +43,11 @@ export class DrugComponent implements OnInit {
     this._prescriptionService.getAllPrescriptions().subscribe(
       
       data => {
+        
         this.closePopup();
         this.prescription = [];
         this.prescription = data
+        console.log(this.prescription)
         this.closePopup();
       }
     )

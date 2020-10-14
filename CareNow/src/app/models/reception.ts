@@ -1,17 +1,18 @@
 export class Reception {
    
 
+	
 	employeeId: number;
-	firstname: string;
-	lastname: string;
+	firstName: string;
+	lastName: string;
 	gender: string;
-	password: string;
 	email: string;
-	dob: Date;
+	dob: string;
 	address:string;
-	contactno: string;
+	contactNo: string;
 	nic: string;
-	hiredDate: Date;
+	hiredDate: string;
+	type:string="RECEPTIONIST";
 	
     
 

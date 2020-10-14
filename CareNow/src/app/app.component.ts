@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarenowService } from 'src/app/services/carenow.service';
 import { Memo } from './models/memo'
 
+
 interface LooseObject {
   [key: string]: any
 }

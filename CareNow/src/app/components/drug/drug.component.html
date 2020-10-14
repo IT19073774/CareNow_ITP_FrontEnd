@@ -24,10 +24,10 @@
             </tr>
             <tr *ngFor="let prescription of prescription | filter:filterterm">
 
-                <td>{{prescription.prescriptionId}}</td>
-                <td>{{prescription.patientId}}</td>
-                <td>{{prescription.doctorID}}</td>
-                <td>{{prescription.prescriptionDate}}</td>
+                <td>{{prescription.prescription_id}}</td>
+                <td>{{prescription.patient_id}}</td>
+                <td>{{prescription.doctor_id}}</td>
+                <td>{{prescription.prescription_date}}</td>
                 <td>
                     <button class="btn" (click)="viewPrescription(prescription)">
                         <img class = "view" src="assets/img/listView.jpg"   alt="CareNow Prescription View" >
@@ -47,10 +47,10 @@
     </div>
     <hr>
 
-    Prescription ID : {{p.prescriptionId}}<br>
-    Patient ID : {{p.patientId}}<br>
-    Doctor ID : {{p.doctorID}}<br>
-    Prescription Date : {{p.prescriptionDate}}<br>
+    Prescription ID : {{p.prescription_id}}<br>
+    Patient ID : {{p.patient_id}}<br>
+    Doctor ID : {{p.doctor_id}}<br>
+    Prescription Date : {{p.prescription_date}}<br>
     <table>
         <tr>
                 <th>Drug Name</th>
@@ -68,7 +68,7 @@
     
     <hr>
     <button class="close" (click)="closePopup()"> Cancel</button>
-    <button class="close" (click)="issue(p.prescriptionId)">Issue Drugs</button>
+    <button class="close" (click)="issue(p.prescription_id)">Issue Drugs</button>
 
 </div>
 

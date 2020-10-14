@@ -9,9 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-doctor.component.css']
 })
 export class AddDoctorComponent implements OnInit {
-
   
-  doctor:any = {}
+  onSubmit(data)
+  {
+    console.warn(data);
+  }
+  
+  doctor: Doctor =new Doctor;
+  public password = "";
+  public education = "";
 
   constructor(private _doctorServices: DoctorService,
     private _router: Router,
@@ -19,27 +25,23 @@ export class AddDoctorComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const isIdPresent = this._activatedRoute.snapshot.paramMap.has('id');
-    if (isIdPresent)
-    {
-      const Id = +this._activatedRoute.snapshot.paramMap.get('id');
-      this._doctorServices.getDoctor().subscribe(
-        data =>this.doctor = data
-      )
-    }
-   
   }
 
   saveDoctor() {
-  this._doctorServices.saveDoctor(JSON.stringify(this.doctor)).subscribe(
-    data =>{
-      console.log('response', data);
-      this._router.navigateByUrl("/listCash");
-      
-    }
-  )
-  
+    console.log("Entered Save ");
+    if(this.doctor.email.includes("@") && this.doctor.email.includes(".com")){
+      console.log(" Save ");
+      console.log(this.password)
+      this._doctorServices.saveDoctor(JSON.stringify(this.doctor), this.password, this.education).subscribe(
+        data =>{
+          console.log('response', data);
+          this._router.navigate(["/listDoc"])
+        }
+      )
+      console.log("Finished Save ");
+      }
 }
+
 
 
 deleteDoctor(cid:number)
@@ -47,7 +49,7 @@ deleteDoctor(cid:number)
   this._doctorServices.deleteDoctor(cid).subscribe(
     data =>{
       console.log('deleted response',data);
-      this._router.navigateByUrl("/listCash");
+      this._router.navigateByUrl("/listDoc");
     }
   )
 }

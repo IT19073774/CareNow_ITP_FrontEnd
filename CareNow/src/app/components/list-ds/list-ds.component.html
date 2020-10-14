@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
 <div class="mainContent">
    
     <div class="textpaddleft">
@@ -11,7 +13,7 @@
     <th>Drug Name</th>
     <th>Drug EXP</th>
     <th>Drug Quntity</th>
-    <th>Add</th>
+    <th></th>
 </tr>
 </thead>
 <tbody>
@@ -20,8 +22,8 @@
         <td>{{Drug.drugName}}</td>
         <td>{{Drug.drugExpDate}}</td>
         <td>{{Drug.drugQuantity}}</td>
-        <td><button (click)="AddDrug(Drug.drugName)" class='btn btn-success'>
-        ------ Add ------</button></td>
+        <td><button (click)="AddDrug(Drug.drugName)" class='btn btn-lg btn-outline-success'>
+            <i class="fas fa-plus"></i></button></td>
     </tr>
 </tbody>
 </table>

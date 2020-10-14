@@ -12,5 +12,17 @@
     box-shadow:0 4px 8px 0 rgba(0,0,0,1);
     overflow: auto;
     padding:3% 2%;
-     
+    font-family: "Segoe UI"; 
+  }
+
+  input.ng-invalid{
+    border-left: 7px solid red;
+  }
+  
+  input.ng-valid{
+    border-left: 7px solid green;
+  }
+  
+  .error{
+    color: red;
   }

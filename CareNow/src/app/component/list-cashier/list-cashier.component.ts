@@ -3,6 +3,7 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas'
 import { Cashier } from '../../models/cashier';
 import { CashierService } from '../../services/cashier.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-cashier',
@@ -11,16 +12,25 @@ import { CashierService } from '../../services/cashier.service';
 })
 export class ListCashierComponent implements OnInit {
 
+  onSubmit(data)
+  {
+    console.warn(data);
+  }
+  
   public isDetVisible = false
-  cashier: any = [];
-  cashierEdit:any = {}
+  cashier: Cashier []= [];
+  cashierEdit: Cashier = new Cashier;
 
+  public password = "";
+  filterterm: string;
   filters = {
     keyword: '',
     sortBy: ''
   }
-
-  constructor(private _cashierServices: CashierService) { }
+  constructor(private _cashierServices: CashierService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) { }
+    
 
 
   ngOnInit(): void {
@@ -41,22 +51,27 @@ export class ListCashierComponent implements OnInit {
       let pdf = new jsPDF('p', 'mm', 'a4');
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.save('newPDF.pdf');
+      pdf.save('cashier.pdf');
     });
   }
-  
-  updateCashier(val:Number) {
+  addCashier()
+  {
+    this._router.navigate(["/addCash"]);
+  }
+/*
+  editCashier(val:Number) {
     
     this.cashierEdit = {}
     for(let cash of this.cashier) {
-      if (cash["cid"] == val ) {
+      if (cash["employeeId"] == val ) {
         this.cashierEdit = cash
         break;
       }
     }
-    console.log(this.cashierEdit)
+    console.log("retrieve",this.cashierEdit)
     this.isDetVisible = true
   }
+*/
   deleteCashier(id: number)
   {
   this._cashierServices.deleteCashier(id).subscribe(
@@ -66,8 +81,35 @@ export class ListCashierComponent implements OnInit {
     },
     error => console.log(error));   
 }
+   updateCashier()
+   {
+    console.log("Entered Save ");
+    console.log(" Save ");
+    console.log(this.password)
+    this._cashierServices.updateCashier(JSON.stringify(this.cashierEdit)).subscribe(
+      data =>{
+      console.log('response', data);
+      this._router.navigate(["/listCash"])
+    }
+  )
+  console.log("Finished Save ");
+  this.closeDetail();
+}
    
 
+saveCashier() {
+  console.log("Entered Save ");
+    console.log(" Save ");
+    console.log(this.password)
+    this._cashierServices.saveCashier(JSON.stringify(this.cashierEdit), this.password).subscribe(
+      data =>{
+      console.log('response', data);
+      this._router.navigate(["/listCash"])
+    }
+  )
+  console.log("Finished Save ");
+  this.closeDetail();
+}
 
   listCashier()
   {
@@ -103,6 +145,11 @@ export class ListCashierComponent implements OnInit {
      } )
   }
 */
+
+edit(c:Cashier){
+  this.isDetVisible = true;
+  this.cashierEdit=c;
+}
 }
 
 

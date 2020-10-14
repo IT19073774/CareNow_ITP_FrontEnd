@@ -3,6 +3,7 @@ import { ReceptionService } from 'src/app/services/reception.service';
 import { Reception } from 'src/app/models/reception';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-reception',
@@ -10,17 +11,24 @@ import html2canvas from 'html2canvas'
   styleUrls: ['./list-reception.component.css']
 })
 export class ListReceptionComponent implements OnInit {
-
+  onSubmit(data)
+  {
+    console.warn(data);
+  }
   public isDetVisible = false
-  reception: any = [];
-  receptionEdit:any = {}
+  reception: Reception [] = [];
+  receptionEdit: Reception = new Reception;
+  public password = "";
 
+  filterterm: any;
   filters = {
     keyword: '',
     sortBy: ''
   }
 
-  constructor(private _receptionService: ReceptionService) { }
+  constructor(private _receptionService: ReceptionService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -43,7 +51,7 @@ export class ListReceptionComponent implements OnInit {
       let pdf = new jsPDF('p', 'mm', 'a4');
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-      pdf.save('newPDF.pdf');
+      pdf.save('reception.pdf');
     });
   }
   
@@ -53,12 +61,15 @@ export class ListReceptionComponent implements OnInit {
     data =>{
       console.log('deleted response',data);
       this.listReception();
-    },   
-  error => console.log(error))
+    },
+    error => console.log(error)); 
   }
-
-
-
+  
+  addReception()
+  {
+    this._router.navigate(["/Regis"]);
+  }
+/*
   editReception(val:Number) {
     
     this.receptionEdit = {}
@@ -72,14 +83,7 @@ export class ListReceptionComponent implements OnInit {
     this.isDetVisible = true
   }
 
-  saveReception() {
-    this._receptionService.saveReception(this.reception).subscribe(
-      data =>{
-        console.log('response', data);
-        
-      }
-    )
-  }
+  */
 
   listReception()
   {
@@ -89,6 +93,21 @@ export class ListReceptionComponent implements OnInit {
         this.reception =data}
     )
   }
+
+  updateReception()
+  {
+   console.log("Entered Save ");
+   console.log(" Save ");
+   console.log(this.password)
+   this._receptionService.updateReception(JSON.stringify(this.receptionEdit)).subscribe(
+     data =>{
+     console.log('response', data);
+     this._router.navigate(["/listRecep"])
+   }
+ )
+ console.log("Finished Save ");
+ this.closeDetail();
+}
   /*
   filterReception(reception: Reception[])
   {
@@ -117,4 +136,10 @@ export class ListReceptionComponent implements OnInit {
     }
      
 */
+
+edit(r:Reception)
+{
+  this.isDetVisible = true;
+  this.receptionEdit=r;
+}
 }
