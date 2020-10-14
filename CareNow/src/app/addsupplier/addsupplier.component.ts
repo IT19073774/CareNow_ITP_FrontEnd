@@ -13,8 +13,10 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 export class AddsupplierComponent implements OnInit {
 
   supplier: Supplier = new Supplier();
+  SupplierDemo: Supplier = new Supplier();
   supplierForm: FormGroup;
 
+ 
   constructor(private _supplierService: SupplierService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute){ }
@@ -31,12 +33,15 @@ export class AddsupplierComponent implements OnInit {
   }
 
   saveSupplier() {
-    this._supplierService.saveSupplier(this.supplier).subscribe(
-      data => {
-        console.log('response', data);
-        this._router.navigateByUrl("/suppliers");
-      }
-    )
+    if(this.supplier.email.includes("@") && this.supplier.email.includes(".com")){
+      console.log(" Save ");
+      this._supplierService.saveSupplier(this.supplier).subscribe(
+        data => {
+          console.log('response', data);
+          this._router.navigateByUrl("/suppliers");
+        }
+      )
+    }
   }
 
   deleteSupplier(id: number) {

@@ -1,24 +1,31 @@
 <div class="mainContent">
-       
-    <div class="container" >
-        
+
+    <div class="container">
+
         <br>
         <br>
 
         <div>
-            <form  (ngSubmit)="saveOrder()" style="z-index: 100;">
-            <div class="container2" >
-                
-                <div class="row">
-                    <div class="col-75">
-                        <!--div [formGroup]="orderForm"-->   
-                            <input type="text" name="drugname" [(ngModel)]="order.drugname"
-                            placeholder="Enter drug name" />
+            <form (ngSubmit)="saveOrder()" style="z-index: 100;">
+                <div class="container2">
+                    <div class="row">
+                        <div class="col-75">
+                            <h2> Place New Order</h2>
+
+
+                        </div>
+                    </div>
+<hr>
+                    <div class="row">
+                        <div class="col-75">
+                            <!--div [formGroup]="orderForm"-->
+                            <input required type="text" id="drugname" name="drugname" [(ngModel)]="order.drugname"
+                                placeholder="Enter drug name" />
                             <!--div *ngIf = orderForm.get('drugname').valid && orderForm.get('drugname').touched
                                 <small>Please enter valid course name !</small> >
                             
                             <span class="text-muted" *ngIf="orderForm.get('drugname').valid && orderForm.get('drugname').touched">Drug Name fields are is required</span-->
-                       
+
 
                         </div>
                     </div>
@@ -26,63 +33,61 @@
                     <div class="row">
                         <div class="col-75">
 
-                            <input type="text" name="drugtype" [(ngModel)]="order.drugtype"
-                            placeholder="Enter drugtype" />
+                            <input required type="text" name="drugtype" [(ngModel)]="order.drugtype"
+                                placeholder="Enter drugtype" />
 
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-75">
-                            <input type="text" name="quantity" [(ngModel)]="order.quantity"
-                            placeholder="Enter quantity" />
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-75">
-                            <input type="text" name="size" [(ngModel)]="order.size"
-                            placeholder="Enter size" />
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-75">
-                            <input type="datetime-local" name="placedDate" class="inputxox"
-                            [(ngModel)]="order.placedDate" 
-                            placeholder="Enter placedDate" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-75">
-                            <input type="date" name="dueDate" class="inputxo"
-                            [(ngModel)]="order.dueDate"
-                            placeholder="Enter dueDate" />
+                            <input required type="text" name="quantity" [(ngModel)]="order.quantity"
+                                placeholder="Enter quantity" />
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-75">
-                            <input type="date" name="recievedDate" class="inputxo" 
-                            [(ngModel)]="order.recievedDate" 
-                            placeholder="Enter recievedDate" />
+                            <input required type="text" name="size" [(ngModel)]="order.size" placeholder="Enter size" />
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-75">
+                            <label>Placement Date</label>
+                            <input required type="datetime-local" name="placedDate" class="inputxox"
+                                [(ngModel)]="order.placedDate" placeholder="Enter placedDate" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-75">
+                            <label>Due Date</label>
+                            <input required type="date" name="dueDate" class="inputxo" [(ngModel)]="order.dueDate"
+                                placeholder="Enter dueDate" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-75">
+                            <label>Delivered Date</label>
+                            <input type="date" name="recievedDate" class="inputxo" [(ngModel)]="order.recievedDate"
+                                placeholder="Enter recievedDate" />
                         </div>
                     </div>
 
 
-                            
-                    
+
+
                     <div class="row">
                         <input type="submit" value=" Update " style="background-color: green;">
                     </div>
-                    <div class="row" (click)="deleteOrder(order.id)">
-                        <input type="submit" value="  Delete  " style="background-color: black;">
-                    </div>
-                
-                </div>    
+
+                    
+                </div>
             </form>
         </div>
     </div>
 </div>
-

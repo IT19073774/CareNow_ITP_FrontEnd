@@ -12,8 +12,8 @@ export class ListorderComponent implements OnInit {
 
   orders: Order[]=[];
 
-  filters = {
-    keyword: ''
+  filtersx = {
+    keywordx: ''
   }
 
   constructor(private _orderService: OrderService) { }
@@ -40,11 +40,7 @@ export class ListorderComponent implements OnInit {
     
   }
 
-  filterOrders(orders: Order[]){
-   return orders.filter((o) => {
-     return o.drugname.toLowerCase().includes(this.filters.keyword.toLowerCase());
-   })
-  }
+  
 
 
   download(){

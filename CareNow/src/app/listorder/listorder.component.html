@@ -1,29 +1,36 @@
 <div class="mainContent">
+  <div class="imagediv" >
+    <img class="im" src="assets/img/meow.jpg"  >
+    <h1 style="position: relative; color: white;"> Order List </h1>
+    <br>
+  </div>
+
+<br>
+  <br>
+  <hr class="hr">
+ 
+  <br>
   <div class="meow">
+
     <div class="addo">
-    
-      <img src="assets/img/orderIcon.png"  width="20%"style="border-radius: 100%; ">
-      <a routerLink="/addorder">Add Order</a>
+      <!--img src="assets/img/orderIcon.png" width="20%" style="border-radius: 100%; "-->
+      <a routerLink="/addorder" style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">
+        Add Order</a>
     </div>
+
     <div class="addo">
-    
-      <img src="assets/img/reports.png"  width="20%"style="border-radius: 100%; ">
-      <a  (click)= "download()">Generate Report</a>
+      <!--img src="assets/img/reports.png" width="20%" style="border-radius: 100%; "-->
+      <a (click)="download()" style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">
+        Generate Report</a>
     </div>
-    </div>
+  </div>
+<br>
   
-    <div class="addo3">
-
-
-
-      <label style="font-family: Trebuchet MS, Arial, Helvetica, sans-serif">Filter By Name</label>
-      <input type="text"
-      [(ngModel)] = "filters.keyword" 
-      name="keyword"
-      (input)="listOrder()">
-
-    </div>
-    <div >
+  <br>
+  <hr class="hr">
+  
+  <br>
+  <div>
     <table id="orders">
       <tr>
         <th>Drug Name</th>
@@ -34,30 +41,37 @@
         <th>Placed Dt</th>
         <th>Due Dt</th>
         <th>Recieved Dt</th>
-        
+
         <th>Edit Order </th>
         <th>Delete Order </th>
-  
+
       </tr>
-        
-           <tr  *ngFor="let order of orders">
-                <td >{{order.drugname}}</td>
-                <td >{{order.id}}</td>
-                <td >{{order.drugtype}}</td>
-                <td >{{order.quantity}}</td>
-                <td >{{order.size}}</td>
-                <td >{{order.placedDate}}</td>
-                <td >{{order.dueDate}}</td>
-                <td >{{order.recievedDate}}</td>
-                
-                <td ><a routerLink="/editorder/{{order.id}}">Edit</a></td>
-                
-                <td ><div class="row" (click)="deleteOrder(order.id)"  >
-                  <input type="submit" value="  Delete  " style="background-color: black;"></div></td>
-                
-            
-           </tr> 
-       
-    </table>  
-  </div>  
+
+      <tr *ngFor="let order of orders">
+        <td>{{order.drugname}}</td>
+        <td>{{order.id}}</td>
+        <td>{{order.drugtype}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.size}}</td>
+        <td>{{order.placedDate}}</td>
+        <td>{{order.dueDate}}</td>
+        <td>{{order.recievedDate}}</td>
+
+        <td><a routerLink="/editorder/{{order.id}}">Edit</a></td>
+
+        <td>
+          <div class="row" (click)="deleteOrder(order.id)">
+            <input type="submit" value="  Delete  " style="background-color: black;"></div>
+        </td>
+
+
+      </tr>
+
+    </table>
   </div>
+    
+</div>
+
+
+
+

@@ -45,13 +45,14 @@ export class ListsupplierComponent implements OnInit {
       data => this.suppliers = this.filterSuppliers(data))
     
   }  
+
   filterSuppliers(suppliers: Supplier[]){
     return suppliers.filter((s) => {
       return s.name.toLowerCase().includes(this.filters.keyword.toLowerCase());
     }).sort((a, b) => {
       if (this.filters.sortBy === 'Name') {
         return a.name.toLowerCase() < b.name.toLowerCase() ? -1: 1;
-      }else if(this.filters.sortBy === 'Amount') {
+      }else if(this.filters.sortBy === 'ID') {
         return a.id > b.id ? -1: 1;
       }
     })
@@ -74,7 +75,7 @@ export class ListsupplierComponent implements OnInit {
     
   }
      filterSuppliersDt(suppliers: Supplier[]){
-    return suppliers.filter((s) => {
+     return suppliers.filter((s) => {
       return s.drugtype.toLowerCase().includes(this.filtersDt.keywordDt.toLowerCase());
     })
    }

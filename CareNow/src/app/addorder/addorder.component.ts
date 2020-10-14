@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../model/order';
 import { OrderService } from '../service/order.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-addorder',
@@ -59,4 +58,5 @@ export class AddorderComponent implements OnInit {
       }
     )
   }
+
 }
