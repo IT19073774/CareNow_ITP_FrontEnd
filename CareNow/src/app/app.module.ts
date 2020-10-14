@@ -61,6 +61,7 @@ import { ListCashierComponent } from './component/list-cashier/list-cashier.comp
 import { AddCashierComponent } from './component/add-cashier/add-cashier.component';
 import {AddDoctorComponent} from './component/add-doctor/add-doctor.component';
 import {ListDoctorComponent} from './component/list-doctor/list-doctor.component';
+import { AddStockmanagerComponent } from './component/add-stockmanager/add-stockmanager.component';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import {ListDoctorComponent} from './component/list-doctor/list-doctor.component
     ListPharmacistComponent,
     ListStockmanagerComponent,
     AddPharmacistComponent,
+    AddStockmanagerComponent,
     //Osura
     RegisComponent,
     ListReceptionComponent,
@@ -109,6 +111,7 @@ import {ListDoctorComponent} from './component/list-doctor/list-doctor.component
     AddCashierComponent,
     AddDoctorComponent,
     ListDoctorComponent
+    
   ],
   imports: [
     //ashvinn

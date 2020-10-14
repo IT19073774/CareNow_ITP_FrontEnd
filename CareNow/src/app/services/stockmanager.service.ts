@@ -30,16 +30,14 @@ export class StockmanagerService {
 
   }
 
-
-
-  saveStockmanager(stockmanager: any):Observable<any> {
-    return this.http.post(`http://localhost:8080/saveStockManager`,stockmanager)
+  saveStockmanager(stockmanager,password):Observable<any> {
+    return this.http.post<any>("http://localhost:8080/saveStockManager/"+password,stockmanager,this.httpOptions);
   }
 
 
 
-  updateStockmanager(val: number):Observable<any> {
-    return this.http.put<any>("http://localhost:8080/updateStockManager",this.httpOptions)
+  updateStockmanager(stockmanager):Observable<any> {
+    return this.http.post<any>("http://localhost:8080/updateStockManager",stockmanager,this.httpOptions);
   }
 
  

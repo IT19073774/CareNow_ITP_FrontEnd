@@ -11,7 +11,7 @@ import { PharmacistService } from '../../services/pharmacist.service';
 })
 export class AddPharmacistComponent implements OnInit {
 
-  pharmacistadd:Pharmacist=new Pharmacist;
+  pharmacist:Pharmacist=new Pharmacist;
   public password = "";
  // employee: Employee =new Employee();
   //pharmacist:any={};
@@ -21,29 +21,15 @@ export class AddPharmacistComponent implements OnInit {
     private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
-    
-    
-
-    //this.savePharmacist();
-/*
-    const isIdPresent = this._activatedRoute.snapshot.paramMap.has('id');
-    if (isIdPresent)
-    {
-      const Id = +this._activatedRoute.snapshot.paramMap.get('id');
-      this._pharmacistServices.getPharmacist().subscribe(
-        data =>this.employee = data
-      )
-    }
-  */
+  
   }
 
 savePharmacist() {
   console.log("Entered Save ");
-  if(this.pharmacistadd.email.includes("@") && this.pharmacistadd.email.includes(".com")){
+  if(this.pharmacist.email.includes("@") && this.pharmacist.email.includes(".com")){
     console.log(" Save ");
     console.log(this.password)
-    this._pharmacistServices.savePharmacist(JSON.stringify(this.pharmacistadd), this.password).subscribe(
+    this._pharmacistServices.savePharmacist(JSON.stringify(this.pharmacist), this.password).subscribe(
       data =>{
       console.log('response', data);
       this._router.navigate(["/listPharmacist"])

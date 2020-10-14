@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Stockmanager } from '../../models/stockmanager';
 import { StockmanagerService } from '../../services/stockmanager.service';
+import * as html2pdf from 'html2pdf.js';
+import { jsPDF } from 'jspdf';
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-stockmanager',
@@ -10,15 +13,22 @@ import { StockmanagerService } from '../../services/stockmanager.service';
 export class ListStockmanagerComponent implements OnInit {
 
   public isDetVisible = false
-  stockmanager: any = [];
-  stockmanagerEdit:any = {}
+  stockmanager: Stockmanager[] = [];
+  stockmanagerEdit:Stockmanager = new Stockmanager;
 
+  public password="";
+  filterterm: string;
   filters = {
     keyword: '',
     sortBy: ''
   }
 
-  constructor(private _stockmanagerServices: StockmanagerService) { }
+
+
+
+  constructor(private _stockmanagerServices: StockmanagerService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -30,18 +40,21 @@ export class ListStockmanagerComponent implements OnInit {
     this.isDetVisible = false
   }
 
-  updateStockmanager(val:Number) {
-    
-    this.stockmanagerEdit = {}
-    for(let stock of this.stockmanager) {
-      if (stock["sid"] == val ) {
-        this.stockmanagerEdit = stock
-        break;
-      }
-    }
-    console.log(this.stockmanagerEdit)
-    this.isDetVisible = true
+  
+  downloadPDF() {
+    var data = document.getElementById('contentToConvert');
+    html2pdf(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('Stock Manager List.pdf');
+    });
   }
+  
+
   deleteStockmanager(sid: number)
   {
   this._stockmanagerServices.deleteStockmanager(sid).subscribe(
@@ -51,15 +64,7 @@ export class ListStockmanagerComponent implements OnInit {
     }
   )
   }
-  savePharmacist() {
-    this._stockmanagerServices.saveStockmanager(this.stockmanager).subscribe(
-      data =>{
-        console.log('response', data);
-
-      }
-    )
   
-  }
 
   listStockmanager()
   {
@@ -69,32 +74,43 @@ export class ListStockmanagerComponent implements OnInit {
         this.stockmanager =data}
     )
   }
-/*
-  filterCashier(cashier: Cashier[])
-  {
-    return cashier.filter((e) => {
-      return e.cashfirstname.toLowerCase().includes(this.filters.keyword.toLowerCase());
-     }).sort((a,b) => {
-       if (this.filters.sortBy === 'FirstName')
-       {
-         return a.cashfirstname.toLowerCase() < b.cashfirstname.toLowerCase() ? -1: 1
-       }
-       else if (this.filters.sortBy === 'LastName')
-       {
-        return a.cashlastname.toLowerCase() < b.cashlastname.toLowerCase() ? -1: 1
-       }
-       else if (this.filters.sortBy === 'Email')
-       {
-        return a.cashemail.toLowerCase() < b.cashemail.toLowerCase() ? -1: 1
-       }
-       else if (this.filters.sortBy === 'DOB')
-       {
-        return a.cashdob > b.cashdob ? -1: 1;
-       }
-      
-     } )
-  }
-*/
+saveStockmanager() {
+  console.log("Entered Save ");
+    console.log(" Save ");
+    console.log(this.password)
+    this._stockmanagerServices.saveStockmanager(JSON.stringify(this.stockmanagerEdit), this.password).subscribe(
+      data =>{
+      console.log('response', data);
+      this._router.navigate(["/listStockmanager"])
+    }
+  )
+  console.log("Finished Save ");
+  this.closeDetail();
 }
 
 
+edit(stock:Stockmanager) {
+  this.isDetVisible = true;
+  this.stockmanagerEdit=stock;
+
+
+}
+addStockManager(){
+  this._router.navigate(["addStockmanager"]);
+}
+updateStockmanager()
+   {
+    console.log("Entered Save ");
+    console.log(" Save ");
+    console.log(this.password)
+    this._stockmanagerServices.updateStockmanager(JSON.stringify(this.stockmanagerEdit)).subscribe(
+      data =>{
+      console.log('response', data);
+      this._router.navigate(["/listStockmanager"])
+    }
+  )
+  console.log("Finished Save ");
+  this.closeDetail();
+}
+
+}
