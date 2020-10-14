@@ -1,82 +1,59 @@
 <div class="mainContent">
-       
-        <div class="container" >
-                <div class="box">
-                  <div class="box1" >
-                    
-                      <h3  style="margin-top: 0%;margin-left: 25%;">{{supplier.name}}</h3>
-                    
-                  </div>
-              
-                </div>
-                <br>
-                <br>
 
-                <div>
+  <div class="container">
 
-                  <form (ngSubmit)="saveSupplier()" style="z-index: 100;">
+    <br>
+    <br>
 
-                <div class="container2" >
-              
-                  <div class="row">
-                    <div class="col-75">
-                      <input type="text" name="name" [(ngModel)]="supplier.name"
-                      placeholder="Enter drug name" />
-                      
-                    </div>
-                  </div>
-              
-                  <div class="row">
-                    <div class="col-75">
-                      <input  required pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" type="text" 
-                      id ="email" name="email" [(ngModel)]="supplier.email" 
-                      placeholder="Enter email" />
-                    </div>
-                  </div>
-              
-                  <div class="row">
-                    <div class="col-75">
-                      <input required type="text" name="address" [(ngModel)]="supplier.address"
-                      placeholder="Enter address" />
-                    </div>
-                  </div>
-              
-                  <div class="row">
-                    <div class="col-75">
-                      <input type="text" name="tp" [(ngModel)]="supplier.tp"
-                      placeholder="Enter tp" />
-                    </div>
-                  </div>
-              
-                  <div class="row">
-                    <div class="col-75">
-                      <input type="text" name="drugtype" [(ngModel)]="supplier.drugtype"
-                      placeholder="Enter drugtype" />
-                    </div>
-                  </div>
-              
-                  
-              
-                  <div class="row">
-                    <input type="submit" value=" Update " style="background-color: green;">
-                  </div>
-                  <div class="row" (click)="deleteSupplier(supplier.id)">
-                        <input type="submit" value="  Delete  " style="background-color: black;">
-                  </div>
-                
-                </div>  
-                </form> 
-                 </div>
+    <div>
+
+      <form (ngSubmit)="saveSupplier()" id="supplierForm" style="z-index: 100;">
+
+        <div class="container2">
+          <br><br><br>
+
+          <div class="row">
+            <div class="col-75">
+              <input required type="text" name="name" [(ngModel)]="supplier.name" placeholder="Enter Supplier name" 
+              ng-required="true" ng-minlength="2" ng-maxlength="10"/>
+
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-75">
+              <input required type="email" id="email" name="email" [(ngModel)]="supplier.email"
+                placeholder="Enter email" />
+              <!--p ng-show ="supplierForm.email.$error.ng-minlength || supplierForm.email.$invalid" > </p-->
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-75">
+              <input type="text" name="address" [(ngModel)]="supplier.address" placeholder="Enter address" />
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-75">
+              <input required type="number" name="tp" [(ngModel)]="supplier.tp" placeholder="Enter tp" />
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-75">
+              <input type="text" name="drugtype" [(ngModel)]="supplier.drugtype" placeholder="Enter drugtype" />
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <input type="submit" value=" ENTER " style="background-color: green;">
+          </div>
+
         </div>
+      </form>
+    </div>
+  </div>
 </div>
-
-<script>
-function validateForm() {
-  var x = document.forms["myForm"]["fname"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
-}
-</script>
- 

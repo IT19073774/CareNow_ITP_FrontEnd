@@ -21,12 +21,11 @@ export class OrderService{
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       Authorization: 'Basic ' +  btoa('carenow:password'),
-      responseType: 'text'
+    
     })
   };
   
   private getUrl: string = "http://localhost:8080/api/v2/orders";
-  private getUrlRe: string = "http://localhost:8080/api/v2/orders/reports";
 
 
   constructor(private _httpClient: HttpClient) {}
@@ -48,7 +47,7 @@ export class OrderService{
   }
 
   deleteOrder(id: number): Observable<any> {
-    return this._httpClient.delete(`${this.getUrl}/${id}`,  this.httpOptions2);
+    return this._httpClient.delete(`${this.getUrl}/${id}`,  this.httpOptions);
   }
  
 

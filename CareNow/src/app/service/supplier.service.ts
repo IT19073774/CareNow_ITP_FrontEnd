@@ -20,8 +20,8 @@ export class SupplierService {
   httpOptions2 = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      Authorization: 'Basic ' +  btoa('carenow:password'),
-      responseType: 'text'
+      Authorization: 'Basic ' +  btoa('carenow:password')
+      //responseType: 'text'
     })
   };
   
@@ -46,8 +46,6 @@ export class SupplierService {
   }
 
   deleteSupplier(id: number): Observable<any> {
-    return this._httpClient.delete(`${this.getUrl}/${id}`, this.httpOptions2);
+    return this._httpClient.delete<any>(`${this.getUrl}/${id}`, this.httpOptions);
   }
-  
-
 }

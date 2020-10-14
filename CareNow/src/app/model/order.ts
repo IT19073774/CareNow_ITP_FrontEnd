@@ -10,8 +10,5 @@ export class Order {
     dueDate: Date;
     recievedDate: Date;
 
-
-
-
     
 }
