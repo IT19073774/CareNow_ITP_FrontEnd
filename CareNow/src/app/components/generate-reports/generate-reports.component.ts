@@ -64,70 +64,79 @@ export class GenerateReportsComponent implements OnInit {
   }
 
   onSubmit(addPatForm: NgForm) {
-    this.reportTitle = addPatForm.value.name
-      var start = this.convertDateFormat(new Date(addPatForm.value.start))
-      var end = this.convertDateFormat(new Date(addPatForm.value.end))
-      console.log(start)
-      switch (Number(addPatForm.value.type)) {
-        case 3:
-          this.service.getAppointmentAttendance(start,end).subscribe(async data => {
-            console.log(JSON.stringify(data))
-            for (let dat of data){
-              this.obj = {}
-              this.obj.appointmentId = "APP0" + dat["appointmentId"]
-              this.obj.subject = dat["subject"]
-              this.obj.description = dat["description"]
-              this.obj.date = this.convertDateFormatOnly(new Date(dat["startTime"]))
-              this.obj.timeslot = this.convertDateFormatTime(new Date(dat["startTime"])) + " - " + this.convertDateFormatTime(new Date(dat["endTime"]))
-              switch (Number(dat["statusId"])) {
-                case 1:
-                this.obj.statusId = "PENDING"
-                this.obj.color = "grey"
-                break;
-                case 2:
-                this.obj.statusId = "ARRIVED"
-                this.obj.color = "green"
-                break;
-                case 3:
-                this.obj.statusId = "ABSENT"
-                this.obj.color = "red"
-                break;
+    if (addPatForm.status == "VALID") {
+      this.reportTitle = addPatForm.value.name
+        var start = this.convertDateFormat(new Date(addPatForm.value.start))
+        var end = this.convertDateFormat(new Date(addPatForm.value.end))
+        console.log(start)
+        switch (Number(addPatForm.value.type)) {
+          case 3:
+            this.service.getAppointmentAttendance(start,end).subscribe(async data => {
+              console.log(JSON.stringify(data))
+              for (let dat of data){
+                this.obj = {}
+                this.obj.appointmentId = "APP0" + dat["appointmentId"]
+                this.obj.subject = dat["subject"]
+                this.obj.description = dat["description"]
+                this.obj.date = this.convertDateFormatOnly(new Date(dat["startTime"]))
+                this.obj.timeslot = this.convertDateFormatTime(new Date(dat["startTime"])) + " - " + this.convertDateFormatTime(new Date(dat["endTime"]))
+                switch (Number(dat["statusId"])) {
+                  case 1:
+                  this.obj.statusId = "PENDING"
+                  this.obj.color = "grey"
+                  break;
+                  case 2:
+                  this.obj.statusId = "ARRIVED"
+                  this.obj.color = "green"
+                  break;
+                  case 3:
+                  this.obj.statusId = "ABSENT"
+                  this.obj.color = "red"
+                  break;
+                }
+                
+                this.appoAttendance.push(this.obj)
+                console.log(this.obj)
               }
+              await this.delay(300)
+              this.download(addPatForm.value.name)
+              addPatForm.reset();
+              this.appoAttendance = [];
               
-              this.appoAttendance.push(this.obj)
-              console.log(this.obj)
-            }
-            await this.delay(300)
-            this.download(addPatForm.value.name)
-            addPatForm.reset();
-            this.appoAttendance = [];
-            
-          })
-        break;
-        case 1:
-          this.service.getDocDiagnose(start,end).subscribe(async data => {
-            console.log(JSON.stringify(data))
-            for (let dat of data){
-              this.obj = {}
-              this.obj.doctor = dat["doctor"]
-              this.obj.patient = dat["patient"]
-              this.obj.description = dat["description"]
-              this.obj.date = this.convertDateFormatOnly(new Date(dat["date"]))
-              this.obj.duration = this.getMinutesValue(new Date(dat["duration"])) - this.getMinutesValue(new Date(dat["date"]))
+            })
+          break;
+          case 1:
+            this.service.getDocDiagnose(start,end).subscribe(async data => {
+              console.log(JSON.stringify(data))
+              for (let dat of data){
+                this.obj = {}
+                this.obj.doctor = dat["doctor"]
+                this.obj.patient = dat["patient"]
+                this.obj.description = dat["description"]
+                this.obj.date = this.convertDateFormatOnly(new Date(dat["date"]))
+                this.obj.duration = this.getMinutesValue(new Date(dat["duration"])) - this.getMinutesValue(new Date(dat["date"]))
+                
+                this.docDiagnose.push(this.obj)
+                console.log(this.obj)
+              }
+              await this.delay(300)
+              this.download2(addPatForm.value.name)
+              addPatForm.reset();
+              this.docDiagnose = [];
               
-              this.docDiagnose.push(this.obj)
-              console.log(this.obj)
-            }
-            await this.delay(300)
-            this.download2(addPatForm.value.name)
-            addPatForm.reset();
-            this.docDiagnose = [];
-            
-          })
-        break;
+            })
+          break;
+        }
+        this.currentTab = 0;
+        this.showTab(this.currentTab);
       }
-      this.currentTab = 0;
-      this.showTab(this.currentTab);
+      else {
+        alert("ERROR => All Details is Required to be filled!")
+        this.currentTab = this.currentTab - 1;
+        this.showTab(this.currentTab)
+        
+        
+      }
     }
 
   ngOnInit(): void {

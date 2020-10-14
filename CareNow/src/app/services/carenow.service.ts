@@ -370,7 +370,7 @@ export class CarenowService {
                 this.sessionUser_TYPE = "PHARMACIST";
                 this.sessionUser_IDFormat = this.sessionUser_TYPE.substring(0,3) + "0" +this.sessionUser_ID;
                 this.isAuthenticated = true;
-                this.router.navigate(['drugs']);
+                this.router.navigate(['deliveries']);
                 this.isPharmacist = true;
 
               } else if (emp["type"] == "DOCTOR") {

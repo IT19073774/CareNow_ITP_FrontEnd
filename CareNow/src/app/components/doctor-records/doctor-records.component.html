@@ -21,7 +21,7 @@
     <input style="padding:10px; border:solid 1px lightgrey" placeholder="Search..." type="text" [(ngModel)]="searchTerm"></div>
     <div style="float:left; height: 480px; overflow: auto;padding:10px;">
         <div class="doctorTemplate" (click)="openDetail(doc.doctorId)"  *ngFor="let doc of doctors |filter:searchTerm">
-            <img src="assets/img/doctor2.jpg" height="100%" style="float: left;">
+            <img src="assets/img/patpro.png" height="100%" style="float: left;">
             <div style="margin:15px; margin-left:90px;">
                 <a style="color:rgb(0, 0, 0); font-weight: normal; font-size: 17px;">Dr. {{doc.firstName}} {{doc.lastName}}</a><br>
                 <div style="height:10px; margin-top:10px;" [style.backgroundColor]="doc.color"></div>

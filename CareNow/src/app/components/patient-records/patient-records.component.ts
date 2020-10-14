@@ -300,7 +300,8 @@ export class PatientRecordsComponent implements OnInit {
               this.giveAway.name = this.obj.patientName
               this.giveAway.email = this.obj.patientEmail
               this.giveAway.password = this.password
-
+              
+              console.log(JSON.stringify(this.obj))
               this.service.createPatient(JSON.stringify(this.obj), this.password)
                 .subscribe(checker => {
                   console.log(checker)
@@ -318,6 +319,43 @@ export class PatientRecordsComponent implements OnInit {
         
         
       }
+  }
+
+  demoSubmit() {
+      this.isaddVisible = false;
+      const demo = {
+      familyDoctorId: "DOC05",
+      patientAddress: "13 B Lenpool Flat, Block D, Asoka Gardens",  
+      patientDOB: "2001-03-20",
+      patientEmail: "kevin@gmail.com",
+      patientGender: "Male",
+      patientId: 960,
+      patientName: "Kevin Fernando",
+      patientOccupation: "Athelete",
+      patientPhone1: "751234567",
+      patientPhone2: "123456789",
+      patient_E_Name: "Shamra Perera",
+      patient_E_Phone: "761237894",
+      patient_E_Relationship: "Sister",
+      patient_H_Allergies: "Plaster,Peanuts,Cheese",
+      patient_H_Extra: null,
+      patient_H_FamilyHistory: "NONE",
+      patient_H_Illness: "Cholestrol,Low Blood Pressure",
+      patient_H_PastSurgery: "NONE"
+    }
+    this.giveAway.name = demo.patientName
+    this.giveAway.email = demo.patientEmail
+    this.giveAway.password = "DEMOPSW"
+    console.log(demo)
+    console.log(JSON.stringify(demo))
+    this.service.createPatient(JSON.stringify(demo), "DEMOPSW")
+                .subscribe(checker => {
+                  console.log(checker)
+                  
+                  this.ngOnInit();
+                  this.downloadPassword("DEMO_PATIENT");
+                  
+                })
   }
 
   convertDateFormatOnly(date:Date):any {
